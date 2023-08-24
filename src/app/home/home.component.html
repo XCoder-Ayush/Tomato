@@ -33,13 +33,12 @@
 </ul> -->
 <div class="container mt-4">
     <div class="row">
-        <div class="col-4 mt-3" *ngFor="let food of foods">
-            <mat-card class="example-card" >
+        <div class="col-4 mt-3" *ngFor="let food of foods" (click)="getClickedCardData(food)">
+            <mat-card class="example-card">
                 <div class="food-header">
                     <mat-card-header>
-                        <!-- <div mat-card-avatar class="example-header-image"></div> -->
                         <mat-card-title>{{food.name}}</mat-card-title>
-                        <mat-card-subtitle>{{food.stars}}*</mat-card-subtitle>
+                        <mat-card-subtitle><strong>{{food.stars}}*</strong></mat-card-subtitle>
                       </mat-card-header>      
                 </div>
                 <div class="food-image">
@@ -53,28 +52,19 @@
                       </mat-card-content>      
                 </div> -->
                 <div class="food-actions mt-4 text-center">
-                    <!-- <mat-card-footer> -->
-                        <!-- <div class="container-fluid"> -->
                             <div class="row">
                                 <div class="col-4">
                                     <button mat-raised-button color="primary">Price : ₹{{food.price}}</button>
                                 </div>  
                                 <div class="col-8 text-right mt-2">
                                     <a>
-                                        <mat-icon [matBadge]="9" matBadgeColor="warn">add_shopping_cart</mat-icon>
+                                        <mat-icon [matBadge]="getCartCount(food)" matBadgeColor="warn" (click)="navToCartPage()">add_shopping_cart</mat-icon>
                                         <!-- <mat-icon class="ml-3">add_circle_outline</mat-icon> -->
-                                        <mat-icon class="ml-1">keyboard_arrow_up</mat-icon>
-                                        <mat-icon>keyboard_arrow_down</mat-icon>
+                                        <mat-icon class="ml-1" (click)="incClickedCardCount(food)">keyboard_arrow_up</mat-icon>
+                                        <mat-icon (click)="decClickedCardCount(food)">keyboard_arrow_down</mat-icon>
                                     </a>
                                 </div>
                             </div>    
-                        <!-- </div> -->
-                        <!-- <button class="ml-2" mat-raised-button color="accent">Add To Cart 🛒</button> -->
-                        <!-- <div class="demo-section"> -->
-                        <!-- </div> -->
-                          
-                        <!-- <button class="ml-2" mat-raised-button color="warning">Details</button> -->
-                    <!-- </mat-card-footer>       -->
                 </div>
               </mat-card>                
         </div>
