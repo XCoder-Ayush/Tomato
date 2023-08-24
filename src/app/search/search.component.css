@@ -1,0 +1,23 @@
+div{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+}
+div input{
+    width: 20rem;
+    height: 2rem;
+    font-size: 1rem;
+    font-weight: 200;
+    border-radius: 0.5rem 0 0 0.5rem;
+}
+div button{
+    height: 2rem;
+    background-color: rgb(0, 174, 255);
+    color: cornsilk;
+    font-size: 1rem;font-weight: 200;
+   border-radius: 0 0.5rem 0.5rem 0;
+}
+div button:hover{
+    opacity: 0.75;
+    cursor: pointer;
+}

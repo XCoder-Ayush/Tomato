@@ -1,0 +1,43 @@
+div{
+    padding: 0.25rem;
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    margin: 1rem;
+}
+.name .info{
+    font-weight: 2000;
+    font-family: sans-serif;
+   
+}
+.name{
+    color: #101820FF;
+    background-color: #FEE715FF;
+   font-size: 1.5rem;
+  
+}
+.info{
+ 
+  color: #101820FF;
+    background-color: #FEE715FF;
+}
+.btn{
+    padding: 0.5rem;
+    background-color: #5F4B8BFF;
+    color: #E69A8DFF;
+    font-weight: 100;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 1rem;
+}
+.img{
+    height: 20rem;
+   margin-left: 2.4rem;
+}
+.img:hover{
+    opacity: .5;
+}
+.btn:hover{
+    opacity: .5
+    ;
+}

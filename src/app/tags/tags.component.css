@@ -1,0 +1,13 @@
+div{
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+ 
+}
+div a{
+    margin-left: 0.5rem;
+    padding-left: 1rem;
+    color:blue;
+    background-color:yellow;
+    border-radius: 0.5rem;
+}

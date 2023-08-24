@@ -1,0 +1,26 @@
+<div class="container">
+    <img class="img" [src]="food.imageUrl" [alt]="food.name">
+
+    <div class="details">
+        <div>
+            <span class="name">Your Food: {{food.name}}</span>
+        </div>
+        <div>
+            <span class="name">Price:{{food.price}}</span>
+        </div>
+        <div>
+            <span class="name">Stars:{{food.stars}}</span>
+        </div>
+        <div>
+            <span class="name">Time to deliver:{{food.cookTime}}</span>
+        </div>
+        <div>
+            <span class="info">Information about the {{food.name}}->{{food.origins}}</span>
+        </div>
+        <div>
+            <button (click)="addToCart()" class="btn"> Add to Cart</button>
+        </div>
+    </div>
+
+
+</div>
