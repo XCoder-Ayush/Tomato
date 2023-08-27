@@ -58,10 +58,10 @@
                                 </div>  
                                 <div class="col-8 text-right mt-2">
                                     <a>
-                                        <mat-icon [matBadge]="getCartCount(food)" matBadgeColor="warn" (click)="navToCartPage()">add_shopping_cart</mat-icon>
+                                        <mat-icon class="zoom" [matBadge]="getCartCount(food)" matBadgeColor="warn" (click)="navToCartPage()">add_shopping_cart</mat-icon>
                                         <!-- <mat-icon class="ml-3">add_circle_outline</mat-icon> -->
-                                        <mat-icon class="ml-1" (click)="incClickedCardCount(food)">keyboard_arrow_up</mat-icon>
-                                        <mat-icon (click)="decClickedCardCount(food)">keyboard_arrow_down</mat-icon>
+                                        <mat-icon class="ml-1 zoom" (click)="incClickedCardCount(food)">keyboard_arrow_up</mat-icon>
+                                        <mat-icon class="zoom" (click)="decClickedCardCount(food)">keyboard_arrow_down</mat-icon>
                                     </a>
                                 </div>
                             </div>    

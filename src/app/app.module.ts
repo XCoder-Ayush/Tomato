@@ -19,6 +19,8 @@ import {MatIconModule} from '@angular/material/icon'
 import { MatChipsModule } from '@angular/material/chips';
 import {MatCardModule} from '@angular/material/card';
 import {MatBadgeModule} from '@angular/material/badge';
+import {MatExpansionModule} from '@angular/material/expansion';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +43,8 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatIconModule,
     MatChipsModule,
     MatCardModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

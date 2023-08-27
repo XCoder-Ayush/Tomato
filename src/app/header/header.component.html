@@ -1,10 +1,10 @@
 <header>
     <div class="container">
-        <a href="#" routerLink="/" class="logo">Khaana Khazana</a>
+        <a href="#" routerLink="/" class="logo">Tomato</a>
         <nav>
             <ul>
                 <li>
-                    <a [routerLink]="['/cart-page']"><strong>Cart</strong></a>
+                    <a (click)="navToCartPage()" [routerLink]="['/cart-page']"><strong>Cart</strong></a>
                 </li>
             </ul>
         </nav>

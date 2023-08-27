@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { FoodService } from '../services/food/food.service';
 import { Food } from '../shared/models/food';
 import { ActivatedRoute } from '@angular/router';
 import { CartItem } from '../shared/models/CartItem';
 import { FoodcartService } from '../services/foodcart/foodcart.service';
+import { Output } from '@angular/core';
+import { Cart } from '../shared/models/Cart';
 
 @Component({
   selector: 'app-home',
@@ -15,9 +17,10 @@ export class HomeComponent implements OnInit {
   constructor(private foodCartService : FoodcartService,private foodService: FoodService, private router: ActivatedRoute) { }
   searchKey: string = '';
   foodCartList : CartItem[]=[];
+  // @Output() emitCartList =new EventEmitter<CartItem[]>();
 
   ngOnInit(): void {
-    this.foodCartList=this.foodCartService.getAllItems();//Cart Service
+    this.foodCartList=this.foodCartService.getCartItems();//Cart Service
     this.foods = this.foodService.getAllFoodItems();
     this.router.params.subscribe(params => {
       if (params['searchItem'])
@@ -40,6 +43,7 @@ export class HomeComponent implements OnInit {
       }
     }
     console.log(this.foodCartList);
+    this.navToCartPage();
     
   }
   decClickedCardCount(food : any){
@@ -52,9 +56,13 @@ export class HomeComponent implements OnInit {
       }
     }
     console.log(this.foodCartList);
+    this.navToCartPage();
     
   }
   navToCartPage(){
+    // this.emitCartList.emit(this.foodCartList);
+    // Need To Use Service Because Of Router Outlet
+    this.foodCartService.setCartItems(this.foodCartList);
   }
 
   getCartCount(food : any){

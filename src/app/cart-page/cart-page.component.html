@@ -1,49 +1,50 @@
-<app-not-found [visible]="!cart || cart.items.length<=0">notFoundMessage ="No Food Selected" <br> resetLinkText="Go to
+<app-not-found [visible]="!cart || cart.length<=0">notFoundMessage ="No Food Selected" <br> resetLinkText="Go to
     Home"
 </app-not-found>
+<div class="container mt-3" *ngFor="let cartItem of cart">
+    <mat-accordion>
+        <mat-expansion-panel hideToggle *ngIf="cartItem.quantity>0">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <p><strong>{{cartItem.food.name}}</strong></p>
+              </mat-panel-title>
+              <mat-panel-description>
+                <!-- <div class="row">
+                    <div class="col-4"> -->
+                        <img class="mt-1" src="{{cartItem.food.imageUrl}}" alt="">
+                    <!-- </div> -->
+                <!-- </div> -->
+              </mat-panel-description>
+              <div class="text-right mt-3">
+                <div class="row">
+                    <div class="col-4">
+                        <p><strong>Quantity : {{cartItem.quantity}}</strong></p>
+                    </div>
+                    <div class="col-4">
+                        <p><strong>Price : {{cartItem.quantity * cartItem.food.price}}</strong></p>    
+                    </div>
+                    <div class="col-4">
+                        <mat-icon class="zoom" (click)="removeFromCart(cartItem)">delete</mat-icon>
+                    </div>
+                </div>
+            </div>
+            </mat-expansion-panel-header>
 
-<div *ngIf="cart && cart.items.length>0" class="container">
-    <ul>
-        <li *ngFor="let cartItem of cart.items">
-            <div>
-                <img [src]="cartItem.food.imageUrl" [alt]="cartItem.food.name">
-            </div>
-            <div>
-                <a routerLink="/food/{{cartItem.food.id}}">
-                    {{cartItem.food.name}}
-                </a>
-            </div>
-            <div>
-
-                <select #quantitySelect (change)="changeQuantity(cartItem,quantitySelect.value)">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-
-                </select>
-            </div>
-            <div>
-                {{cartItem.food.price}}
-            </div>
-            <div>
-                <button class="remove-button" (click)="removeFromCart(cartItem)">
-                    Remove
-                </button>
-            </div>
-        </li>
-
-    </ul>
-    <div class="checkout">
-        <div class="food-count">
-            Total product: {{cart.items.length}}
-        </div>
-        <div class="total-price">
-            Total Amount: {{cart.totalPrice}}
-        </div>
-        <div>
-            <a routerLink="/checkout">Proceed to checkout</a>
-        </div>
+            <div class="food-actions">
+                <div class="row">
+                    <div class="col-4">
+                        <button mat-raised-button color="primary">Price : ₹{{cartItem.food.price}}</button>
+                    </div>  
+                    <div class="col-8 text-right mt-2">
+                        <a>
+                            <mat-icon class="zoom" [matBadge]="getItemCount(cartItem)" matBadgeColor="warn">add_shopping_cart</mat-icon>
+                            <mat-icon class="ml-1 zoom" (click)="increaseCount(cartItem)">keyboard_arrow_up</mat-icon>
+                            <mat-icon class="zoom" (click)="decreaseCount(cartItem)">keyboard_arrow_down</mat-icon>
+                        </a>
+                    </div>
+                </div>    
     </div>
+
+          </mat-expansion-panel>
+      </mat-accordion>
 </div>

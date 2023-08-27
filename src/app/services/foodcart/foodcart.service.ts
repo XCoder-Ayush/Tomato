@@ -9,21 +9,40 @@ import { FoodService } from '../food/food.service';
 export class FoodcartService implements OnInit{
 
   cartItemList : CartItem[]=[];
-  constructor(private foodService : FoodService){}
   foodList:Food[]=[];
+
+  constructor(private foodService : FoodService){}
+
   ngOnInit(): void{
-    this.foodList=this.foodService.getAllFoodItems();
+    // this.foodList=this.foodService.getAllFoodItems();
+    this.initCartItems();
   }
-  getAllItems() : CartItem[]{
+  // getAllItems() : CartItem[]{
+  //   return this.cartItemList;
+  //   // Returns Empty Cart:
+  // }
+  initCartItems(){
     this.foodList=this.foodService.getAllFoodItems();
-    console.log(this.foodList);
+    // console.log(this.foodList);
     
     for(let food of this.foodList){
       let cartItem : CartItem=new CartItem(food);
       this.cartItemList.push(cartItem);
     }
+    // console.log(this.cartItemList);
+  }
+  setCartItems(cartItems : CartItem[]){
+    this.cartItemList=cartItems;
     console.log(this.cartItemList);
     
+  }  
+  getCartItems(){
+    if(this.cartItemList.length==0)this.initCartItems();
     return this.cartItemList;
   }
+  clearCartItems(){
+    this.cartItemList=[];
+    this.initCartItems();
+  }
+
 }
