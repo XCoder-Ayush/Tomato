@@ -14,19 +14,27 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
   foods: Food[] = [];
-  constructor(private foodCartService : FoodcartService,private foodService: FoodService, private router: ActivatedRoute) { }
-  searchKey = new FormControl('');
   foodCartList : CartItem[]=[];
   key : string ='';
+
+  constructor(private foodCartService : FoodcartService,private foodService: FoodService, private router: ActivatedRoute) { }
+
+  foodsOrg: Food[] = [];
+  foodCartListOrg : CartItem[]=[];
+
   ngOnInit(): void {
     this.initFoodItems();
-    this.foodCartList=this.foodCartService.getCartItems();//Cart Service
+    this.foodCartList=this.foodCartService.getCartItems();
+    this.foodCartListOrg=this.foodCartList;
   }
+
   async initFoodItems(){
     console.log("In Home Component");
     await this.foodService.getAllFoodItemsSync().then(resp=>{
       this.foods=resp;
+      this.foodsOrg=resp;
     })
   }
 
@@ -41,7 +49,7 @@ export class HomeComponent implements OnInit {
         foodCartItem.quantity+=1;
       }
     }
-    console.log(this.foodCartList);
+    // console.log(this.foodCartList);
     this.navToCartPage();
   }
 
@@ -53,7 +61,7 @@ export class HomeComponent implements OnInit {
         if(foodCartItem.quantity<0)foodCartItem.quantity=0;
       }
     }
-    console.log(this.foodCartList);
+    // console.log(this.foodCartList);
     this.navToCartPage();
   }
 
@@ -70,5 +78,21 @@ export class HomeComponent implements OnInit {
       }
     }
     return 0;
+  }
+
+  filterFoodItems(searchKey : any){    
+    // console.log(this.searchKey.value);
+    // console.log(this.key);
+    console.log(searchKey);
+    // console.log(this.foods);
+    
+    this.foodCartList=this.foodCartListOrg.filter((item)=>{
+      return item.food.name.toLowerCase().replace(/\s+/g, "").includes(searchKey.toLowerCase())
+    })
+    this.foods=this.foodsOrg.filter((item : Food)=>{
+      return item.name.toLowerCase().replace(/\s+/g, "").includes(searchKey.toLowerCase())
+    })
+    // console.log(this.foods);
+
   }
 }

@@ -15,13 +15,16 @@ export class TagsService implements OnInit{
   tagNames: string[]=['All','NonVeg','Veg','South Indian','Birthday'];
   currentTag='';
   ngOnInit(): void {
-    this.getAllTags();
+    // this.getAllTags();
     this.currentTag='All';
   }
 
   async getAllTags(){
     // Admins will allow some mostly searched tags: eg show the mostly searched 5 tags
     // Solely on the discretionary of the admins:
+    this.tags=[];
+    this.tagMap.clear();
+    this.foodItems=[];
     await this.foodService.getAllFoodItemsSync().then((resp)=>{
       this.foodItems=resp;
     })
@@ -57,6 +60,6 @@ export class TagsService implements OnInit{
 
 
   getFoodByTag(){
-    
+
   }
 }

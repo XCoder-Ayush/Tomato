@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class NotFoundComponent implements OnInit {
   @Input() visible: boolean = false;
   @Input() notFoundMessage: string = 'Food Not Found';
-  @Input() resetLinkText: string = 'Go to homepage';
+  @Input() resetLinkText: string = 'Go To Homepage';
   @Input() resetLinkRoute: string = '/';
   constructor() { }
 
