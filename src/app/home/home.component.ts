@@ -6,6 +6,7 @@ import { CartItem } from '../shared/models/CartItem';
 import { FoodcartService } from '../services/foodcart/foodcart.service';
 import { Output } from '@angular/core';
 import { Cart } from '../shared/models/Cart';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -15,28 +16,26 @@ import { Cart } from '../shared/models/Cart';
 export class HomeComponent implements OnInit {
   foods: Food[] = [];
   constructor(private foodCartService : FoodcartService,private foodService: FoodService, private router: ActivatedRoute) { }
-  searchKey: string = '';
+  searchKey = new FormControl('');
   foodCartList : CartItem[]=[];
-  // @Output() emitCartList =new EventEmitter<CartItem[]>();
-
+  key : string ='';
   ngOnInit(): void {
+    this.initFoodItems();
     this.foodCartList=this.foodCartService.getCartItems();//Cart Service
-    this.foods = this.foodService.getAllFoodItems();
-    this.router.params.subscribe(params => {
-      if (params['searchItem'])
-        this.foods = this.foodService.getAllFoodItems().filter(food => food.name.toLowerCase().includes(params['searchItem'].toLowerCase()));
-      else if (params['tag'])
-        this.foods = this.foodService.getAllFoodByTag(params['tag']);
-      else
-        this.foods = this.foodService.getAllFoodItems();
+  }
+  async initFoodItems(){
+    console.log("In Home Component");
+    await this.foodService.getAllFoodItemsSync().then(resp=>{
+      this.foods=resp;
     })
   }
+
   getClickedCardData(food : any){
     console.log(food);
   }
+
   incClickedCardCount(food : any){
     console.log("Increase");
-    
     for(let foodCartItem of this.foodCartList){
       if(foodCartItem.food.id==food.id){
         foodCartItem.quantity+=1;
@@ -44,11 +43,10 @@ export class HomeComponent implements OnInit {
     }
     console.log(this.foodCartList);
     this.navToCartPage();
-    
   }
+
   decClickedCardCount(food : any){
     console.log("Decrease");
-    
     for(let foodCartItem of this.foodCartList){
       if(foodCartItem.food.id==food.id){
         foodCartItem.quantity-=1;
@@ -57,8 +55,8 @@ export class HomeComponent implements OnInit {
     }
     console.log(this.foodCartList);
     this.navToCartPage();
-    
   }
+
   navToCartPage(){
     // this.emitCartList.emit(this.foodCartList);
     // Need To Use Service Because Of Router Outlet

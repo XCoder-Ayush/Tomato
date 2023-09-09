@@ -4,9 +4,9 @@
 <div class="container text-center mt-3">
     <mat-form-field appearance="outline" class="search-bar">
         <mat-label>Eat What?</mat-label>
-        <input matInput placeholder="Enter Item To Search">
+        <input matInput placeholder="Enter Item To Search" [(ngModel)]="key" [formControl]="searchKey" (keypress)="initFoodItems()">
         <mat-icon matSuffix fontIcon="search"></mat-icon>
-      </mat-form-field>   
+    </mat-form-field>   
 </div>
 
 <app-tags></app-tags>

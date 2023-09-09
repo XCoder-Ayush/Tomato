@@ -7,9 +7,6 @@ import { Output,OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'foodorderapp';
-  @Output() cartItemList : CartItem[] = [];
   ngOnInit():void{
-    console.log(this.cartItemList);
   }
 }

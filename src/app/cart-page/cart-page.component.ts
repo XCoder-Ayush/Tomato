@@ -12,14 +12,12 @@ import { FoodcartService } from '../services/foodcart/foodcart.service';
 })
 export class CartPageComponent implements OnInit {
   constructor(private cartService: CartService,private foodCartService : FoodcartService) {
-    // this.setCart()
   }
   cart : CartItem[] =[];
   totalPrice: number = 0;
   totalProducts: number = 0;
   panelOpenState=false;
   ngOnInit(): void {
-    // console.log(this.cart);
     this.initCart();
   }
   initCart(){
@@ -41,6 +39,10 @@ export class CartPageComponent implements OnInit {
       }
     }
     return this.totalPrice;
+  }
+  clearCart(){
+    this.foodCartService.clearCartItems();
+    this.initCart();
   }
   getTotalProducts(){
     this.initCart();

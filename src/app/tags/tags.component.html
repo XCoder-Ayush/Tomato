@@ -3,9 +3,5 @@
         <mat-chip *ngFor="let tag of tags" color="primary" selected routerLink="/tag/{{tag.name}}">
             {{tag.name}}({{tag.count}})
         </mat-chip>
-        <!-- <mat-chip>Two fish</mat-chip>
-        <mat-chip color="primary" selected>Primary fish</mat-chip>
-        <mat-chip color="accent" selected>Accent fish</mat-chip> -->
     </mat-chip-list>
-    <!-- <a *ngFor="let tag of tags" routerLink="/tag/{{tag.name}}">{{tag.name}}({{tag.count}})</a> -->
 </div>

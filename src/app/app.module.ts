@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,6 +20,10 @@ import { MatChipsModule } from '@angular/material/chips';
 import {MatCardModule} from '@angular/material/card';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { AddFoodComponent } from './add-food/add-food.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatSliderModule} from '@angular/material/slider';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -31,11 +35,13 @@ import {MatExpansionModule} from '@angular/material/expansion';
     TagsComponent,
     FoodpageComponent,
     NotFoundComponent,
+    AddFoodComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     MatInputModule,
     MatButtonModule,
     MatFormFieldModule,
@@ -44,7 +50,10 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatChipsModule,
     MatCardModule,
     MatBadgeModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatSelectModule,
+    MatSliderModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
