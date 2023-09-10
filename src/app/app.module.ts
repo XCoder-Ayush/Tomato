@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
-import { SearchComponent } from './search/search.component';
 import { CartPageComponent } from './cart-page/cart-page.component';
 import { TagsComponent } from './tags/tags.component';
 import { FoodpageComponent } from './foodpage/foodpage.component';
@@ -30,7 +29,6 @@ import {HttpClientModule} from '@angular/common/http';
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    SearchComponent,
     CartPageComponent,
     TagsComponent,
     FoodpageComponent,

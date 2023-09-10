@@ -6,26 +6,27 @@ import { lastValueFrom } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class FoodService implements OnInit{
+export class FoodService{
 
-  ngOnInit() : void{
-    this.getAllFoodItems();
-  }
-  constructor(private apiService : ApiService) { }
+  // ngOnInit() : void{
+  //   this.getAllFoodItems();
+  // }
   foodList:Food[]=[]
+  constructor(private apiService : ApiService) { }
 
   async getAllFoodItemsSync(){
+    console.log("In Food Service");
     let data = await lastValueFrom(this.apiService.getAllFoodItems());
-    // console.log(data);
+    console.log(data);
     this.foodList=data;
     return data;
   }
-  getAllFoodItems(){
-    this.getAllFoodItemsSync().then((resp)=>{
-      this.foodList=resp;
-    });
-    return this.foodList;
-  }
+  // getAllFoodItems(){
+  //   this.getAllFoodItemsSync().then((resp)=>{
+  //     this.foodList=resp;
+  //   });
+  //   return this.foodList;
+  // }
 
   getFoodById(id: number): Food {
     return this.foodList.find(food => food.id == id)!;

@@ -2,45 +2,50 @@ import { Injectable, OnInit } from '@angular/core';
 import { CartItem } from 'src/app/shared/models/CartItem';
 import { Food } from 'src/app/shared/models/food';
 import { FoodService } from '../food/food.service';
+import { lastValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class FoodcartService implements OnInit{
+export class FoodcartService{
 
   cartItemList : CartItem[]=[];
   foodList:Food[]=[];
 
   constructor(private foodService : FoodService){}
 
-  ngOnInit(): void{
-    this.initCartItems();
-  }
-  async initCartItems(){
+  async getCartItemsSync(){
     console.log("In Cart Service");
-    
+    this.cartItemList=[]
+    this.foodList=[]
     await this.foodService.getAllFoodItemsSync().then((resp)=>{
       this.foodList=resp;
+      for(let food of this.foodList){
+        let cartItem : CartItem=new CartItem(food);
+        this.cartItemList.push(cartItem);
+      }
     })
-    // console.log(this.foodList);
-    for(let food of this.foodList){
-      let cartItem : CartItem=new CartItem(food);
-      this.cartItemList.push(cartItem);
-    }
-    // console.log(this.cartItemList);
+    console.log(this.foodList);
+    console.log('In Async Get Cart Item')
+    console.log(this.cartItemList);
+    return this.cartItemList;
   }
 
   setCartItems(cartItems : CartItem[]){
+    console.log('Setting Cart');
     this.cartItemList=cartItems;
-    // console.log('NEW CART ' + this.cartItemList);
+    console.log(this.cartItemList);
   }  
-  getCartItems(){
-    if(this.cartItemList.length==0)this.initCartItems();
-    return this.cartItemList;
-  }
+  
+
   clearCartItems(){
+    console.log('Clearing Cart...');
     this.cartItemList=[];
-    this.initCartItems();
+    this.foodList=[]
+    // this.getCartItemsSync();
   }
 
+  getUpdatedCart(){
+    return this.cartItemList;
+  }
 }

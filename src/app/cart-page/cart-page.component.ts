@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FoodService } from '../services/food/food.service';
-import { Cart } from '../shared/models/Cart';
 import { CartItem } from '../shared/models/CartItem';
-import { Input } from '@angular/core';
 import { FoodcartService } from '../services/foodcart/foodcart.service';
 @Component({
   selector: 'app-cart-page',
@@ -10,28 +7,42 @@ import { FoodcartService } from '../services/foodcart/foodcart.service';
   styleUrls: ['./cart-page.component.css']
 })
 export class CartPageComponent implements OnInit {
+  
   constructor(private foodCartService : FoodcartService) {
   }
   cart : CartItem[] =[];
+  cartOrg : CartItem[] =[];
+
   totalPrice: number = 0;
   totalProducts: number = 0;
-  panelOpenState=false;
+
   ngOnInit(): void {
     this.initCart();
   }
   initCart(){
     this.totalPrice=0;
     this.totalProducts=0;
-    this.cart=this.foodCartService.getCartItems();
-    console.log(this.cart);
+    this.cart=this.foodCartService.getUpdatedCart();
+
   }
 
+  async initCartItems(){
+    console.log("In Cart-Page Component Cart Items...");
+    await this.foodCartService.getCartItemsSync().then(resp=>{
+      this.cart=resp;
+      this.cartOrg=this.cart;
+    });
+  }
+
+
   setCart() {
+    //To set in cart service
     this.foodCartService.setCartItems(this.cart)
   }
   
   getTotalPrice(){
-    this.initCart();
+    this.totalPrice=0;
+    this.cart=this.foodCartService.getUpdatedCart();
     for(let cartItem of this.cart){
       if(cartItem.quantity>0){
         this.totalPrice+=cartItem.quantity*cartItem.food.price;
@@ -39,12 +50,16 @@ export class CartPageComponent implements OnInit {
     }
     return this.totalPrice;
   }
+
   clearCart(){
     this.foodCartService.clearCartItems();
-    this.initCart();
+    this.initCartItems();
   }
+  
   getTotalProducts(){
-    this.initCart();
+    this.cart=this.foodCartService.getUpdatedCart();
+    this.totalProducts=0;
+
     for(let cartItem of this.cart){
       if(cartItem.quantity>0){
         this.totalProducts+=1;
@@ -52,37 +67,32 @@ export class CartPageComponent implements OnInit {
     }
     return this.totalProducts;
   }
-  removeFromCart(removeItem: CartItem) {
-    for(let cartItem of this.cart){
-      if(cartItem.food.id==removeItem.food.id){
-        cartItem.quantity=0;
-      }
-    }
-    this.setCart();
-    this.initCart();
-  }
 
   increaseCount(selectedItem : CartItem){
+    // this.initCart();
+    this.cart=this.foodCartService.getUpdatedCart();
+
     for(let cartItem of this.cart){
       if(cartItem.food.id==selectedItem.food.id){
         cartItem.quantity+=1;
       }
     }
     this.setCart();
-    this.initCart();
-
   }
   decreaseCount(selectedItem: CartItem){
+    this.cart=this.foodCartService.getUpdatedCart();
+
     for(let cartItem of this.cart){
       if(cartItem.food.id==selectedItem.food.id){
         cartItem.quantity-=1;
       }
     }
     this.setCart();
-    this.initCart();
   }
 
   getItemCount(selectedItem : CartItem){
+    this.cart=this.foodCartService.getUpdatedCart();
+
     for(let cartItem of this.cart){
       if(cartItem.food.id==selectedItem.food.id){
         return cartItem.quantity;

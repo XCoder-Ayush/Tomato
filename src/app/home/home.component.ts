@@ -4,9 +4,6 @@ import { Food } from '../shared/models/food';
 import { ActivatedRoute } from '@angular/router';
 import { CartItem } from '../shared/models/CartItem';
 import { FoodcartService } from '../services/foodcart/foodcart.service';
-import { Output } from '@angular/core';
-import { Cart } from '../shared/models/Cart';
-import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -17,25 +14,48 @@ export class HomeComponent implements OnInit {
 
   foods: Food[] = [];
   foodCartList : CartItem[]=[];
+  foodsOrg: Food[] = [];
+  foodCartListOrg : CartItem[]=[];
+
   key : string ='';
 
   constructor(private foodCartService : FoodcartService,private foodService: FoodService, private router: ActivatedRoute) { }
 
-  foodsOrg: Food[] = [];
-  foodCartListOrg : CartItem[]=[];
 
   ngOnInit(): void {
     this.initFoodItems();
-    this.foodCartList=this.foodCartService.getCartItems();
-    this.foodCartListOrg=this.foodCartList;
+    // this.foodCartList=this.foodCartService.getCartItems();
+    // this.foodCartService.getCartItemsSync().then(resp=>{
+    //   this.foodCartList=resp;
+    //   this.foodCartListOrg=this.foodCartList;
+    // });
+    this.foodCartList=this.foodCartService.getUpdatedCart();
+    
+    let flag:boolean=false;
+    for(let cartItem of this.foodCartList){
+      if(cartItem.quantity>0){
+        flag=true;
+      }
+    }
+    if(flag==false)this.initCartItems();
   }
 
   async initFoodItems(){
-    console.log("In Home Component");
+    console.log("In Home Component Fetching Products...");
     await this.foodService.getAllFoodItemsSync().then(resp=>{
       this.foods=resp;
       this.foodsOrg=resp;
     })
+    console.log(this.foods);
+    
+  }
+  async initCartItems(){
+    console.log("In Home Component Cart Items...");
+    await this.foodCartService.getCartItemsSync().then(resp=>{
+      this.foodCartList=resp;
+      this.foodCartListOrg=this.foodCartList;
+    });
+    console.log(this.foodCartList);
   }
 
   getClickedCardData(food : any){
@@ -43,18 +63,18 @@ export class HomeComponent implements OnInit {
   }
 
   incClickedCardCount(food : any){
-    console.log("Increase");
+    console.log("Increase...");
     for(let foodCartItem of this.foodCartList){
       if(foodCartItem.food.id==food.id){
         foodCartItem.quantity+=1;
       }
     }
     // console.log(this.foodCartList);
-    this.navToCartPage();
+    this.setCart();
   }
 
   decClickedCardCount(food : any){
-    console.log("Decrease");
+    console.log("Decrease...");
     for(let foodCartItem of this.foodCartList){
       if(foodCartItem.food.id==food.id){
         foodCartItem.quantity-=1;
@@ -62,11 +82,10 @@ export class HomeComponent implements OnInit {
       }
     }
     // console.log(this.foodCartList);
-    this.navToCartPage();
+    this.setCart();
   }
 
-  navToCartPage(){
-    // this.emitCartList.emit(this.foodCartList);
+  setCart(){
     // Need To Use Service Because Of Router Outlet
     this.foodCartService.setCartItems(this.foodCartList);
   }

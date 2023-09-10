@@ -2,9 +2,7 @@
     Home"
 </app-not-found>
 
-<!-- <ng-template>
 
-</ng-template> -->
 <div class="container mt-3" *ngFor="let cartItem of cart">
     <mat-accordion>
         <mat-expansion-panel hideToggle *ngIf="cartItem.quantity>0">
@@ -18,10 +16,6 @@
                         <img class="mt-1" src="{{cartItem.food.imageUrl}}" alt="">
                     </div>
                     <div class="col-4 text-right mt-4">
-                            <!-- <button mat-raised-button color="primary"
-                                [matBadge]="cartItem.quantity*cartItem.food.price" matBadgePosition="before" matBadgeColor="accent">
-                              Total Price
-                            </button> -->
                             <p style="font-weight: 800;">Subtotal : ₹{{cartItem.quantity*cartItem.food.price}}</p>
                     </div>
                     <div class="col-4 text-right mt-4">
@@ -32,17 +26,6 @@
                     </div>
                 </div>
               </mat-panel-description>
-              <!-- <div class="text-right mt-3"> -->
-                <!-- <div class="row"> -->
-
-                    <!-- <div class="col-4">
-                        <p><strong>Price : {{cartItem.quantity * cartItem.food.price}}</strong></p>    
-                    </div>
-                    <div class="col-4">
-                        <mat-icon class="zoom" (click)="removeFromCart(cartItem)">delete</mat-icon>
-                    </div> -->
-                <!-- </div> -->
-            <!-- </div> -->
             </mat-expansion-panel-header>
 
             <div class="food-actions">
@@ -66,16 +49,22 @@
 
 <div class="container-fluid text-center mt-5 p-5">
     <div class="row">
-        <div class="col-6">
+        <div class="col-4">
             <button mat-raised-button color="warn" class="btn zoom1" (click)="clearCart()">
                 <mat-icon class="mt-2">delete</mat-icon>
                 <p style="font-weight: 1200;">Clear Cart</p>
             </button>    
         </div>
-        <div class="col-6">
+        <div class="col-4">
             <button mat-raised-button color="warning" class="btn zoom1">
                 <mat-icon class="mt-2">local_atm</mat-icon>
                 <p style="font-weight: 1200;">Total Amount : ₹{{getTotalPrice()}}</p>
+            </button>    
+        </div>
+        <div class="col-4">
+            <button mat-raised-button color="primary" class="btn zoom1">
+                <mat-icon class="mt-2">local_atm</mat-icon>
+                <p style="font-weight: 1200;">Checkout</p>
             </button>    
         </div>
     </div>

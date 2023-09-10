@@ -1,0 +1,50 @@
+# Node.js
+node_modules/
+
+# Compiled output
+dist/
+*.js
+*.js.map
+
+# Dependency directories
+bower_components/
+
+# Logs
+logs/
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Editor-specific files
+.vscode/
+.idea/
+.angular/
+# Environment configuration
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Build artifacts
+build/
+
+# Caches and local development files
+.cache/
+temp/
+tmp/
+
+# Dependency lock files
+yarn.lock
+package-lock.json
+
+# Angular CLI configuration
+.angular-cli.json
+.angular-cli.json.old
+.angular-cli.json.orig
+.angular-config.json
+
+# Visual Studio Code settings
+.vscode/
