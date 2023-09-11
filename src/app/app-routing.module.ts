@@ -4,6 +4,7 @@ import { CartPageComponent } from './cart-page/cart-page.component';
 import { FoodpageComponent } from './foodpage/foodpage.component';
 import { HomeComponent } from './home/home.component';
 import { AddFoodComponent } from './add-food/add-food.component';
+import { EmptyCartComponent } from './empty-cart/empty-cart.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -11,7 +12,9 @@ const routes: Routes = [
   { path: 'tag/:tag', component: HomeComponent },
   { path: 'food/:id', component: FoodpageComponent },
   { path: 'cart-page', component: CartPageComponent },
-  { path : 'add-food', component: AddFoodComponent }
+  { path : 'add-food', component: AddFoodComponent },
+  { path: 'empty-cart', component: EmptyCartComponent },
+  // { path: '**', redirectTo: '/products' } // Redirect to the default route for unknown paths
 ];
 
 @NgModule({

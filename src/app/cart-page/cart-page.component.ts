@@ -100,4 +100,8 @@ export class CartPageComponent implements OnInit {
     } 
     return 0;
   }
+
+  isCartFilled(){
+    return (this.getTotalProducts()>0);    
+  }
 }

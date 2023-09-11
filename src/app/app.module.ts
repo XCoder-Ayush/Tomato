@@ -23,6 +23,7 @@ import { AddFoodComponent } from './add-food/add-food.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSliderModule} from '@angular/material/slider';
 import {HttpClientModule} from '@angular/common/http';
+import { EmptyCartComponent } from './empty-cart/empty-cart.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {HttpClientModule} from '@angular/common/http';
     FoodpageComponent,
     NotFoundComponent,
     AddFoodComponent,
+    EmptyCartComponent,
   ],
   imports: [
     BrowserModule,
