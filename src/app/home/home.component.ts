@@ -4,6 +4,7 @@ import { Food } from '../shared/models/food';
 import { ActivatedRoute } from '@angular/router';
 import { CartItem } from '../shared/models/CartItem';
 import { FoodcartService } from '../services/foodcart/foodcart.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +20,8 @@ export class HomeComponent implements OnInit {
 
   key : string ='';
 
-  constructor(private foodCartService : FoodcartService,private foodService: FoodService, private router: ActivatedRoute) { }
+  constructor(private foodCartService : FoodcartService,private foodService: FoodService, private router: ActivatedRoute,
+    private snackBar : MatSnackBar) { }
 
 
   ngOnInit(): void {
@@ -64,6 +66,7 @@ export class HomeComponent implements OnInit {
 
   incClickedCardCount(food : any){
     console.log("Increase...");
+    this.fireSnackBarAdd();
     for(let foodCartItem of this.foodCartList){
       if(foodCartItem.food.id==food.id){
         foodCartItem.quantity+=1;
@@ -75,6 +78,7 @@ export class HomeComponent implements OnInit {
 
   decClickedCardCount(food : any){
     console.log("Decrease...");
+    this.fireSnackBarRem();
     for(let foodCartItem of this.foodCartList){
       if(foodCartItem.food.id==food.id){
         foodCartItem.quantity-=1;
@@ -83,6 +87,21 @@ export class HomeComponent implements OnInit {
     }
     // console.log(this.foodCartList);
     this.setCart();
+  }
+  fireSnackBarAdd(){
+    this.snackBar.open('Item Added To Cart', 'Dismiss',{
+      duration: 2000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top'
+    });
+  }
+  fireSnackBarRem(){
+    this.snackBar.open('Item Removed From Cart', 'Dismiss',{
+      duration: 2000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top'
+    
+    });
   }
 
   setCart(){

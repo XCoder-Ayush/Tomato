@@ -24,6 +24,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatSliderModule} from '@angular/material/slider';
 import {HttpClientModule} from '@angular/common/http';
 import { EmptyCartComponent } from './empty-cart/empty-cart.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { EmptyCartComponent } from './empty-cart/empty-cart.component';
     MatExpansionModule,
     MatSelectModule,
     MatSliderModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
