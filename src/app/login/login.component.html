@@ -1,0 +1,14 @@
+<div class="container mt-5">
+    <h1>Login</h1>
+    <form (ngSubmit)="onSubmit()" method="post">
+        <label for="email">Email</label>
+        <input [(ngModel)]="credentials.email" type="text" id="email" name="email" required>
+
+        <label for="password">Password</label>
+        <input [(ngModel)]="credentials.password" type="password" id="password" name="password" required>
+
+        <!-- <input type="submit" value="Login"> -->
+        <button type="submit" mat-raised-button color="primary">Login</button>
+    </form>
+    <p class="message">Forgot your password? <a href="#">Reset it here</a></p>
+</div>

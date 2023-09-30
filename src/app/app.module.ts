@@ -25,6 +25,7 @@ import {MatSliderModule} from '@angular/material/slider';
 import {HttpClientModule} from '@angular/common/http';
 import { EmptyCartComponent } from './empty-cart/empty-cart.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     NotFoundComponent,
     AddFoodComponent,
     EmptyCartComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

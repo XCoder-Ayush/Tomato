@@ -18,4 +18,9 @@ export class ApiService {
     const URL='http://localhost:8080/food/get';
     return this.http.get<Food[]>(URL);  
   }
+
+  getToken(credentials):Observable<any> {
+    const URL='http://localhost:8080/auth/login';
+    return this.http.post<any>(URL,credentials);
+  }
 }
