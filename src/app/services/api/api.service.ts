@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Food } from 'src/app/shared/models/food';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
   constructor(private http: HttpClient) { }
+  
+  jwtToken=localStorage.getItem('jwtToken');
 
   addFoodItem(food : Food):Observable<Food> {
     const URL='http://localhost:8080/food/add';
@@ -16,6 +18,11 @@ export class ApiService {
 
   getAllFoodItems():Observable<Food[]>{
     const URL='http://localhost:8080/food/get';
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Authorization': `Bearer ${this.jwtToken}`,
+    //   }),
+    // };
     return this.http.get<Food[]>(URL);  
   }
 

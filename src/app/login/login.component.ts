@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
     // console.log(this.credentials);
     const token=this.loginService.generateToken(this.credentials)
     console.log(token);
-    
     // this.loginService.loginUser(token);
   }
 

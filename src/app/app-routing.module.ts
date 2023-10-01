@@ -6,9 +6,10 @@ import { HomeComponent } from './home/home.component';
 import { AddFoodComponent } from './add-food/add-food.component';
 import { EmptyCartComponent } from './empty-cart/empty-cart.component';
 import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent , canActivate : [AuthGuard]},
   { path: 'search/:searchItem', component: HomeComponent },
   { path: 'tag/:tag', component: HomeComponent },
   { path: 'food/:id', component: FoodpageComponent },

@@ -22,10 +22,13 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { AddFoodComponent } from './add-food/add-food.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSliderModule} from '@angular/material/slider';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { EmptyCartComponent } from './empty-cart/empty-cart.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { LoginComponent } from './login/login.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { LoginService } from './services/login/login.service';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -59,7 +62,7 @@ import { LoginComponent } from './login/login.component';
     HttpClientModule,
     MatSnackBarModule
   ],
-  providers: [],
+  providers: [LoginService,AuthGuard,{provide: HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true},],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
