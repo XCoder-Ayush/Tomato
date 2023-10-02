@@ -1,20 +1,49 @@
-<header>
-    <div class="container">
-        <a href="#" routerLink="/" class="logo mt-1"><strong>TOMATO - Your Fav Food Delivery Hub</strong></a>
-        <nav>
-            <ul>
+<div id="navbar">
+    <nav style="background: rgb(255, 255, 255);"> 
+        <div class="container nav-wrapper">
+            <div class="brand"  routerLink="/">
+                <!-- svg -->
+                <img width="40" height="50" src="https://img.icons8.com/fluency/96/lasagna.png" alt="lasagna"/>
+                <span><strong class="mt-3">Tomato - Your Fav Food Delivery Hub</strong></span>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-list">
+                <li class="active">
+                    <a href="#">Home</a>
+                </li>
+                <li><a href="#">About</a></li>
+                <li>
+                    <a href="#">Services</a>
+                    <ul class="dropdown-list">
+                        <li><a href="#">SEO optimisation</a></li>
+                        <li><a href="#">Digital marketing</a></li>
+                        <li><a href="#">Web development</a></li>
+                        <li><a href="#">Web design</a></li>
+                        <li><a href="#">Software development</a></li>
+                        <li><a href="#">Branding</a></li>
+                        <li><a href="#">Content writing</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Q&A</a></li>
                 <li>
                     <a [routerLink]="['/cart-page']">
                         <mat-icon>shopping_cart</mat-icon>
                         <strong>Cart</strong>
-                        <!-- <p>Cart</p> -->
                     </a>
                     <a  class="ml-3" [routerLink]="['/add-food']">
                         <mat-icon>fastfood</mat-icon>
                         <strong>Add New Food Item</strong>
                     </a>
                 </li>
+            <li>
+                    <button class="btn" *ngIf="loggedIn" (click)="openDialog('100ms','100ms')">Logout</button>
+                    <button class="btn" *ngIf="!loggedIn" routerLink="/login">Login</button>
+                </li>
             </ul>
-        </nav>
-    </div>
-</header>
+        </div>
+    </nav>
+</div>

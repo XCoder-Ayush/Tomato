@@ -12,6 +12,7 @@ export class LoginService {
   loginUser(token){
     console.log(token);
     localStorage.setItem("jwtToken",token);
+    location.reload();
   }
 
   isLoggedin(){
@@ -36,4 +37,12 @@ export class LoginService {
     return token;
   }
 
+
+  logoutUser(){
+    // No Checks Required:
+    localStorage.removeItem('jwtToken');
+    this.router.navigate(['/login']);
+    location.reload();
+
+  }
 }

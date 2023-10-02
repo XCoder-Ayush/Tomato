@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'empty-cart', component: EmptyCartComponent },
   { path: 'login', component: LoginComponent },
 
+
   // { path: '**', redirectTo: '/products' } // Redirect to the default route for unknown paths
 ];
 

@@ -30,4 +30,9 @@ export class ApiService {
     const URL='http://localhost:8080/auth/login';
     return this.http.post<any>(URL,credentials);
   }
+
+  getCurrentUser():Observable<any> {
+    const URL='http://localhost:8080/auth/currentuser';
+    return this.http.get<any>(URL);
+  }
 }

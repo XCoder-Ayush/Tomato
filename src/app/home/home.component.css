@@ -1,44 +1,16 @@
-ul{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    list-style-type: none;
-}
-ul li a{
-    height: 20rem;
-    width: 20rem;
-    border: 1px solid whitesmoke;
-    border-radius: 1rem;
-    margin: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    color: #e72929;
-}
-li a:hover{
-    opacity: 0.7;
-    cursor: pointer;
-}
-.content{
-    padding: .5rem 1rem;
-    position: relative;
-}
-
 .search-bar{
-    min-width: 60%;
+    min-width: 50%;
     /* width: auto; */
 }
 .example-card {
     height: 400px;
     max-width: 400px;
     border-radius: 5px;
+    /* background-color: sienna; */
+
 }
 
-/* .example-header-image { */
-    /* background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg'); */
-    /* background-size: cover; */
-/* } */
+
 .food-header{
     height: 75px;
 }
@@ -46,34 +18,85 @@ li a:hover{
     height: 250px;
 }
 .food-actions{
-    height: 75px;
+    height: 50px;
 }
 img{
     height: 250px;
 }
-/* :host {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  } */
-  
-  /* .demo-section + .demo-section {
-    margin-top: 16px;
-  } */
 
   a{
     cursor: pointer;
   }
 
   .zoom {
-    /* padding: 50px; */
-    /* background-color: green; */
     transition: transform .2s; /* Animation */
-    /* width: 200px; */
-    /* height: 200px; */
     margin: 0 auto;
   }
   
   .zoom:hover {
     transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
   }
+
+  *{
+    background-color: #fcfcfc;
+  }
+
+
+  .image-container {
+    width: 100vw; /* Set the width to 100% of the viewport width */
+    height: 70vh; /* Set the height to 100% of the viewport height */
+    display: flex;
+    align-items: center; /* Center the image vertically */
+    justify-content: center; /* Center the image horizontally */
+    overflow: hidden; /* Hide any overflow from the image */
+  }
+  
+  .image-container img {
+    width: 100%; /* Make the image fill the width of the container */
+    height: 100%; /* Make the image fill the height of the container */
+    object-fit: cover; /* Maintain aspect ratio and fit the image within the container */
+    object-position: bottom;
+  }
+
+  .search-bar {
+    position: absolute; /* Position absolute within the container */
+    top: 25%; /* Align the search bar vertically in the middle */
+    left: 50%; /* Align the search bar horizontally in the middle */
+    transform: translate(-50%, -50%); /* Center the search bar precisely */
+    z-index: 1; /* Ensure the search bar is above the image */
+    margin: 0;
+    border-radius: 25px; /* Adjust the radius to your preference */
+    height: 6vh;
+    width: 40vw;
+    /* align-items: center;
+    justify-content: center; */
+}
+
+#inputbox {
+    flex: 1; 
+    border: none;
+    height: 100%;
+    padding: 0;
+    font-size: 18px;
+    outline: none;
+    width: 100%; /* Ensure the input box fills the entire width of the search-bar */
+  }
+.search-box{
+    height: 90%;
+}
+.search-icon{
+    height: 90%;    
+    /* background-color:red; */
+}
+
+.custom-icon {
+    flex: 1; 
+    border: none;
+    height: 100%;
+    padding: 0;
+    font-size: 32px;
+    outline: none;
+    width: 100%; /* Ensure the input box fills the entire width of the search-bar */
+}
+  
+  

@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CartItem } from '../shared/models/CartItem';
 import { FoodcartService } from '../services/foodcart/foodcart.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ApiService } from '../services/api/api.service';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +22,7 @@ export class HomeComponent implements OnInit {
   key : string ='';
 
   constructor(private foodCartService : FoodcartService,private foodService: FoodService, private router: ActivatedRoute,
-    private snackBar : MatSnackBar) { }
+    private snackBar : MatSnackBar, private apiService : ApiService) { }
 
 
   ngOnInit(): void {
@@ -132,5 +133,13 @@ export class HomeComponent implements OnInit {
     })
     // console.log(this.foods);
 
+  }
+  currentUser: string = 'Dead';
+  getCurrentUser(){
+    this.apiService.getCurrentUser().subscribe((resp)=>{
+      this.currentUser=resp;
+    },err=>{
+      console.log(err);
+    })
   }
 }

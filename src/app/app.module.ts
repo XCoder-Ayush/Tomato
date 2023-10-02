@@ -29,6 +29,9 @@ import { LoginComponent } from './login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { LoginService } from './services/login/login.service';
 import { AuthGuard } from './guards/auth.guard';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatDialogModule} from '@angular/material/dialog';
+import { LogoutdialogComponent } from './header/logoutdialog/logoutdialog.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +45,7 @@ import { AuthGuard } from './guards/auth.guard';
     AddFoodComponent,
     EmptyCartComponent,
     LoginComponent,
+    LogoutdialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,7 +64,9 @@ import { AuthGuard } from './guards/auth.guard';
     MatSelectModule,
     MatSliderModule,
     HttpClientModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatToolbarModule,
+    MatDialogModule,
   ],
   providers: [LoginService,AuthGuard,{provide: HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true},],
   bootstrap: [AppComponent]

@@ -1,20 +1,45 @@
-<!-- <app-search></app-search> -->
+<!-- <img id="cover" src="../../assets/food-366875_1280.jpg" width="1500px" height="800px" alt=""> -->
 
-<!-- Search -->
-<div class="container text-center mt-3">
-    <mat-form-field appearance="outline" class="search-bar">
-        <mat-label>Eat What?</mat-label>
-        <input matInput placeholder="Enter Item To Search" [(ngModel)]="key" (ngModelChange)="filterFoodItems($event)">
-        <mat-icon matSuffix fontIcon="search"></mat-icon>
-    </mat-form-field>   
-</div>
+<div class="body">
+    <!-- <div class="carousel-container">
+        <div class="carousel">
+            <img src="../../assets/food-366875_1280.jpg" alt="Image 1">
+        </div>
+    </div> -->
+    <div class="image-container">
+
+        <div class="container input-group search-bar" style="align-items: center;justify-content: center;">
+                <div class="col-10 search-box">
+                    <input type="text" name="" id="inputbox" [(ngModel)]="key" (ngModelChange)="filterFoodItems($event)">
+                </div>
+                <div class="col-2 search-icon" >
+                    <mat-icon class="custom-icon">search</mat-icon>
+                    <!-- <h3><strong>Search</strong></h3> -->
+                </div>    
+        </div>
+
+
+        <img src="../../assets/food-366875_1280.jpg" alt="Image 1">
+
+    </div>
+
+
+    <!-- <div class="container text-center mt-3">
+        <mat-form-field appearance="outline" class="search-bar">
+            <mat-label>Eat What?</mat-label>
+            <input matInput placeholder="Enter Item To Search" [(ngModel)]="key" (ngModelChange)="filterFoodItems($event)">
+            <mat-icon matSuffix fontIcon="search"></mat-icon>
+        </mat-form-field>   
+    </div> -->
+
+
 
 <app-tags></app-tags>
 
 <app-not-found [visible]="!foods || foods.length<= 0"> </app-not-found>
 
-<div class="container mt-4">
-    <div class="row">
+<!-- <div class="container mt-4" > -->
+    <div class="row" style="background: none">
         <div class="col-4 mt-3" *ngFor="let food of foods" (click)="getClickedCardData(food)">
             <mat-card class="example-card">
                 <div class="food-header">
@@ -26,29 +51,23 @@
                 <div class="food-image">
                     <img mat-card-image src={{food.imageUrl}} alt="Sorry, Not Able To Render">
                 </div>
-                <!-- <div class="food-content">
-                    <mat-card-content>
-                        <p>
-                          {{food.origins}}
-                        </p>
-                      </mat-card-content>      
-                </div> -->
+
                 <div class="food-actions mt-4 text-center">
-                            <div class="row">
-                                <div class="col-4">
+                            <div class="row" >
+                                <div class="col-5" >
                                     <button mat-raised-button color="primary">Price : ₹{{food.price}}</button>
                                 </div>  
-                                <div class="col-8 text-right mt-2">
-                                    <a>
-                                        <mat-icon class="zoom" [matBadge]="getCartCount(food)" matBadgeColor="warn">add_shopping_cart</mat-icon>
-                                        <!-- <mat-icon class="ml-3">add_circle_outline</mat-icon> -->
-                                        <mat-icon class="ml-1 zoom" (click)="incClickedCardCount(food)">keyboard_arrow_up</mat-icon>
-                                        <mat-icon class="zoom" (click)="decClickedCardCount(food)">keyboard_arrow_down</mat-icon>
-                                    </a>
+                                <div class="col-7 text-right mt-2"  >
+                                    <mat-icon class="zoom mr-1" [matBadge]="getCartCount(food)" matBadgeColor="warn">add_shopping_cart</mat-icon>
+                                    <mat-icon style="background:none" class="ml-1 zoom" (click)="incClickedCardCount(food)">keyboard_arrow_up</mat-icon>
+                                    <mat-icon class="zoom" (click)="decClickedCardCount(food)">keyboard_arrow_down</mat-icon>
+
                                 </div>
                             </div>    
                 </div>
               </mat-card>                
         </div>
     </div>
+<!-- </div> -->
+
 </div>
