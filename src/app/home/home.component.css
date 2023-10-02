@@ -3,26 +3,33 @@
     /* width: auto; */
 }
 .example-card {
-    height: 400px;
-    max-width: 400px;
-    border-radius: 5px;
+    height:56vh;
+    max-width: 50vh;
+    border-radius: 25px;
     /* background-color: sienna; */
 
 }
 
 
 .food-header{
-    height: 75px;
+    height: 10vh;
 }
 .food-image{
-    height: 250px;
+    /* height: 250px; */
+    height: 30vh;
+    max-width: 25vw;
+    border-radius: 50px;
+    display: flex;
+    align-items: center; /* Center the image vertically */
+    justify-content: center; /* Center the image horizontally */
+    overflow: hidden; /* Hide any overflow from the image */
+
 }
 .food-actions{
-    height: 50px;
+    height: 10vh;
 }
-img{
-    height: 250px;
-}
+/* img{
+} */
 
   a{
     cursor: pointer;
