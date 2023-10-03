@@ -23,8 +23,9 @@ mat-expansion-panel-header{
 
   img{
     margin-top: auto;
-    height: 90px;
-    width: 100px;
+    border-radius: 25px;
+    height: 10vh;
+    width: 6vw;
   }
 
   .btn{

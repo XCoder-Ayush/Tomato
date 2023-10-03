@@ -27,11 +27,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.initFoodItems();
-    // this.foodCartList=this.foodCartService.getCartItems();
-    // this.foodCartService.getCartItemsSync().then(resp=>{
-    //   this.foodCartList=resp;
-    //   this.foodCartListOrg=this.foodCartList;
-    // });
+
     this.foodCartList=this.foodCartService.getUpdatedCart();
     
     let flag:boolean=false;
@@ -44,29 +40,29 @@ export class HomeComponent implements OnInit {
   }
 
   async initFoodItems(){
-    console.log("In Home Component Fetching Products...");
+    // console.log("In Home Component Fetching Products...");
     await this.foodService.getAllFoodItemsSync().then(resp=>{
       this.foods=resp;
       this.foodsOrg=resp;
     })
-    console.log(this.foods);
+    // console.log(this.foods);
     
   }
   async initCartItems(){
-    console.log("In Home Component Cart Items...");
+    // console.log("In Home Component Cart Items...");
     await this.foodCartService.getCartItemsSync().then(resp=>{
       this.foodCartList=resp;
       this.foodCartListOrg=this.foodCartList;
     });
-    console.log(this.foodCartList);
+    // console.log(this.foodCartList);
   }
 
   getClickedCardData(food : any){
-    console.log(food);
+    // console.log(food);
   }
 
   incClickedCardCount(food : any){
-    console.log("Increase...");
+    // console.log("Increase...");
     this.fireSnackBarAdd();
     for(let foodCartItem of this.foodCartList){
       if(foodCartItem.food.id==food.id){
@@ -78,7 +74,7 @@ export class HomeComponent implements OnInit {
   }
 
   decClickedCardCount(food : any){
-    console.log("Decrease...");
+    // console.log("Decrease...");
     this.fireSnackBarRem();
     for(let foodCartItem of this.foodCartList){
       if(foodCartItem.food.id==food.id){
@@ -122,7 +118,7 @@ export class HomeComponent implements OnInit {
   filterFoodItems(searchKey : any){    
     // console.log(this.searchKey.value);
     // console.log(this.key);
-    console.log(searchKey);
+    // console.log(searchKey);
     // console.log(this.foods);
     
     this.foodCartList=this.foodCartListOrg.filter((item)=>{

@@ -33,6 +33,9 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatDialogModule} from '@angular/material/dialog';
 import { LogoutdialogComponent } from './header/logoutdialog/logoutdialog.component';
 import { FooterComponent } from './footer/footer.component';
+import { RegisterComponent } from './register/register.component';
+import { CheckoutComponent } from './cart-page/checkout/checkout.component';
+import {MatStepperModule} from '@angular/material/stepper';
 
 @NgModule({
   declarations: [
@@ -48,6 +51,8 @@ import { FooterComponent } from './footer/footer.component';
     LoginComponent,
     LogoutdialogComponent,
     FooterComponent,
+    RegisterComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,6 +74,7 @@ import { FooterComponent } from './footer/footer.component';
     MatSnackBarModule,
     MatToolbarModule,
     MatDialogModule,
+    MatStepperModule
   ],
   providers: [LoginService,AuthGuard,{provide: HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true},],
   bootstrap: [AppComponent]

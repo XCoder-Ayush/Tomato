@@ -13,10 +13,10 @@
             </div>
             <ul class="nav-list">
                 <li class="active">
-                    <a href="#">Home</a>
+                    <a routerLink="/">Home</a>
                 </li>
                 <li><a href="#">About</a></li>
-                <li>
+                <!-- <li>
                     <a href="#">Services</a>
                     <ul class="dropdown-list">
                         <li><a href="#">SEO optimisation</a></li>
@@ -27,8 +27,8 @@
                         <li><a href="#">Branding</a></li>
                         <li><a href="#">Content writing</a></li>
                     </ul>
-                </li>
-                <li><a href="#">Q&A</a></li>
+                </li> -->
+                <!-- <li><a href="#">Q&A</a></li> -->
                 <li>
                     <a [routerLink]="['/cart-page']">
                         <mat-icon>shopping_cart</mat-icon>
@@ -40,11 +40,18 @@
                     </a>
                 </li>
                 <li>
-                    <button class="btn" *ngIf="loggedIn" (click)="openDialog('100ms','100ms')">Logout</button>
-                    <button class="btn" *ngIf="!loggedIn" routerLink="/login">Login</button>
+                    <button class="btn" *ngIf="loggedIn" (click)="openDialog('100ms','100ms')">Sign Out</button>
+                    <button class="btn" *ngIf="!loggedIn" routerLink="/login">Sign In</button>
+                    <button class="btn ml-2" *ngIf="!loggedIn" routerLink="/register">Register</button>
                 </li>
                 <li class="mt-2">
                     <p *ngIf="loggedIn"><i class="fa-solid fa-user fa-xl"></i> Welcome {{loggedInUser}}</p> 
+                    <ul class="dropdown-list">
+                        <li><a routerLink="/">Profile</a></li>
+                        <li><a routerLink="/">Change Password</a></li>
+                        <li><a routerLink="/">Order History</a></li>
+                        <li><a routerLink="/">Tomato Wallet</a></li>
+                    </ul>
                 </li>
             </ul>
         </div>

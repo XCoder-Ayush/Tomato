@@ -41,12 +41,12 @@ export class AddFoodComponent implements OnInit {
       origins: description,
       stars: Number(this.addForm.value.stars)
     }
-    console.log(food);
+    // console.log(food);
     // REST API Call(To POST)
     this.apiService.addFoodItem(food).subscribe((resp)=>{
-      console.log(resp);
+      // console.log(resp);
     },(error)=>{
-      console.log(error);
+      // console.log(error);
     })
   }
 }

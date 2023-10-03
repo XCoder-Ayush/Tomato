@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CartItem } from '../shared/models/CartItem';
 import { FoodcartService } from '../services/foodcart/foodcart.service';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-cart-page',
   templateUrl: './cart-page.component.html',
@@ -8,7 +10,7 @@ import { FoodcartService } from '../services/foodcart/foodcart.service';
 })
 export class CartPageComponent implements OnInit {
   
-  constructor(private foodCartService : FoodcartService) {
+  constructor(private foodCartService : FoodcartService,private dialog: MatDialog) {
   }
   cart : CartItem[] =[];
   cartOrg : CartItem[] =[];
@@ -27,7 +29,7 @@ export class CartPageComponent implements OnInit {
   }
 
   async initCartItems(){
-    console.log("In Cart-Page Component Cart Items...");
+    // console.log("In Cart-Page Component Cart Items...");
     await this.foodCartService.getCartItemsSync().then(resp=>{
       this.cart=resp;
       this.cartOrg=this.cart;
@@ -79,6 +81,7 @@ export class CartPageComponent implements OnInit {
     }
     this.setCart();
   }
+
   decreaseCount(selectedItem: CartItem){
     this.cart=this.foodCartService.getUpdatedCart();
 
@@ -103,5 +106,14 @@ export class CartPageComponent implements OnInit {
 
   isCartFilled(){
     return (this.getTotalProducts()>0);    
+  }
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(CheckoutComponent, {
+      width: '100vw',
+      height: '85vh',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
   }
 }
