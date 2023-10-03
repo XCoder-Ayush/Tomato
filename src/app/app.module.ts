@@ -32,6 +32,7 @@ import { AuthGuard } from './guards/auth.guard';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatDialogModule} from '@angular/material/dialog';
 import { LogoutdialogComponent } from './header/logoutdialog/logoutdialog.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { LogoutdialogComponent } from './header/logoutdialog/logoutdialog.compon
     EmptyCartComponent,
     LoginComponent,
     LogoutdialogComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

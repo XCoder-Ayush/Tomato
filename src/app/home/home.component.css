@@ -22,8 +22,7 @@
     display: flex;
     align-items: center; /* Center the image vertically */
     justify-content: center; /* Center the image horizontally */
-    overflow: hidden; /* Hide any overflow from the image */
-
+    overflow:hidden;
 }
 .food-actions{
     height: 10vh;

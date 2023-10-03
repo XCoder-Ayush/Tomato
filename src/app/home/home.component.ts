@@ -135,11 +135,11 @@ export class HomeComponent implements OnInit {
 
   }
   currentUser: string = 'Dead';
-  getCurrentUser(){
-    this.apiService.getCurrentUser().subscribe((resp)=>{
-      this.currentUser=resp;
-    },err=>{
-      console.log(err);
-    })
-  }
+  // getCurrentUser(){
+  //   this.apiService.getCurrentUser().subscribe((resp)=>{
+  //     this.currentUser=resp;
+  //   },err=>{
+  //     console.log(err);
+  //   })
+  // }
 }

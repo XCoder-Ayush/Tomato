@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
   constructor(private loginService : LoginService,private dialog : MatDialog, private renderer : Renderer2) { 
   }
   loggedIn=false;
+  loggedInUser='';
   ngOnInit(): void {
     this.isLoggedIn();
     this.scroll();
@@ -20,8 +21,16 @@ export class HeaderComponent implements OnInit {
   ngAgferViewInit():void{
     this.scroll();
   }
-  isLoggedIn(){
+  async isLoggedIn(){
     this.loggedIn=this.loginService.isLoggedin();
+    this.loginService.getCurrentUser().then((resp)=>{
+      this.loggedInUser=resp;
+    }).catch((err)=>{
+      console.log(err);
+      
+    })
+    console.log(this.loggedInUser);
+    
   }
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(LogoutdialogComponent, {

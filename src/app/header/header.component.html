@@ -39,9 +39,12 @@
                         <strong>Add New Food Item</strong>
                     </a>
                 </li>
-            <li>
+                <li>
                     <button class="btn" *ngIf="loggedIn" (click)="openDialog('100ms','100ms')">Logout</button>
                     <button class="btn" *ngIf="!loggedIn" routerLink="/login">Login</button>
+                </li>
+                <li class="mt-2">
+                    <p *ngIf="loggedIn"><i class="fa-solid fa-user fa-xl"></i> Welcome {{loggedInUser}}</p> 
                 </li>
             </ul>
         </div>

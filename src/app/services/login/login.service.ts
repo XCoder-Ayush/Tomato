@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../api/api.service';
 import { Router } from '@angular/router';
+import { lastValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class LoginService {
   loginUser(token){
     console.log(token);
     localStorage.setItem("jwtToken",token);
-    location.reload();
+    // location.reload();
+    this.router.navigate(['/']);
   }
 
   isLoggedin(){
@@ -44,5 +46,10 @@ export class LoginService {
     this.router.navigate(['/login']);
     location.reload();
 
+  }
+
+  async getCurrentUser(){
+    let currentUser = await lastValueFrom(this.apiService.getCurrentUser());
+    return currentUser;
   }
 }
