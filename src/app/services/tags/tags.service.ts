@@ -25,7 +25,7 @@ export class TagsService implements OnInit{
     this.tags=[];
     this.tagMap.clear();
     this.foodItems=[];
-    await this.foodService.getAllFoodItemsSync().then((resp)=>{
+    await this.foodService.getFoodItems().then((resp)=>{
       this.foodItems=resp;
     })
 

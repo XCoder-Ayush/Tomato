@@ -1,5 +1,5 @@
 # Node.js
-node_modules/
+node_modules
 
 # Compiled output
 dist/
@@ -18,9 +18,9 @@ logs/
 Thumbs.db
 
 # Editor-specific files
-.vscode/
+.vscode
 .idea/
-.angular/
+.angular
 # Environment configuration
 .env
 .env.local

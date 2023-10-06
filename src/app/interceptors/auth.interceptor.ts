@@ -23,17 +23,17 @@ export class AuthInterceptor implements HttpInterceptor {
     // if(token!=null){
     // const modifiedRequest = request=request.clone({setHeaders :{ 'Authorization' : `Bearer ${token}`}})
     // }
-    console.log(request);
+    // console.log(request);
     let tokenString : string = 'Bearer ' + token;
     
     
-    if (token) {
-      console.log(tokenString);
-      console.log(token);
+    if (token!=null && token!=undefined && token!='') {
+      // console.log(tokenString);
+      // console.log(token);
   
       request = request.clone({setHeaders :{ 'Authorization' : tokenString}});
     }
-    console.log(request);
+    // console.log(request);
     
     return next.handle(request);
   }

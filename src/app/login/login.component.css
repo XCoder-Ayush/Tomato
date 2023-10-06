@@ -1,57 +1,96 @@
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #f2f2f2;
-    margin: 0;
-    padding: 0;
-    display: flex;
+#main {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    width: 30vw;
+    height: 65vh;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    background-image: url('../../assets/spoons-with-powder-condiments-copy-space-min.jpg'); /* Set the background image URL */
+    background-size: cover; /* Cover the entire container with the background image */
+    background-position: center top; /* Position the background image at the center horizontally and at the top vertically */
+    position: relative; /* Establish a containing block for child elements */
+    overflow: hidden; /* Hide any overflow if child elements extend beyond the container */
 }
+.overlay {
+    position: absolute;
+    top: 0;
+    /* left: 0; */
+    color: white!important;;
 
-.container {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    width: 320px;
-}
-
+    right: 0;
+    width: 70%;
+    height: 100%; /* Set the height to cover half of the container */
+    background-color: rgba(0, 0, 0, 0.2); 
+    /* Additional styling for the overlay can be added here */
+  }
 h1 {
     text-align: center;
-    color: #333;
+    color: rgb(212, 212, 212)
+}
+.overlay mat-form-field .mat-form-field-underline {
+    border-color: white !important;
 }
 
-label {
-    display: block;
-    margin: 10px 0;
-    color: #666;
-}
-
-input[type="text"], input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin: 6px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-input[type="submit"] {
-    background-color: #007BFF;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 10px 20px;
-    cursor: pointer;
-    width: 100%;
-}
-
-input[type="submit"]:hover {
-    background-color: #0056b3;
-}
 
 .message {
     text-align: center;
     color: #ff5555;
-    margin-top: 10px;
+}
+
+mat-form-field{
+    /* width: 25vw; */
+    flex: 1;
+    color: white!important;;
+    width: 17vw;
+
+}
+
+#image-section{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    position: absolute; /* Position the image absolutely within the container */
+    top: 0; /* Align the image to the top of the container */
+    left: 0;
+    /* transform: translateY(-50%); */
+}
+
+/* Make the default placeholder text white */
+::ng-deep .mat-form-field-label {
+    color: white !important;
+  }
+  
+  /* Change the blue border and underline color of mat-form-field to white */
+  ::ng-deep .mat-form-field-underline, .mat-form-field-appearance-fill.mat-form-field-flex .mat-form-field-infix {
+    border-color: white !important;
+  }
+  
+  /* Change the blue focus indicator to white */
+  ::ng-deep .mat-form-field-appearance-fill .mat-focused .mat-form-field-fill-start {
+    border-color: white !important;
+  }
+  
+  /* Change the blue hover indicator to white */
+  ::ng-deep .mat-form-field-appearance-fill .mat-form-field-ripple {
+    background-color: white !important;
+  }
+  
+  /* Change the blue selection indicator to white */
+  ::ng-deep .mat-form-field-appearance-fill .mat-form-field-underline::after {
+    background-color: white !important;
+  }
+  ::ng-deep .mat-form-field-appearance-fill .mat-form-field-underline::before {
+    background-color: white !important;
+  }
+  ::ng-deep .mat-form-field-appearance-fill.mat-focused .mat-form-field-fill {
+    border-color: white !important;
+    background-color: white !important;
+  
+}
+  ::ng-deep .mat-form-field-appearance-fill.mat-focused .mat-form-field-fill {
+    border-color: white !important;
+    background-color: white !important;
+
 }

@@ -15,10 +15,11 @@ export class FoodcartService{
   constructor(private foodService : FoodService){}
 
   async getCartItemsSync(){
+
+    // Get From DB Depending On User:
+    
     console.log("In Cart Service");
-    this.cartItemList=[]
-    this.foodList=[]
-    await this.foodService.getAllFoodItemsSync().then((resp)=>{
+    await this.foodService.getFoodItems().then((resp)=>{
       this.foodList=resp;
       for(let food of this.foodList){
         let cartItem : CartItem=new CartItem(food);
@@ -46,6 +47,8 @@ export class FoodcartService{
   }
 
   getUpdatedCart(){
+    console.log('Ebar Ami');
+    
     return this.cartItemList;
   }
 }

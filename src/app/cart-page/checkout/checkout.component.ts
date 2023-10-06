@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { WindowRefService } from 'src/app/services/window-ref/window-ref.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -20,7 +21,6 @@ export class CheckoutComponent implements OnInit {
     address1: ['', Validators.required],
     address2: '',
     postalCode : ['', Validators.required],
-
   });
   secondFormGroup = this._formBuilder.group({
     secondCtrl: ['', Validators.required],
@@ -45,6 +45,11 @@ export class CheckoutComponent implements OnInit {
         "image": "https://img.icons8.com/fluency/96/lasagna.png",
         "order_id": resp.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
         "handler": (response)=>{
+            Swal.fire(
+              'Thank You :)',
+              'The Complete Payment Process Has Been Done.',
+              'success'
+            )
             console.log(response.razorpay_payment_id);
             console.log(response.razorpay_order_id);
             console.log(response.razorpay_signature);
@@ -63,7 +68,13 @@ export class CheckoutComponent implements OnInit {
     };
     const rzp1 = new this.winRef.nativeWindow.Razorpay(options)
     rzp1.on('payment.failed', function (response){
-            alert(response.error.code);
+      Swal.fire(
+        'OOPS :(',
+        'The Payment Process Has Terminated Due To Some Error. Please Retry',
+        'error'
+      )
+
+      alert(response.error.code);
             alert(response.error.description);
             alert(response.error.source);
             alert(response.error.step);
@@ -78,6 +89,10 @@ export class CheckoutComponent implements OnInit {
     })
   }
   showSweetAlert(){
-
-  }
+    Swal.fire(
+      'Thank You :)',
+      'Your Order Has Been Placed. Please Pay To The Delivery Agent',
+      'success'
+    )
+}
 }

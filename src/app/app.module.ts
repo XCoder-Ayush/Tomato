@@ -36,6 +36,7 @@ import { FooterComponent } from './footer/footer.component';
 import { RegisterComponent } from './register/register.component';
 import { CheckoutComponent } from './cart-page/checkout/checkout.component';
 import {MatStepperModule} from '@angular/material/stepper';
+import { OrdersComponent } from './orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import {MatStepperModule} from '@angular/material/stepper';
     FooterComponent,
     RegisterComponent,
     CheckoutComponent,
+    OrdersComponent,
   ],
   imports: [
     BrowserModule,

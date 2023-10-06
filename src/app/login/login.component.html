@@ -1,14 +1,37 @@
-<div class="container mt-5">
-    <h1>Login</h1>
-    <form (ngSubmit)="onSubmit()" method="post">
+<div class="container mt-5 text-center md-5" id="main" >
+    <!-- <form (ngSubmit)="onSubmit()" method="post">
         <label for="email">Email</label>
         <input [(ngModel)]="credentials.email" type="text" id="email" name="email" required>
 
         <label for="password">Password</label>
         <input [(ngModel)]="credentials.password" type="password" id="password" name="password" required>
 
-        <!-- <input type="submit" value="Login"> -->
-        <button type="submit" mat-raised-button color="primary">Login</button>
+    </form> -->
+
+    <!-- <img id="image-section" src="../../assets/spoons-with-powder-condiments-copy-space.jpg" alt=""> -->
+    <div class="overlay">
+    <h1 class="mt-5"><i class="fa-solid fa-user fa-lg"></i> Sign In</h1>
+
+    <form [formGroup]="formGroup" class="mt-5">
+        
+        <mat-form-field appearance="fill" class="mt-3">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Enter Your Email" formControlName="email" required>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="Enter Your Password" formControlName="password" required>
+        </mat-form-field>
+        <br>
+        <div class="container text-center mt-2">
+            <button type="submit" mat-raised-button color="primary" (click)="onSubmit()">Login</button>
+        </div>
+
     </form>
-    <p class="message">Forgot your password? <a href="#">Reset it here</a></p>
+
+
+    <p class="message mt-2">Forgot Your Password? <a href="#">Click Here</a></p>
+</div>
+
 </div>

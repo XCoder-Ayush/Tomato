@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../services/login/login.service';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -8,11 +9,11 @@ import { LoginService } from '../services/login/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  credentials ={
-    email:'',
-    password:''
-  }
-  constructor(private loginService : LoginService) { }
+  formGroup = this._formBuilder.group({
+    email: ['', Validators.required],
+    password: ['', Validators.required],
+  });
+  constructor(private loginService : LoginService,private _formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
   }
@@ -24,8 +25,23 @@ export class LoginComponent implements OnInit {
     // console.log(password);
 
     // console.log(this.credentials);
-    const token=this.loginService.generateToken(this.credentials)
-    console.log(token);
+    const emailControl = this.formGroup.get('email');
+    const passwordControl = this.formGroup.get('password');
+    if(emailControl && passwordControl){
+
+      const email=emailControl.value;
+      const password=passwordControl.value;
+      
+      const credentials={
+        email: email,
+        password:password
+      }
+      console.log(credentials);
+      
+      const token=this.loginService.generateToken(credentials) //API Call
+      console.log(token);
+          
+    }
     // this.loginService.loginUser(token);
   }
 

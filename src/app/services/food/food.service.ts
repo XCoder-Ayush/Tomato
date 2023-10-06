@@ -6,27 +6,26 @@ import { lastValueFrom } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class FoodService{
+export class FoodService {
 
-  // ngOnInit() : void{
-  //   this.getAllFoodItems();
-  // }
   foodList:Food[]=[]
   constructor(private apiService : ApiService) { }
 
-  async getAllFoodItemsSync(){
-    console.log("In Food Service");
-    let data = await lastValueFrom(this.apiService.getAllFoodItems());
-    console.log(data);
-    this.foodList=data;
-    return data;
-  }
-  // getAllFoodItems(){
-  //   this.getAllFoodItemsSync().then((resp)=>{
-  //     this.foodList=resp;
-  //   });
-  //   return this.foodList;
+  // async getAllFoodItemsSync(){
   // }
+
+  async getFoodItems(){
+    if(this.foodList.length==0){
+      console.log("In Food Service First API Call");
+      let data = await lastValueFrom(this.apiService.getAllFoodItems());
+      console.log(data);
+      this.foodList=data;
+      return this.foodList;  
+    }
+    console.log('Fetched');
+    
+    return this.foodList;
+  }
 
   getFoodById(id: number): Food {
     return this.foodList.find(food => food.id == id)!;
@@ -37,7 +36,7 @@ export class FoodService{
   }
   
   getAllTag(): Tag[] {
-    // REST API Call
+    // REST API Call To Tag Service
     return [
       { name: 'All', count: 8 },
       { name: 'NonVeg', count: 2 },
