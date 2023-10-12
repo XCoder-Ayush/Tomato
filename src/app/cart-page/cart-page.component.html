@@ -1,72 +1,74 @@
 <div *ngIf="isCartFilled();else emptyCart">
-    <div class="container mt-3" *ngFor="let cartItem of cart">
-        <mat-accordion>
-            <mat-expansion-panel hideToggle *ngIf="cartItem.quantity>0">
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    <p><strong>{{cartItem.food.name}}</strong></p>
-                  </mat-panel-title>
-                  <mat-panel-description >
-                    <div class="row container-fluid">
-                        <div class="col-4">
-                            <img class="mt-1" src="{{cartItem.food.imageUrl}}" alt="">
+    <div class="cart-items-list">
+        <div class="container" *ngFor="let cartItem of cart">
+            <mat-accordion>
+                <mat-expansion-panel hideToggle *ngIf="cartItem.quantity>0">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <p><strong>{{cartItem.food.name}}</strong></p>
+                      </mat-panel-title>
+                      <mat-panel-description >
+                        <div class="row container-fluid">
+                            <div class="col-4">
+                                <img class="mt-1" src="{{cartItem.food.imageUrl}}" alt="">
+                            </div>
+                            <div class="col-4 text-right mt-4">
+                                    <p style="font-weight: 800;">Subtotal : ₹{{cartItem.quantity*cartItem.food.price}}</p>
+                            </div>
+                            <div class="col-4 text-right mt-4">
+                                    <button mat-raised-button color="primary"
+                                        [matBadge]="cartItem.quantity" matBadgePosition="before" matBadgeColor="accent">
+                                      Quantity
+                                    </button>
+                            </div>
                         </div>
-                        <div class="col-4 text-right mt-4">
-                                <p style="font-weight: 800;">Subtotal : ₹{{cartItem.quantity*cartItem.food.price}}</p>
-                        </div>
-                        <div class="col-4 text-right mt-4">
-                                <button mat-raised-button color="primary"
-                                    [matBadge]="cartItem.quantity" matBadgePosition="before" matBadgeColor="accent">
-                                  Quantity
-                                </button>
-                        </div>
-                    </div>
-                  </mat-panel-description>
-                </mat-expansion-panel-header>
-    
-                <div class="food-actions">
-                    <div class="row">
-                        <div class="col-4">
-                            <button mat-raised-button color="primary">Price/Item : ₹{{cartItem.food.price}}</button>
-                        </div>  
-                        <div class="col-8 text-right mt-2">
-                            <a>
-                                <mat-icon class="zoom" [matBadge]="getItemCount(cartItem)" matBadgeColor="warn">add_shopping_cart</mat-icon>
-                                <mat-icon class="ml-1 zoom" (click)="increaseCount(cartItem)">keyboard_arrow_up</mat-icon>
-                                <mat-icon class="zoom" (click)="decreaseCount(cartItem)">keyboard_arrow_down</mat-icon>
-                            </a>
-                        </div>
-                    </div>    
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+        
+                    <div class="food-actions">
+                        <div class="row">
+                            <div class="col-4">
+                                <button mat-raised-button color="primary">Price/Item : ₹{{cartItem.food.price}}</button>
+                            </div>  
+                            <div class="col-8 text-right mt-2">
+                                <a>
+                                    <mat-icon class="zoom" [matBadge]="getItemCount(cartItem)" matBadgeColor="warn">add_shopping_cart</mat-icon>
+                                    <mat-icon class="ml-1 zoom" (click)="increaseCount(cartItem)">keyboard_arrow_up</mat-icon>
+                                    <mat-icon class="zoom" (click)="decreaseCount(cartItem)">keyboard_arrow_down</mat-icon>
+                                </a>
+                            </div>
+                        </div>    
+            </div>
+        
+                  </mat-expansion-panel>
+              </mat-accordion>
         </div>
-    
-              </mat-expansion-panel>
-          </mat-accordion>
+        
+        <div class="container-fluid text-center mt-5 p-5">
+            <div class="row">
+                <div class="col-4">
+                    <button mat-raised-button color="warn" class="btn zoom1" (click)="clearCart()">
+                        <mat-icon class="mt-2">delete</mat-icon>
+                        <p style="font-weight: 1200;">Clear Cart</p>
+                    </button>    
+                </div>
+                <div class="col-4">
+                    <button mat-raised-button color="warning" class="btn zoom1">
+                        <mat-icon class="mt-2">local_atm</mat-icon>
+                        <p style="font-weight: 1200;">Total Amount : ₹{{getTotalPrice()}}</p>
+                    </button>    
+                </div>
+                <div class="col-4">
+                    <button mat-raised-button color="primary" class="btn zoom1" (click)="openDialog('100ms','100ms')">
+                        <mat-icon class="mt-2">local_atm</mat-icon>
+                        <p style="font-weight: 1200;">Checkout</p>
+                    </button>    
+                </div>
+            </div>
+        </div>
     </div>
     
-    <div class="container-fluid text-center mt-5 p-5">
-        <div class="row">
-            <div class="col-4">
-                <button mat-raised-button color="warn" class="btn zoom1" (click)="clearCart()">
-                    <mat-icon class="mt-2">delete</mat-icon>
-                    <p style="font-weight: 1200;">Clear Cart</p>
-                </button>    
-            </div>
-            <div class="col-4">
-                <button mat-raised-button color="warning" class="btn zoom1">
-                    <mat-icon class="mt-2">local_atm</mat-icon>
-                    <p style="font-weight: 1200;">Total Amount : ₹{{getTotalPrice()}}</p>
-                </button>    
-            </div>
-            <div class="col-4">
-                <button mat-raised-button color="primary" class="btn zoom1" (click)="openDialog('100ms','100ms')">
-                    <mat-icon class="mt-2">local_atm</mat-icon>
-                    <p style="font-weight: 1200;">Checkout</p>
-                </button>    
-            </div>
-        </div>
-    </div>
 </div>
-
 <ng-template #emptyCart>
     <app-empty-cart></app-empty-cart>
 </ng-template>

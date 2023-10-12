@@ -1,6 +1,6 @@
 <div *ngIf="tags">
     <mat-chip-list>
-        <mat-chip *ngFor="let tag of tags" color="primary" selected routerLink="/tag/{{tag.name}}">
+        <mat-chip *ngFor="let tag of tags" color="warn" selected routerLink="/tag/{{tag.name}}">
             {{tag.name}}({{tag.count}})
         </mat-chip>
     </mat-chip-list>

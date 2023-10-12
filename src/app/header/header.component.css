@@ -1,33 +1,34 @@
- @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;900&display=swap');
-   * {
-       padding: 0;
-       margin: 0;
-       box-sizing: border-box;
-       -webkit-font-smoothing: antialiased;
-   }
-   :root {
-       --primary: #ff0000;
-       --dark: #232323;
-       --pure: #fff;
-       --smoke: whitesmoke;
-       --dark-gray: #999;
-       --red: #ad3636;
-   }
-   
-   
-   nav {
-       font-family: 'Lato', sans-serif;
-       background: var(--red);
-       color: var(--pure);
-       box-shadow: 0px 3px 3px grey;
-   }
-   
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+:root {
+    --primary: #933ded;
+    --dark: #232323;
+    --pure: #fff;
+    --smoke: whitesmoke;
+    --dark-gray: #999;
+}
+#navbar{
+    position: sticky;
+    top: 0;
+    /* position: fixed;  */
+    width: 100%;
+    background-color: #ffffff; 
+    z-index: 100;
+    box-shadow: 0 5px 5px rgb(105, 105, 105);
+}
 .container {
-    width: 1150px;
+    /* width: 1150px; */
+    width: 90vw;
     max-width: 90%;
     margin: 0 auto;
+    position: sticky;
 }
-
 .nav-wrapper {
     display: flex;
     align-items: center;
@@ -40,7 +41,7 @@
 }
 
 .brand svg {
-    height: 30px;
+    height: 40px;
     margin-right: 10px;
 }
 
@@ -71,7 +72,7 @@
 }
 
 .btn {
-    background: var(--red);
+    background: #e80000;
     color: white;
     outline: none;
     padding: 8px 20px;
@@ -83,39 +84,20 @@
 }
 
 .btn:hover {
-    /* background: transparent; */
+    /* background: rgb(0, 0, 0); */
+    opacity: 0.6;
     border-color: var(--pure);
 }
 
-main section.header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    margin-top: 160px;
-}
 
-main section.header h1 {
-    font-size: 36px;
-    font-weight: 100;
-    text-transform: capitalize;
-    margin-bottom: 20px;
-}
-
-main section.header h4 {
-    font-size: 18px;
-    font-weight: 400;
-    color: var(--dark-gray);
-    margin-bottom: 20px;
-}
 nav ul.dropdown-list {
     list-style-type: none;
     display: block;
-    background: white;
+    background: rgb(244, 244, 244);
     padding: 6px 16px;
     position: absolute;
     width: max-content;
-    z-index: 9999;
+    z-index: 8999;
     left: 50%;
     transform: translateX(-50%);
     opacity: 0;
@@ -160,10 +142,12 @@ nav ul.dropdown-list {
 }
 
 .mobile .hamburger span {
-    background: var(--pure);
+    background: black;
     width: 28px;
     height: 2px;
     margin-bottom: 8px;
+    align-items: center;
+    justify-content: center;
 }
 
 .mobile ul.nav-list {
@@ -183,7 +167,7 @@ nav ul.dropdown-list {
 }
 
 .hamburger, .brand {
-    z-index: 9999;
+    z-index: 8999;
 }
 
 .mobile ul.nav-list.open {
@@ -223,14 +207,3 @@ nav ul.dropdown-list {
 .mobile .nav-wrapper ul.dropdown-list li a {
     color: var(--dark-gray);
 }
-
-.sticky {
-        position: fixed;
-        top: 0;
-        width: 100%;
-}
-#navbar {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }

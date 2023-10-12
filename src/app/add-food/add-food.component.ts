@@ -34,11 +34,11 @@ export class AddFoodComponent implements OnInit {
       id: Number(this.addForm.value.id),
       price: Number(this.addForm.value.price),
       name: String(this.addForm.value.name),
-      favorite: Boolean(this.addForm.value.favourite),
+      // favorite: Boolean(this.addForm.value.favourite),
       tags: tags,
       imageUrl: String(this.addForm.value.imageUrl),
       cookTime: String(this.addForm.value.cookingTime),
-      origins: description,
+      description: description,
       stars: Number(this.addForm.value.stars)
     }
     // console.log(food);
