@@ -1,0 +1,31 @@
+h2 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+.btn {
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+img {
+  height: auto;
+  max-width: 100%;
+  aspect-ratio: 1/1;
+  object-position: center;
+  object-fit: cover;
+}
+
+.blur-load {
+  max-width: 50%;
+  background-image: url(../../assets/construction-small.png);
+}

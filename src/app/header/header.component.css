@@ -67,8 +67,11 @@
     transition: all .5s ease-in-out;
 }
 
-.nav-wrapper ul.nav-list li a:hover, .nav-wrapper ul.nav-list li.active a {
-    color: var(--primary);
+.nav-wrapper ul.nav-list li a:hover {
+    color: #e80000;
+}
+.active{
+    color: #e80000;
 }
 
 .btn {

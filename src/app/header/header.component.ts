@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit {
 
   async isLoggedIn() {
     this.loggedIn = this.loginService.isLoggedin();
-    this.loginService.getCurrentUserName().then((resp) => {
+    await this.loginService.getCurrentUserName().then((resp) => {
       this.loggedInUser = resp;
     }).catch((err) => {
       console.log(err);

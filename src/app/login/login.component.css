@@ -6,7 +6,7 @@
     height: 65vh;
     justify-content: center;
     align-items: center;
-    background-image: url('../../assets/spoons-with-powder-condiments-copy-space-min.jpg'); /* Set the background image URL */
+    /* background-image: url('../../assets/26763887_2110.i309.018.S.m012.c13.pepper\ realistic\ composition\ 1.jpg'); Set the background image URL */
     background-size: cover; /* Cover the entire container with the background image */
     background-position: center top; /* Position the background image at the center horizontally and at the top vertically */
     position: relative; /* Establish a containing block for child elements */

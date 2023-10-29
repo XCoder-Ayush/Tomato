@@ -33,9 +33,11 @@ export class ApiService {
 
   getCurrentUser():Observable<any> {
     const URL = 'http://localhost:8080/auth/currentuser';
-    
-    // return this.http.get(URL, { responseType: 'text' });
     return this.http.get<any>(URL);
+  }
 
+  getCurrentUserRole():Observable<any> {
+    const URL = 'http://localhost:8080/auth/currentuserrole';
+    return this.http.get<any>(URL);
   }
 }

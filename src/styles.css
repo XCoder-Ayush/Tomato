@@ -1,54 +1,97 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Roboto:wght@300&display=swap');
-*{
-    /* Override Default Browser Styles */
-    padding: 0;
-    margin: 0;
-    -webkit-font-smoothing: antialiased;
-    box-sizing: border-box;
+@import url("https://fonts.googleapis.com/css2?family=League+Gothic&family=Roboto:wght@300&display=swap");
+* {
+  /* Override Default Browser Styles */
+  padding: 0;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
 }
-html{
-    font-size: 16px;
-    overflow-x: hidden;
+html {
+  font-size: 16px;
+  overflow-x: hidden;
 }
-body{
-    margin: 0px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 16px;
+body {
+  margin: 0px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 16px;
 }
-a{
-    text-decoration: none;
+a {
+  text-decoration: none;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-.smooth{
-    transition: all 0.3s ease;
-}
-
-.flex-only{
-    display: flex;
-}
-.flex{
-    display: flex;
-    align-items: center;
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.justify-content-sb{
-    justify-content: space-between;
-}
-.justify-content-center{
-    justify-content:center;
+.smooth {
+  transition: all 0.3s ease;
 }
 
-.flex-wrap{
-    flex-wrap: wrap;
+.flex-only {
+  display: flex;
+}
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.justify-content-sb {
+  justify-content: space-between;
+}
+.justify-content-center {
+  justify-content: center;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
 }
 
 .zoom {
-    transition: transform .3s ease; 
-    margin: 0 auto;
+  transition: transform 0.3s ease;
+  margin: 0 auto;
+}
+.zoom:hover {
+  transform: scale(1.5);
+}
+
+
+
+/* Lazy Loading And Advanced Blurring Of Images */
+/* Just Give max-width and backgorund small image */
+
+.blur-load {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
-  .zoom:hover {
-    transform: scale(1.5); 
+  .blur-load::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    animation: pulse 2.5s infinite;
+  }
+  .blur-load.loaded > img {
+    opacity: 1;
+  }
+  .blur-load > img {
+    opacity: 0;
+    transition: opacity 200ms ease-in-out;
+  }
+  .blur-load.loaded::before {
+    content: none;
+    animation: none;
+  }
+  @keyframes pulse {
+    0% {
+      background-color: rgba(255, 255, 255, 0);
+    }
+    50% {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    100% {
+      background-color: rgba(255, 255, 255, 0);
+    }
   }

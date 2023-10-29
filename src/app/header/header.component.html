@@ -11,33 +11,36 @@
                 <span></span>
             </div>
             <ul class="nav-list" [class.open]="isActive">
-                <li class="active">
-                    <a routerLink="/">Home</a>
-                </li>
+
+                <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"><a routerLink="/" >Home</a></li>
  
-                <li><a [routerLink]="['/cart-page']"><i class="fa-solid fa-cart-shopping fa-xl"></i> Cart</a></li>
+                <li [routerLinkActive]="['active']"><a [routerLink]="['/cart']"><i class="fa-solid fa-cart-shopping fa-xl"></i> Cart</a></li>
  
-                <li><a [routerLink]="['/cart-page']"><i class="fa-brands fa-shopify fa-2xl"></i> Shop</a></li>
+                <li [routerLinkActive]="['active']"><a [routerLink]="['/shop']"><i class="fa-solid fa-utensils fa-2xl"></i> Shop</a></li>
 
-                <li><a routerLink="/">Blog</a></li>
+                <li [routerLinkActive]="['active']"><a routerLink="/blog">Blog</a></li>
 
-                <li><a routerLink="/">About</a></li>
+                <li [routerLinkActive]="['active']"><a routerLink="/about">About</a></li>
 
-                <li><a href="#">Contact Us</a></li>
+                <li [routerLinkActive]="['active']"><a routerLink="/contact">Contact Us</a></li>
+                
                 <li>
-                    <a *ngIf="loggedIn"><i class="fa-solid fa-user fa-xl"></i> {{loggedInUser}}</a> 
+                    <a *ngIf="loggedIn"><i class="fa-solid fa-user fa-xl"></i> {{loggedInUser}} </a> 
                     <ul class="dropdown-list mt-2">
                         <li><a routerLink="/">Profile</a></li>
                         <li><a routerLink="/">Change Password</a></li>
+                        <li><a routerLink="/">Wishlist</a></li>
                         <li><a routerLink="/">Order History</a></li>
                         <li><a routerLink="/">Tomato Wallet</a></li>
                     </ul>
                 </li>
+                
                 <li>
                     <button class="btn" *ngIf="loggedIn" (click)="openDialog('100ms','100ms')">Sign Out</button>
                     <button class="btn" *ngIf="!loggedIn" routerLink="/login">Sign In</button>
                     <button class="btn ml-2" *ngIf="!loggedIn" routerLink="/register">Register</button>
                 </li>
+
             </ul>
         </div>
     </nav>

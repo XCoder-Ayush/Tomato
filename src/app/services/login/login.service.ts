@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ApiService } from '../api/api.service';
 import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
+import jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,11 @@ export class LoginService {
   jwtToken:string='';
   currentUserEmail:string='';
   currentUserName:string='';
+  currentUserRole:string='';
 
-  constructor(private apiService : ApiService, private router : Router) { }
+  constructor(private apiService : ApiService, private router : Router) { 
+    // this.getCurrentUserName();
+  }
 
   loginUser(token){
     console.log(token);
@@ -23,8 +27,27 @@ export class LoginService {
   }
 
   isLoggedin(){
+    // 1-> Does Token Exist?
     if(localStorage.getItem('jwtToken')=='' || localStorage.getItem('jwtToken')==null || localStorage.getItem('jwtToken')==undefined)return false;
-    return true;
+    // 2->Is Token Valid?
+    const token=this.getToken();
+    console.log("Heyyy");
+    
+    if(token){
+    console.log("I Should Run");
+      const decodedToken: { exp: number } = jwt_decode(token);
+      const currentTime = Date.now() / 1000;
+      console.log(decodedToken.exp);
+      console.log(currentTime);
+      console.log(decodedToken.exp>currentTime);
+      
+      
+      
+      return decodedToken.exp > currentTime;  
+    }
+    console.log("I sHould not");
+    
+    return false;
   }
   getToken(){
     return localStorage.getItem('jwtToken');
@@ -53,26 +76,35 @@ export class LoginService {
 
   async getCurrentUserName(){
     if(this.currentUserName==''){
-      console.log('Hello API');
-      
+      console.log("NAME");
       const resp = await lastValueFrom(this.apiService.getCurrentUser());
-      console.log(resp);
-      
       this.currentUserName=resp.principal.name;
       this.currentUserEmail=resp.principal.email;
-
+      this.currentUserRole=resp.principal.role;
     }
+    console.log(this.currentUserRole);
     return this.currentUserName;
   }
 
-  async getCurrentUserEmail(){
-    if(this.currentUserEmail==''){
+  async getCurrentUserRole(){
+    if(this.currentUserRole=='' || this.currentUserRole==null || this.currentUserRole==undefined){
       const resp = await lastValueFrom(this.apiService.getCurrentUser());
       this.currentUserName=resp.principal.name;
       this.currentUserEmail=resp.principal.email;
+      this.currentUserRole=resp.principal.role;
+    }
+    console.log(this.currentUserRole);
+    return this.currentUserRole;
+  }
+
+  async getCurrentUserEmail(){
+    if(this.currentUserEmail=='' || this.currentUserEmail==null || this.currentUserEmail==undefined){
+      const resp = await lastValueFrom(this.apiService.getCurrentUser());
+      this.currentUserName=resp.principal.name;
+      this.currentUserEmail=resp.principal.email;
+      this.currentUserRole=resp.principal.role;
     }
     return this.currentUserEmail;
   }
 
-  
 }
