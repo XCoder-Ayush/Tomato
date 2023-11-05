@@ -8,13 +8,14 @@ import { EmptyCartComponent } from './empty-cart/empty-cart.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ShopComponent } from './shop/shop.component';
-import { OrdersComponent } from './shop/cart/cart/orders/orders.component';
+import { OrdersComponent } from './orders/orders.component';
 import { OrdersAdminComponent } from './admin/orders-admin/orders-admin.component';
 import { TestComponent } from './admin/test/test.component';
 import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { ForbiddenGuard } from './guards/forbidden.guard';
-import { CartComponent } from './shop/cart/cart/cart.component';
+import { CartComponent } from './shop/cart/cart.component';
+import { AuthComponent } from './auth/auth/auth.component';
 const routes: Routes = [
   { path: '', component: HomeComponent , canActivate : [AuthGuard]},
   { path: 'search/:searchItem', component: HomeComponent },
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'forbidden', component: ForbiddenComponent},
   { path: 'admin/orders', component: OrdersAdminComponent, canActivate: [AuthGuard,ForbiddenGuard]},
   { path : 'admin/add-food', component: AddFoodComponent, canActivate: [AuthGuard, ForbiddenGuard]},
+  { path: 'auth', component: AuthComponent}
 
   // { path: '**', redirectTo: '/products' } // Redirect to the default route for unknown paths
 ];

@@ -30,7 +30,7 @@ export class AuthGuard implements CanActivate {
       return true; // User is authenticated, allow access
     } else {
       // User is not authenticated; redirect to the login page
-      this.router.navigate(['login']);
+      this.router.navigate(['auth']);
       return false;
     }  
 }
@@ -39,6 +39,6 @@ export class AuthGuard implements CanActivate {
     // Token has expired, log out the user and redirect to the login page
     // Implement your logout logic here
     this.loginService.logoutUser();
-    this.router.navigate(['login']);
+    this.router.navigate(['auth']);
   }
 }

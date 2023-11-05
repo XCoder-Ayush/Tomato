@@ -1,0 +1,139 @@
+<section class="flex">
+    <div class="image-content left-part">
+        <img src="../../assets/fresh-pasta-with-hearty-bolognese-parmesan-cheese-generated-by-ai.jpg">
+    </div>
+    <!-- Login  -->
+    <div class="right-part text-center">
+        <!-- <div class="logo">
+            <img src="../../../assets/tomato_logo.png" alt=""><span style="font-size: 24px;font-weight: 500;text-transform: uppercase;">Tomato - Delivering Happiness</span>
+        </div> -->
+        <div class="content" [style.display]="isSignInActive ? 'block' : 'none'" id="login-content">
+            <div class="circle"></div>
+            <div class="formBx">
+
+                <div id="slider" class="flex">
+                    <button style="width: 50%; font-size: medium;font-weight: 500;text-transform: uppercase;" id="sliderL" class="button-active sliderL "
+                        (click)="toggleToSignIn()"><i class="fa-solid fa-right-to-bracket"></i> Sign In</button>
+                    <button style="width: 50%; font-size: medium;font-weight: 500;text-transform: uppercase;" id="sliderR" class="button-inactive sliderR "
+                        (click)="toggleToRegister()"><i class="fa-solid fa-user-plus"></i> Register</button>
+                </div>
+
+                <form [formGroup]="formGroup" class="mt-5">
+                    <div class="text-left">
+                        <!-- <span>EMAIL</span> -->
+                        <mat-form-field appearance="outline">
+                            <mat-label>Email Address</mat-label>
+                            <input matInput placeholder="Enter Your Email" formControlName="email" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="text-left">
+                        <!-- <span>PASSWORD</span> -->
+                        <!-- <input type="password" placeholder="Enter your password" name="password"> -->
+                        <mat-form-field appearance="outline" class="mt-2">
+                            <mat-label>Password</mat-label>
+                            <input matInput placeholder="Enter Your Password" formControlName="password" required>
+                        </mat-form-field>
+                    </div>
+                    <!-- <div class="remember">
+                        <label><input type="checkbox" name=""> I've read and agree with Terms of Service and our Privacy
+                            Policy.</label>
+                    </div> -->
+                    <div class="inputBx">
+                        <!-- <input type="submit" value="Login" name="" (click)="onSubmit()"> -->
+                        <button type="submit" class="auth-btn" (click)="onSubmit()">Login</button>
+                    </div>
+                    <div class="inputBx">
+                        <p class="social-text">or sign in with</p>
+                        <div class="social-media">
+                            <a href="#" class="social-icon">
+                                <i class="fa-brands fa-google"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fa-brands fa-facebook"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Register  -->
+
+        <div class="content" [style.display]="isSignInActive ? 'none' : 'block'" id="register-content">
+            <div class="circle"></div>
+            <div class="formBx">
+                <!-- <h1>Sign In</h1> -->
+                <div id="slider" class="flex">
+                    <button style="width: 50%; font-size: medium;font-weight: 500;text-transform: uppercase;" id="sliderL" class="button-active sliderL "
+                        (click)="toggleToSignIn()"><i class="fa-solid fa-right-to-bracket"></i> Sign In</button>
+                    <button style="width: 50%; font-size: medium;font-weight: 500;text-transform: uppercase;" id="sliderR" class="button-inactive sliderR "
+                        (click)="toggleToRegister()"><i class="fa-solid fa-user-plus"></i> Register</button>
+                </div>
+
+                <form [formGroup]="regFormGroup" class="mt-5">
+                    <div class="text-left">
+                        <!-- <span>Name</span> -->
+                        <mat-form-field appearance="outline" class="">
+                            <mat-label>Name</mat-label>
+                            <input matInput placeholder="Enter Your Name" formControlName="name" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="text-left">
+                        <!-- <span>Email ID</span> -->
+                        <mat-form-field appearance="outline" class="mt-2">
+                            <mat-label>Email Address</mat-label>
+                            <input matInput placeholder="Enter Your Email" formControlName="email" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="text-left">
+                        <!-- <span>Password</span> -->
+                        <mat-form-field appearance="outline" class="mt-2">
+                            <mat-label>Password</mat-label>
+                            <input matInput placeholder="Enter Your Password" formControlName="password" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="text-left">
+                        <!-- <span>About</span> -->
+                        <mat-form-field appearance="outline" class="">
+                            <mat-label>About</mat-label>
+                            <input matInput placeholder="Tell something about yourself" formControlName="about" required>
+                        </mat-form-field>
+                    </div>
+
+                    <!-- <div class="remember">
+                        <label><input type="checkbox" name=""> I've read and agree with Terms of Service and our Privacy
+                            Policy.</label>
+                    </div> -->
+                    <div class="inputBx">
+                        <!-- <input type="submit" value="Login" name="" (click)="onRegSubmit()"> -->
+                        <button type="submit" class="auth-btn" (click)="onRegSubmit()">Sign Up</button>
+
+                    </div>
+                    <div class="inputBx">
+                        <p class="social-text">or sign up with</p>
+                        <div class="social-media">
+                            <a href="#" class="social-icon">
+                                <i class="fa-brands fa-google"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fa-brands fa-facebook"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="loader"></div>
+
+<!-- <i class="fa-brands fa-facebook">GAA</i>
+<a href="">
+    <i class="fa-brands fa-google"></i>
+</a> -->

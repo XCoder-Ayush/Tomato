@@ -1,96 +1,198 @@
-#main {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    width: 30vw;
-    height: 65vh;
-    justify-content: center;
-    align-items: center;
-    /* background-image: url('../../assets/26763887_2110.i309.018.S.m012.c13.pepper\ realistic\ composition\ 1.jpg'); Set the background image URL */
-    background-size: cover; /* Cover the entire container with the background image */
-    background-position: center top; /* Position the background image at the center horizontally and at the top vertically */
-    position: relative; /* Establish a containing block for child elements */
-    overflow: hidden; /* Hide any overflow if child elements extend beyond the container */
+section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
 }
-.overlay {
+section .image-content {
+  position: relative;
+  width: 50%;
+  height: 100%;
+}
+section .image-content:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: linear-gradient(225deg, #e91e63, #03a9f4);
+  z-index: 1;
+  mix-blend-mode: screen;
+}
+section .image-content img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+section .contentBx {
+  display: flex;
+  background-color: #fff;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+}
+
+section .contentBx .circle {
+  height: 200px;
+  width: 200px;
+  background-color: #e80000;
+  border-radius: 50%;
+  position: absolute;
+  top: -80px;
+  right: -80px;
+}
+
+section .contentBx .formBx {
+  width: 50%;
+  background-color: #fff;
+}
+section .contentBx .formBx h2 {
+  color: #e80000;
+  font-weight: 600;
+  font-size: 3em;
+  top: 10px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: inline-block;
+  letter-spacing: 1px;
+}
+section .contentBx .formBx .inputBx {
+  margin-bottom: 20px;
+}
+section .contentBx .formBx .inputBx span {
+  font-size: 16px;
+  margin-bottom: 5px;
+  display: inline-block;
+  color: #061016;
+  font-weight: 300;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+section .contentBx .formBx .inputBx input {
+  width: 100%;
+  padding: 10px 20px;
+  outline: none;
+  border: 1px solid #067db8;
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: #061016;
+  background: transparent;
+  border-radius: 30px;
+}
+section .contentBx .formBx .inputBx input[type="submit"] {
+  background: rgba(94, 156, 237, 0.663);
+  color: #fff;
+  outline: #067d06;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+}
+section .contentBx .formBx .inputBx input[type="submit"]:hover {
+  background: #067d06;
+}
+section .contentBx .formBx .remember {
+  margin-bottom: 10px;
+  color: #0f1416;
+  font-weight: 400;
+  font-size: 14px;
+}
+section .contentBx .formBx .inputBx p {
+  color: #061016;
+  text-align: center;
+  font-size: 2.5ch;
+}
+
+section .contentBx .formBx .inputBx .social-text {
+  padding: 0.7rem 0;
+}
+
+.social-media {
+  display: flex;
+  justify-content: center;
+}
+
+.social-icon {
+  height: 46px;
+  width: 46px;
+  border: 1px solid #333;
+  margin: 0 0.45rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  font-size: 1.3rem;
+  border-radius: 50%;
+  transition: all 0.5s;
+}
+
+.social-icon:hover {
+  color: rgb(237, 83, 12);
+  border-color: aquamarine;
+}
+
+@media (max-width: 768px) {
+  section .image-content {
     position: absolute;
     top: 0;
-    /* left: 0; */
-    color: white!important;;
-
-    right: 0;
-    width: 70%;
-    height: 100%; /* Set the height to cover half of the container */
-    background-color: rgba(0, 0, 0, 0.2); 
-    /* Additional styling for the overlay can be added here */
-  }
-h1 {
-    text-align: center;
-    color: rgb(212, 212, 212)
-}
-.overlay mat-form-field .mat-form-field-underline {
-    border-color: white !important;
-}
-
-
-.message {
-    text-align: center;
-    color: #ff5555;
-}
-
-mat-form-field{
-    /* width: 25vw; */
-    flex: 1;
-    color: white!important;;
-    width: 17vw;
-
-}
-
-#image-section{
+    left: 0;
     width: 100%;
     height: 100%;
-    border-radius: 10px;
-    object-fit: cover;
-    position: absolute; /* Position the image absolutely within the container */
-    top: 0; /* Align the image to the top of the container */
-    left: 0;
-    /* transform: translateY(-50%); */
+  }
+  section .contentBx {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+  section .contentBx .formBx {
+    width: 100%;
+    padding: 40px;
+    background: rgb(255 255 255 / 0.9);
+    margin: 50px;
+  }
 }
 
-/* Make the default placeholder text white */
-::ng-deep .mat-form-field-label {
-    color: white !important;
-  }
-  
-  /* Change the blue border and underline color of mat-form-field to white */
-  ::ng-deep .mat-form-field-underline, .mat-form-field-appearance-fill.mat-form-field-flex .mat-form-field-infix {
-    border-color: white !important;
-  }
-  
-  /* Change the blue focus indicator to white */
-  ::ng-deep .mat-form-field-appearance-fill .mat-focused .mat-form-field-fill-start {
-    border-color: white !important;
-  }
-  
-  /* Change the blue hover indicator to white */
-  ::ng-deep .mat-form-field-appearance-fill .mat-form-field-ripple {
-    background-color: white !important;
-  }
-  
-  /* Change the blue selection indicator to white */
-  ::ng-deep .mat-form-field-appearance-fill .mat-form-field-underline::after {
-    background-color: white !important;
-  }
-  ::ng-deep .mat-form-field-appearance-fill .mat-form-field-underline::before {
-    background-color: white !important;
-  }
-  ::ng-deep .mat-form-field-appearance-fill.mat-focused .mat-form-field-fill {
-    border-color: white !important;
-    background-color: white !important;
-  
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #333333;
+  transition: opacity 0.75s, visibility 0.75s;
 }
-  ::ng-deep .mat-form-field-appearance-fill.mat-focused .mat-form-field-fill {
-    border-color: white !important;
-    background-color: white !important;
 
+.loader--hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader::after {
+  content: "";
+  width: 75px;
+  height: 75px;
+  border: 15px solid #dddddd;
+  border-top-color: #009578;
+  border-radius: 50%;
+  animation: loading 0.9s ease infinite;
+}
+
+@keyframes loading {
+  from {
+    transform: rotate(0turn);
+  }
+  to {
+    transform: rotate(1turn);
+  }
 }

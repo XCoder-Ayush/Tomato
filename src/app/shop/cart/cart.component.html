@@ -16,9 +16,11 @@
             </div>
             <div class="price flex">£11.76</div>
             <div class="quantity flex">
-                <div id="qa">3</div>
-                <div id="qb"><i class="fa-solid fa-chevron-up fa-sm zoom ml-2"></i></div>
-                <div id="qc"><i class="fa-solid fa-chevron-down fa-sm ml-1 zoom"></i></div>
+                <div class="wrapper flex">
+                    <div id="qb"><i class="fa-solid fa-minus fa-xs"></i></div>
+                    <div id="qa flex" class="ml-4">3</div>
+                    <div id="qc"><i class="fa-solid fa-plus ml-4 fa-xs"></i></div>    
+                </div>
             </div>
             <div class="subtotal">	£35.28 </div>
         </div>
@@ -32,9 +34,11 @@
             </div>
             <div class="price flex">£11.76</div>
             <div class="quantity flex">
-                <div id="qa">3</div>
-                <div id="qb"><i class="fa-solid fa-chevron-up fa-sm zoom ml-2"></i></div>
-                <div id="qc"><i class="fa-solid fa-chevron-down fa-sm ml-1 zoom"></i></div>
+                <div class="wrapper flex">
+                    <div id="qb"><i class="fa-solid fa-minus fa-xs"></i></div>
+                    <div id="qa flex" class="ml-4">3</div>
+                    <div id="qc"><i class="fa-solid fa-plus ml-4 fa-xs"></i></div>    
+                </div>
             </div>
             <div class="subtotal">	£35.28 </div>
         </div>
@@ -48,9 +52,11 @@
             </div>
             <div class="price flex">£11.76</div>
             <div class="quantity flex">
-                <div id="qa">3</div>
-                <div id="qb"><i class="fa-solid fa-chevron-up fa-sm zoom ml-2"></i></div>
-                <div id="qc"><i class="fa-solid fa-chevron-down fa-sm ml-1 zoom"></i></div>
+                <div class="wrapper flex">
+                    <div id="qb"><i class="fa-solid fa-minus fa-xs"></i></div>
+                    <div id="qa flex" class="ml-4">3</div>
+                    <div id="qc"><i class="fa-solid fa-plus ml-4 fa-xs"></i></div>    
+                </div>
             </div>
             <div class="subtotal">	£35.28 </div>
         </div>
@@ -64,9 +70,11 @@
             </div>
             <div class="price flex">£11.76</div>
             <div class="quantity flex">
-                <div id="qa">3</div>
-                <div id="qb"><i class="fa-solid fa-chevron-up fa-sm zoom ml-2"></i></div>
-                <div id="qc"><i class="fa-solid fa-chevron-down fa-sm ml-1 zoom"></i></div>
+                <div class="wrapper flex">
+                    <div id="qb"><i class="fa-solid fa-minus fa-xs"></i></div>
+                    <div id="qa flex" class="ml-4">3</div>
+                    <div id="qc"><i class="fa-solid fa-plus ml-4 fa-xs"></i></div>    
+                </div>
             </div>
             <div class="subtotal">	£35.28 </div>
         </div>
@@ -80,9 +88,11 @@
             </div>
             <div class="price flex">£11.76</div>
             <div class="quantity flex">
-                <div id="qa">3</div>
-                <div id="qb"><i class="fa-solid fa-chevron-up fa-sm zoom ml-2"></i></div>
-                <div id="qc"><i class="fa-solid fa-chevron-down fa-sm ml-1 zoom"></i></div>
+                <div class="wrapper flex">
+                    <div id="qb"><i class="fa-solid fa-minus fa-xs"></i></div>
+                    <div id="qa flex" class="ml-4">3</div>
+                    <div id="qc"><i class="fa-solid fa-plus ml-4 fa-xs"></i></div>    
+                </div>
             </div>
             <div class="subtotal">	£35.28 </div>
         </div>
@@ -103,30 +113,42 @@
         </div>
         <div class="shipping flex justify-content-sb">
             <div class="title">
-                Shipping
+                Delivery
             </div>
             <div class="stext">
-                Shipping costs are calculated during checkout.
+                Delivery costs are calculated during checkout.
             </div>
         </div>
         <div class="total flex justify-content-sb">
             <div class="title">
                 Total
             </div>
-            <div id="tprice" style="font-size: 30px;">
-                £68.45
+            <div id="tprice">
+                <!-- <div id="tpricewithoutcoupon"  style="font-size: 30px;">
+                    £68.45
+                </div> -->
+                <div id="strikethroughprice" style="font-size: 30px; color:#eaeaea">
+                    £{{originalAmount}}
+                </div>
+                <div id="idtpricewithcoupon" class="mt-3"  style="font-size: 30px;">
+                    £{{totalAmount}} <span style="color:green; font-size: medium;" id="discount-percent">-{{couponDiscount}}%</span> 
+                </div>
             </div>
         </div>
-        <div class="coupon flex justify-content-sb mb-4">
+        <div class="coupon flex mb-4">
             <div class="cpn1">
-                <input type="text" name="" id="" placeholder="Enter coupon code">
+                <input type="text" [(ngModel)]="couponCode" name="coupon-code" id="" placeholder="Enter coupon code">
             </div>
             <div class="cpn2">
-                <button id="apply-coupon" routerLink='/shop'>Apply</button>
+                    <button id="apply-coupon" (click)="validateCoupon()">Apply</button>
             </div>
+
         </div>
-        <div class="checkout flex justify-content-center">
-            <button id="header-text-btn" routerLink='/shop'>Proceed To Checkout</button>
+        <div id="error-bar"><i class="fa-solid fa-triangle-exclamation"></i>  Invalid Coupon Code</div>
+        <div id="correct-bar"><i class="fa-solid fa-circle-check"></i>  Coupon Code Applied</div>
+
+        <div class="checkout flex justify-content-center mt-3">
+            <button id="header-text-btn" routerLink='/checkout'>Proceed To Checkout</button>
         </div>
     </div>
 </div>

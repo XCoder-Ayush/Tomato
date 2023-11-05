@@ -5,20 +5,31 @@ import { FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-
   formGroup = this._formBuilder.group({
     email: ['', Validators.required],
     password: ['', Validators.required],
   });
-  constructor(private loginService : LoginService,private _formBuilder: FormBuilder) { }
+  constructor(
+    private loginService: LoginService,
+    private _formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
+    window.addEventListener("load", () => {
+      const loader = document.querySelector(".loader") as HTMLElement;
+  
+      loader.classList.add("loader--hidden");
+  
+      loader.addEventListener("transitionend", () => {
+        document.body.removeChild(loader);
+      });
+    });
   }
 
-  onSubmit(){
+  onSubmit() {
     // const username=document.getElementById('username');
     // const password=document.getElementById('password');
     // console.log(username);
@@ -27,22 +38,19 @@ export class LoginComponent implements OnInit {
     // console.log(this.credentials);
     const emailControl = this.formGroup.get('email');
     const passwordControl = this.formGroup.get('password');
-    if(emailControl && passwordControl){
+    if (emailControl && passwordControl) {
+      const email = emailControl.value;
+      const password = passwordControl.value;
 
-      const email=emailControl.value;
-      const password=passwordControl.value;
-      
-      const credentials={
+      const credentials = {
         email: email,
-        password:password
-      }
+        password: password,
+      };
       console.log(credentials);
-      
-      const token=this.loginService.generateToken(credentials) //API Call
+
+      const token = this.loginService.generateToken(credentials); //API Call
       console.log(token);
-          
     }
     // this.loginService.loginUser(token);
   }
-
 }

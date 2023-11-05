@@ -61,7 +61,7 @@ export class LoginService {
       // this.router.navigate(['/']);
     },err=>{
       console.log(err);
-      this.router.navigate(['/login']);
+      this.router.navigate(['/auth']);
     })
     return this.jwtToken;
   }
@@ -70,7 +70,7 @@ export class LoginService {
   logoutUser(){
     // No Checks Required:
     localStorage.removeItem('jwtToken');
-    window.location.href='/login';
+    window.location.href='/auth';
 
   }
 
@@ -105,6 +105,10 @@ export class LoginService {
       this.currentUserRole=resp.principal.role;
     }
     return this.currentUserEmail;
+  }
+
+  registerUser(credentials: { email: string | null; password: string | null; name: string | null; about: string | null; }) {
+    // this.apiService.registerUser(credentials)    
   }
 
 }

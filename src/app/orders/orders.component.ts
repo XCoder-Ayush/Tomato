@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SocketService } from '../../../../services/socket/socket.service';
+import { SocketService } from '../services/socket/socket.service';
 
 @Component({
   selector: 'app-orders',

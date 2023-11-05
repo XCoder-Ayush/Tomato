@@ -36,14 +36,15 @@ import { FooterComponent } from './footer/footer.component';
 import { RegisterComponent } from './register/register.component';
 import { CheckoutComponent } from './cart-page/checkout/checkout.component';
 import {MatStepperModule} from '@angular/material/stepper';
-import { OrdersComponent } from './shop/cart/cart/orders/orders.component';
+import { OrdersComponent } from './orders/orders.component';
 import { HomeComponent } from './home/home.component';
 import { OrdersAdminComponent } from './admin/orders-admin/orders-admin.component';
 import { TestComponent } from './admin/test/test.component';
 import { SocketService } from './services/socket/socket.service';
 import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
-import { CartComponent } from './shop/cart/cart/cart.component';
+import { CartComponent } from './shop/cart/cart.component';
+import { AuthComponent } from './auth/auth/auth.component';
 // import { TokenExpirationService } from './services/TokenExpiration/token-expiration.service';
 
 @NgModule({
@@ -68,7 +69,8 @@ import { CartComponent } from './shop/cart/cart/cart.component';
     TestComponent,
     ComingSoonComponent,
     ForbiddenComponent,
-    CartComponent
+    CartComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
