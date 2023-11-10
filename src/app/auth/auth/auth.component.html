@@ -73,58 +73,67 @@
                         (click)="toggleToRegister()"><i class="fa-solid fa-user-plus"></i> Register</button>
                 </div>
 
-                <form [formGroup]="regFormGroup" class="mt-5">
+                <form [formGroup]="regFormGroup" class="mt-5 regForm">
                     <div class="text-left">
-                        <!-- <span>Name</span> -->
                         <mat-form-field appearance="outline" class="">
                             <mat-label>Name</mat-label>
                             <input matInput placeholder="Enter Your Name" formControlName="name" required>
                         </mat-form-field>
                     </div>
                     <div class="text-left">
-                        <!-- <span>Email ID</span> -->
                         <mat-form-field appearance="outline" class="mt-2">
                             <mat-label>Email Address</mat-label>
                             <input matInput placeholder="Enter Your Email" formControlName="email" required>
                         </mat-form-field>
                     </div>
                     <div class="text-left">
-                        <!-- <span>Password</span> -->
                         <mat-form-field appearance="outline" class="mt-2">
                             <mat-label>Password</mat-label>
                             <input matInput placeholder="Enter Your Password" formControlName="password" required>
                         </mat-form-field>
                     </div>
                     <div class="text-left">
-                        <!-- <span>About</span> -->
                         <mat-form-field appearance="outline" class="">
                             <mat-label>About</mat-label>
                             <input matInput placeholder="Tell something about yourself" formControlName="about" required>
                         </mat-form-field>
                     </div>
-
                     <!-- <div class="remember">
                         <label><input type="checkbox" name=""> I've read and agree with Terms of Service and our Privacy
                             Policy.</label>
                     </div> -->
                     <div class="inputBx">
-                        <!-- <input type="submit" value="Login" name="" (click)="onRegSubmit()"> -->
-                        <button type="submit" class="auth-btn" (click)="onRegSubmit()">Sign Up</button>
-
+                        <button [disabled]="regDetailsFilled" [class.disabled]="regDetailsFilled" type="submit" class="auth-btn" (click)="onRegSubmit()">Sign Up</button>
                     </div>
-                    <div class="inputBx">
-                        <p class="social-text">or sign up with</p>
-                        <div class="social-media">
-                            <a href="#" class="social-icon">
-                                <i class="fa-brands fa-google"></i>
-                            </a>
-                            <a href="#" class="social-icon">
-                                <i class="fa-brands fa-facebook"></i>
-                            </a>
-                            <a href="#" class="social-icon">
-                                <i class="fa-brands fa-instagram"></i>
-                            </a>
-                        </div>
+                </form>
+                <div class="inputBx">
+                    <p class="social-text">or sign up with</p>
+                    <div class="social-media">
+                        <a href="#" class="social-icon">
+                            <i class="fa-brands fa-google"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fa-brands fa-facebook"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- OTP Submit Area -->
+                <form [formGroup]="otpForm" class="otpForm mt-2">
+                    <p style="font-size: medium;font-weight: 600;">Enter One Time Password</p>
+                    <div class="otp-input-group flex m-auto" style="width: fit-content;">
+                        <input matInput type="text" maxlength="1" id="otp1" class="otp-input" (input)="shiftFocus($event, 'otp2')" formControlName="otp1">
+                        <input matInput type="text" maxlength="1" id="otp2" class="otp-input" (input)="shiftFocus($event, 'otp3')" formControlName="otp2">
+                        <input matInput type="text" maxlength="1" id="otp3" class="otp-input" (input)="shiftFocus($event, 'otp4')" formControlName="otp3">
+                        <input matInput type="text" maxlength="1" id="otp4" class="otp-input" (input)="shiftFocus($event, 'otp5')" formControlName="otp4">
+                        <input matInput type="text" maxlength="1" id="otp5" class="otp-input" (input)="shiftFocus($event, 'otp6')" formControlName="otp5">
+                        <input matInput type="text" maxlength="1" id="otp6" class="otp-input" formControlName="otp6">      
+                    </div>
+                    <div class="otp-input-group flex m-auto" style="width: fit-content;">
+                        <button [disabled]="otpFilled" [class.disabled]="otpFilled" type="submit" class="auth-btn" (click)="onOtpSubmit()">Submit</button>
+                        <button type="submit" id="resend-btn" class="auth-btn" (click)="sendOtp()">Resend</button>
                     </div>
                 </form>
             </div>
@@ -132,8 +141,3 @@
     </div>
 </section>
 <div class="loader"></div>
-
-<!-- <i class="fa-brands fa-facebook">GAA</i>
-<a href="">
-    <i class="fa-brands fa-google"></i>
-</a> -->

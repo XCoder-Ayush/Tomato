@@ -29,9 +29,7 @@ export class ShopComponent implements OnInit, OnChanges {
   constructor(
     private foodCartService: FoodcartService,
     private foodService: FoodService,
-    private router: ActivatedRoute,
     private snackBar: MatSnackBar,
-    private apiService: ApiService
   ) {
     console.log('Constructor');
   }

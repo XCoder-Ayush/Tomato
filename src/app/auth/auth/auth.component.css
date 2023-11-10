@@ -191,3 +191,36 @@ button:hover {
   color: black;
   transition: all 0.6s ease;
 }
+.auth-btn.disabled {
+  opacity: 0.5; 
+  cursor: not-allowed;
+}
+.auth-btn.disabled:hover {
+  background-color: #e80000; /* or any other styling to remove hover effect */
+  color: white;
+  border: none;
+}
+
+.otp-input{
+  outline: none;
+  border: 1px solid #8f8f8f;
+  background: #fff;
+  border-radius: 5px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  margin: 0 0.2em;
+  font-size: larger;
+  font-weight: 500;
+}
+.otp-input:focus{
+  border: 1px solid blue;
+}
+.otpForm{
+  display: none;
+}
+
+.disabled{
+  opacity: 0.5; 
+  cursor: not-allowed;
+}

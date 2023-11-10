@@ -4,7 +4,8 @@ export class Food {
     name!: string;
     tags!: string[];
     imageUrl!: string;
-    cookTime!: string;
-    description!: string[];
+    cookTime!: number;
+    description!: string;
     stars!: number;
+    onSale!:number;
 }

@@ -108,7 +108,12 @@ export class LoginService {
   }
 
   registerUser(credentials: { email: string | null; password: string | null; name: string | null; about: string | null; }) {
-    // this.apiService.registerUser(credentials)    
+    this.apiService.registerUser(credentials)    
+
+  }
+
+  verifyOtpDuringRegistration(){
+
   }
 
 }

@@ -12,7 +12,9 @@ export class FoodcartService{
   cartItemList : CartItem[]=[];
   foodList:Food[]=[];
 
-  constructor(private foodService : FoodService){}
+  constructor(private foodService : FoodService){
+    console.log("Initializing Cart Service");
+  }
 
   async getCartItemsSync(){
 

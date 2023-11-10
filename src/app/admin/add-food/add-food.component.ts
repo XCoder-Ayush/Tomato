@@ -21,6 +21,7 @@ export class AddFoodComponent implements OnInit {
     cookingTime: new FormControl(''),
     desc: new FormControl(''),
     stars: new FormControl(''),
+    onSale: new FormControl(''),
   });
 
   ngOnInit(): void {
@@ -28,8 +29,8 @@ export class AddFoodComponent implements OnInit {
   onSubmit(){
     // console.log(this.addForm.value);
     let tags : string[] = String(this.addForm.value.tags).split(' ');
-    let description : string[]=[];
-    description.push(String(this.addForm.value.desc));
+    let description : string="";
+    // description.push(String(this.addForm.value.desc));
     let food: Food={
       id: Number(this.addForm.value.id),
       price: Number(this.addForm.value.price),
@@ -37,9 +38,10 @@ export class AddFoodComponent implements OnInit {
       // favorite: Boolean(this.addForm.value.favourite),
       tags: tags,
       imageUrl: String(this.addForm.value.imageUrl),
-      cookTime: String(this.addForm.value.cookingTime),
-      description: description,
-      stars: Number(this.addForm.value.stars)
+      cookTime: Number(this.addForm.value.cookingTime),
+      description: String(this.addForm.value.desc),
+      stars: Number(this.addForm.value.stars),
+      onSale:Number(this.addForm.value.onSale)
     }
     // console.log(food);
     // REST API Call(To POST)
