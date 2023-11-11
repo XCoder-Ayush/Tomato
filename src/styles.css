@@ -1,5 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/css2?family=League+Gothic&family=Roboto:wght@300&display=swap");
+@import 'noty/lib/noty.css';
+@import 'noty/lib/themes/metroui.css';
+
 * {
   /* Override Default Browser Styles */
   padding: 0;
