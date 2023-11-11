@@ -40,7 +40,7 @@
                     </div> -->
                     <div class="inputBx">
                         <!-- <input type="submit" value="Login" name="" (click)="onSubmit()"> -->
-                        <button type="submit" class="auth-btn" (click)="onSubmit()">Login</button>
+                        <button type="submit" class="auth-btn" (click)="onLoginSubmit()">Login</button>
                     </div>
                     <div class="inputBx">
                         <p class="social-text">or sign in with</p>
@@ -76,8 +76,14 @@
                 <form [formGroup]="regFormGroup" class="mt-5 regForm">
                     <div class="text-left">
                         <mat-form-field appearance="outline" class="">
-                            <mat-label>Name</mat-label>
-                            <input matInput placeholder="Enter Your Name" formControlName="name" required>
+                            <mat-label>First Name</mat-label>
+                            <input matInput placeholder="Enter Your Name" formControlName="firstName" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="text-left">
+                        <mat-form-field appearance="outline" class="">
+                            <mat-label>Last Name</mat-label>
+                            <input matInput placeholder="Enter Your Name" formControlName="lastName" required>
                         </mat-form-field>
                     </div>
                     <div class="text-left">
@@ -106,7 +112,8 @@
                         <button [disabled]="regDetailsFilled" [class.disabled]="regDetailsFilled" type="submit" class="auth-btn" (click)="onRegSubmit()">Sign Up</button>
                     </div>
                 </form>
-                <div class="inputBx">
+
+                <div class="social-auth">
                     <p class="social-text">or sign up with</p>
                     <div class="social-media">
                         <a href="#" class="social-icon">
@@ -120,10 +127,14 @@
                         </a>
                     </div>
                 </div>
+
                 <!-- OTP Submit Area -->
-                <form [formGroup]="otpForm" class="otpForm mt-2">
-                    <p style="font-size: medium;font-weight: 600;">Enter One Time Password</p>
-                    <div class="otp-input-group flex m-auto" style="width: fit-content;">
+                <form [formGroup]="otpForm" class="otpForm mt-5">
+                    <div class="go-back text-left" style="width: 100%;">
+                        <i class="fa-solid fa-caret-left fa-2xl" (click)="backToRegForm()"></i>
+                    </div>
+                    <p class="mt-5" style="font-size: medium;font-weight: 600;">Enter One Time Password</p>
+                    <div class="otp-input-group flex m-auto mt-5" style="width: fit-content;">
                         <input matInput type="text" maxlength="1" id="otp1" class="otp-input" (input)="shiftFocus($event, 'otp2')" formControlName="otp1">
                         <input matInput type="text" maxlength="1" id="otp2" class="otp-input" (input)="shiftFocus($event, 'otp3')" formControlName="otp2">
                         <input matInput type="text" maxlength="1" id="otp3" class="otp-input" (input)="shiftFocus($event, 'otp4')" formControlName="otp3">

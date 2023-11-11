@@ -78,7 +78,7 @@ export class LoginService {
     if(this.currentUserName==''){
       console.log("NAME");
       const resp = await lastValueFrom(this.apiService.getCurrentUser());
-      this.currentUserName=resp.principal.name;
+      this.currentUserName=resp.principal.firstName;
       this.currentUserEmail=resp.principal.email;
       this.currentUserRole=resp.principal.role;
     }
@@ -89,7 +89,7 @@ export class LoginService {
   async getCurrentUserRole(){
     if(this.currentUserRole=='' || this.currentUserRole==null || this.currentUserRole==undefined){
       const resp = await lastValueFrom(this.apiService.getCurrentUser());
-      this.currentUserName=resp.principal.name;
+      this.currentUserName=resp.principal.firstName;
       this.currentUserEmail=resp.principal.email;
       this.currentUserRole=resp.principal.role;
     }
@@ -100,17 +100,17 @@ export class LoginService {
   async getCurrentUserEmail(){
     if(this.currentUserEmail=='' || this.currentUserEmail==null || this.currentUserEmail==undefined){
       const resp = await lastValueFrom(this.apiService.getCurrentUser());
-      this.currentUserName=resp.principal.name;
+      this.currentUserName=resp.principal.firstName;
       this.currentUserEmail=resp.principal.email;
       this.currentUserRole=resp.principal.role;
     }
     return this.currentUserEmail;
   }
 
-  registerUser(credentials: { email: string | null; password: string | null; name: string | null; about: string | null; }) {
-    this.apiService.registerUser(credentials)    
+  // registerUser(credentials: { email: string | null; password: string | null; name: string | null; about: string | null; }) {
+  //   this.apiService.registerUser(credentials)    
 
-  }
+  // }
 
   verifyOtpDuringRegistration(){
 

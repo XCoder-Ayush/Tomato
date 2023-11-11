@@ -47,7 +47,7 @@ section .content .formBx .remember {
   font-weight: 400;
   font-size: 14px;
 }
-section .content .formBx .inputBx p {
+section .content .formBx .social-auth p {
   color: #061016;
   text-align: center;
   font-size: 2.5ch;
@@ -58,7 +58,7 @@ mat-form-field{
   border: none;
   border-radius: 25px;
 }
-section .content .formBx .inputBx .social-text {
+section .content .formBx .social-auth .social-text {
   padding: 0.7rem 0;
 }
 

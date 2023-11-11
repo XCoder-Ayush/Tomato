@@ -1,6 +1,10 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { LoginService } from 'src/app/services/login/login.service';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { User } from 'src/app/shared/models/User';
+import { ApiService } from 'src/app/services/api/api.service';
+import { ResponseType } from 'src/app/shared/response-type';
+import { OneTimePassword } from 'src/app/shared/models/OneTimePassword';
 
 @Component({
   selector: 'app-auth',
@@ -11,14 +15,36 @@ export class AuthComponent implements OnInit {
   regDetailsFilled:boolean=true;
   otpFilled:boolean=true;
   isSignInActive:boolean=true;
-  formGroup = this._formBuilder.group({
+  oneTimePassword:OneTimePassword={
+    id:'',
+    oneTimePasswordCode: 0,
+    expires: new Date()
+  };
+  regUser:User={
+    firstName: '',
+    lastName: '',
+    role: '',
+    about: '',
+    email: '',
+    password: '',
+    userId: ''
+  }
+  constructor(
+    private loginService: LoginService,
+    private _formBuilder: FormBuilder,
+    private renderer : Renderer2,
+    private apiService : ApiService
+  ) {}
+
+  formGroup: FormGroup= this._formBuilder.group({
     email: ['', Validators.required, Validators.email],
     password: ['', Validators.required],
   });
-  regFormGroup = this._formBuilder.group({
+  regFormGroup: FormGroup = this._formBuilder.group({
     email: ['', Validators.required, Validators.email],
     password: ['', Validators.required,this.passwordValidator()],
-    name: ['', Validators.required],
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
     about: ['', Validators.required],
   });
   otpForm: FormGroup = this._formBuilder.group({
@@ -29,19 +55,12 @@ export class AuthComponent implements OnInit {
     otp5: ['', [Validators.required, Validators.maxLength(1)]],
     otp6: ['', [Validators.required, Validators.maxLength(1)]],
   });
-  constructor(
-    private loginService: LoginService,
-    private _formBuilder: FormBuilder,
-    private renderer : Renderer2
-  ) {}
 
   ngOnInit(): void {
     window.addEventListener("load", () => {
       const loader = document.querySelector(".loader") as HTMLElement;
-  
       if (loader) {
         loader.classList.add("loader--hidden");
-  
         loader.addEventListener("transitionend", () => {
           document.body.removeChild(loader);
         });
@@ -51,45 +70,59 @@ export class AuthComponent implements OnInit {
     this.regFormGroup.valueChanges.subscribe(() => {
       this.updateRegDetailsFilled();
     });
+
     this.otpForm.valueChanges.subscribe(()=>{
       this.updateOtpFilled();
     })
   }
+  updateRegDetailsFilled() {
+    this.regDetailsFilled = this.regFormGroup.invalid;
+  }
+  updateOtpFilled(){
+    this.otpFilled=this.otpForm.invalid;
+  }
+
   passwordValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: boolean } | null => {
       const value: string = control.value;
-  
       // Use a regular expression to check for at least 8 characters with one upper, one lower, one digit, and one special character
       const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-  
       if (!regex.test(value)) {
         return { 'invalidPassword': true };
       }
-  
       return null;
     };
   }
+
   onRegSubmit(){
-    // console.log(this.regFormGroup);
     const emailControl = this.regFormGroup.get('email');
     const passwordControl = this.regFormGroup.get('password');
     const aboutControl=this.regFormGroup.get('about');
-    const nameControl=this.regFormGroup.get('name');
+    const firstNameControl=this.regFormGroup.get('firstName');
+    const lastNameControl=this.regFormGroup.get('lastName');
 
-    if (emailControl && passwordControl && aboutControl && nameControl) {
+
+    if (emailControl && passwordControl && aboutControl && firstNameControl && lastNameControl) {
       const email = emailControl.value;
       const password = passwordControl.value;
-      const name=nameControl.value;
+      const firstName=firstNameControl.value;
+      const lastName=lastNameControl.value;
       const about=aboutControl.value;
     
-      const credentials = {
-        email: email,
-        password: password,
-        name: name,
-        about: about
-      };
-      console.log(credentials);
-
+      // const credentials = {
+      //   email: email,
+      //   password: password,
+      //   firstName: firstName,
+      //   lastName: lastName,
+      //   about: about
+      // };
+      // console.log(credentials);
+      this.regUser.email=email;
+      this.regUser.password=password;
+      this.regUser.firstName=firstName;
+      this.regUser.lastName=lastName;
+      this.regUser.about=about;
+      console.log(this.regUser);
       this.sendOtp();
       /*
       const token = this.loginService.registerUser(credentials); //API Call
@@ -98,7 +131,7 @@ export class AuthComponent implements OnInit {
     }
     
   }
-  onSubmit() {
+  onLoginSubmit() {
     const emailControl = this.formGroup.get('email');
     const passwordControl = this.formGroup.get('password');
     if (emailControl && passwordControl) {
@@ -122,8 +155,6 @@ export class AuthComponent implements OnInit {
     const signInBtn=document.querySelectorAll('.sliderL');
     const registerBtn=document.querySelectorAll('.sliderR');
     this.isSignInActive=true
-    // console.log(signInBtn);
-    // console.log(registerBtn);
     
     signInBtn.forEach((element)=>{
       element.classList.add('button-active');
@@ -133,11 +164,6 @@ export class AuthComponent implements OnInit {
       element.classList.remove('button-active');
       element.classList.add('button-inactive');
     })
-    
-    // signInBtn.classList.remove('button-inactive');
-    // signInBtn.classList.add('button-active');
-    // registerBtn.classList.remove('button-active');
-    // registerBtn.classList.add('button-inactive');
   }
   toggleToRegister(){
     console.log('Reg In Toggle');
@@ -156,9 +182,6 @@ export class AuthComponent implements OnInit {
       element.classList.add('button-active');
       })
   }
-  updateRegDetailsFilled() {
-    this.regDetailsFilled = this.regFormGroup.invalid;
-  }
   shiftFocus(event, nextInputId) {
     const maxLength = event.target.maxLength;
     const currentLength = event.target.value.length;
@@ -175,31 +198,54 @@ export class AuthComponent implements OnInit {
       }
     }
   }
-  onOtpSubmit(){
-    console.log(this.otpForm);
+  async onOtpSubmit(){
+    let oneTimePasswordCode=(this.otpForm.value.otp1+this.otpForm.value.otp2+this.otpForm.value.otp3+this.otpForm.value.otp4+this.otpForm.value.otp5+this.otpForm.value.otp6);
+    this.oneTimePassword.oneTimePasswordCode=oneTimePasswordCode as number;
+    this.oneTimePassword.expires=new Date();
+    console.log(this.oneTimePassword);
+
+    // REST API Call:
+    const resp=await this.apiService.verifyOtp(this.oneTimePassword,this.regUser).toPromise();
+
+    if(resp===ResponseType.WrongOTP){
+      console.log("Wrong OTP");
+      return;
+    }
+    if(resp===ResponseType.OTPExpired){
+      console.log("OTP Expired");
+      return;
+    }
+
+    console.log(ResponseType.OTPVerified);
+    
   }
-  updateOtpFilled(){
-    this.otpFilled=this.otpForm.invalid;
-  }
-  sendOtp(){
+
+  async sendOtp(){
     console.log('In Send Otp');
+    // REST API call
+    console.log(this.regUser)
+    const resp :any= await this.apiService.sendOtp(this.regUser).toPromise();
+
+    if(resp===ResponseType.UserExists){
+      console.log("User Exists");
+      return;
+    }
+    if(resp===ResponseType.InvalidEmail){
+      console.log("Invalid Email");
+      return;
+    }
+    console.log(resp);
+    this.oneTimePassword.id=resp as string;
     
     const otpForm=document.querySelector('.otpForm') as HTMLElement;
     const regForm=document.querySelector('.regForm') as HTMLElement;
+    const socialAuth=document.querySelector('.social-auth') as HTMLElement;
 
     regForm!.style.display='none';
+    socialAuth!.style.display='none';
     otpForm!.style.display='block';
 
     const resendButton = document.querySelector('#resend-btn') as HTMLButtonElement;
-    // if (resendButton) {
-      // this.renderer.setAttribute(resendButton, 'disabled', 'true');
-      // this.renderer.addClass(resendButton, 'disabled');
-    // }
-    
-    // setTimeout(() => {
-    //   this.renderer.removeAttribute(resendButton, 'disabled');
-    //   this.renderer.removeClass(resendButton, 'disabled');
-    // }, 1000*30); 
 
     if (resendButton && !resendButton.classList.contains('disabled')) {
       let countdown = 30; // Initial countdown value in seconds
@@ -217,5 +263,14 @@ export class AuthComponent implements OnInit {
         }
       }, 1000); // Update every 1000 milliseconds (1 second)
     }
+  }
+  backToRegForm(){
+    const otpForm=document.querySelector('.otpForm') as HTMLElement;
+    const regForm=document.querySelector('.regForm') as HTMLElement;
+    const socialAuth=document.querySelector('.social-auth') as HTMLElement;
+    regForm!.style.display='block';
+    socialAuth!.style.display='block';
+    otpForm!.style.display='none';
+   
   }
 }
