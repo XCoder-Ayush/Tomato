@@ -167,13 +167,7 @@ export class AuthComponent implements OnInit {
     // REST API call
     console.log(this.regUser)
     const resp :any= await this.apiService.sendOtp(this.regUser).toPromise();
-    const noty = new Noty({
-      layout: 'topRight',
-      type: 'error',
-      text: 'Test Merge Conflict',
-      theme: 'metroui', 
-      timeout:5000,
-    });
+
     if(resp===ResponseType.UserExists){
       const noty = new Noty({
         layout: 'topRight',
