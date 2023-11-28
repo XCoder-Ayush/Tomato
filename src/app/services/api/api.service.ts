@@ -9,8 +9,6 @@ import { OneTimePassword } from 'src/app/shared/models/OneTimePassword';
 })
 export class ApiService {
 
-
-
   constructor(private http: HttpClient) { 
     console.log("Initializing API Service");
   }
@@ -22,7 +20,7 @@ export class ApiService {
     return this.http.post<Food>(URL,food);
   }
 
-  getAllFoodItems():Observable<Food[]>{
+  getFoodItems():Observable<Food[]>{
     const URL='http://192.168.0.104:8080/food/get';
     // const httpOptions = {
     //   headers: new HttpHeaders({
@@ -34,6 +32,8 @@ export class ApiService {
 
   getToken(credentials):Observable<any> {
     const URL='http://192.168.0.104:8080/auth/login';
+    console.log('In Api Service');
+    
     return this.http.post<any>(URL,credentials);
   }
 
@@ -51,6 +51,7 @@ export class ApiService {
   //   const URL = `http://192.168.0.104:8080/auth/createuser`;
   //   return this.http.post<any>(URL,user);
   // }
+  
   sendOtp(regUser : User):Observable<any> {
     const URL = 'http://192.168.0.104:8080/auth/createuser';
     console.log(regUser);

@@ -24,16 +24,16 @@ export class CartPageComponent implements OnInit {
   initCart(){
     this.totalPrice=0;
     this.totalProducts=0;
-    this.cart=this.foodCartService.getUpdatedCart();
+    // this.cart=this.foodCartService.getUpdatedCart();
 
   }
 
   async initCartItems(){
     // console.log("In Cart-Page Component Cart Items...");
-    await this.foodCartService.getCartItemsSync().then(resp=>{
-      this.cart=resp;
-      this.cartOrg=this.cart;
-    });
+    // await this.foodCartService.getCartItemsSync().then(resp=>{
+    //   this.cart=resp;
+    //   this.cartOrg=this.cart;
+    // });
   }
 
 
@@ -44,7 +44,7 @@ export class CartPageComponent implements OnInit {
   
   getTotalPrice(){
     this.totalPrice=0;
-    this.cart=this.foodCartService.getUpdatedCart();
+    // this.cart=this.foodCartService.getUpdatedCart();
     for(let cartItem of this.cart){
       if(cartItem.quantity>0){
         this.totalPrice+=cartItem.quantity*cartItem.food.price;
@@ -59,7 +59,7 @@ export class CartPageComponent implements OnInit {
   }
   
   getTotalProducts(){
-    this.cart=this.foodCartService.getUpdatedCart();
+    // this.cart=this.foodCartService.getUpdatedCart();
     this.totalProducts=0;
 
     for(let cartItem of this.cart){
@@ -72,7 +72,7 @@ export class CartPageComponent implements OnInit {
 
   increaseCount(selectedItem : CartItem){
     // this.initCart();
-    this.cart=this.foodCartService.getUpdatedCart();
+    // this.cart=this.foodCartService.getUpdatedCart();
 
     for(let cartItem of this.cart){
       if(cartItem.food.id==selectedItem.food.id){
@@ -83,7 +83,7 @@ export class CartPageComponent implements OnInit {
   }
 
   decreaseCount(selectedItem: CartItem){
-    this.cart=this.foodCartService.getUpdatedCart();
+    // this.cart=this.foodCartService.getUpdatedCart();
 
     for(let cartItem of this.cart){
       if(cartItem.food.id==selectedItem.food.id){
@@ -94,7 +94,7 @@ export class CartPageComponent implements OnInit {
   }
 
   getItemCount(selectedItem : CartItem){
-    this.cart=this.foodCartService.getUpdatedCart();
+    // this.cart=this.foodCartService.getUpdatedCart();
 
     for(let cartItem of this.cart){
       if(cartItem.food.id==selectedItem.food.id){

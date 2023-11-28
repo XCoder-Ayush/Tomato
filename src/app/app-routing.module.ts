@@ -5,7 +5,6 @@ import { FoodpageComponent } from './foodpage/foodpage.component';
 import { HomeComponent } from './home/home.component';
 import { AddFoodComponent } from './admin/add-food/add-food.component';
 import { EmptyCartComponent } from './empty-cart/empty-cart.component';
-import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ShopComponent } from './shop/shop.component';
 import { OrdersComponent } from './orders/orders.component';
@@ -24,7 +23,6 @@ const routes: Routes = [
   { path: 'cart-page', component: CartPageComponent, canActivate : [AuthGuard]},
   { path: 'cart',component: CartComponent, canActivate: [AuthGuard]},
   { path: 'empty-cart', component: EmptyCartComponent },
-  { path: 'login', component: LoginComponent },
   { path: 'shop', component: ShopComponent },
   { path: 'orders', component: OrdersComponent },
   { path: 'test', component: TestComponent },

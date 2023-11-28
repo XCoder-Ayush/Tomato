@@ -52,7 +52,6 @@ export class HeaderComponent implements OnInit {
 
   addRequiredClass() {
     this.isMobile = window.innerWidth < 860;
-
     // if (window.innerWidth < 860) {
     //   console.log('In Less');
     //   const navWrapper = document.querySelector('.nav-wrapper') as HTMLElement;
@@ -65,23 +64,31 @@ export class HeaderComponent implements OnInit {
   }
 
   toggleMobileNav() {
+    console.log("lll");
     this.isActive = !this.isActive;
-
+  
     const mobileNav = document.querySelector('.nav-list') as HTMLElement;
     const bars = document.querySelectorAll('.hamburger span');
-
+  
     mobileNav.classList.toggle('open');
-
-    if (!this.isActive) {
+  
+    if (this.isActive) {
+      // bars[0].classList.add('active-hamburger1');
+      // bars[2].classList.add('active-hamburger2');
+      // (bars[1] as HTMLElement).style.display="none";
       this.renderer.setStyle(bars[0], 'transform', 'rotate(45deg)');
+      this.renderer.setStyle(bars[0],'translatex','18px')
+      this.renderer.setStyle(bars[0], 'color', 'white');
       this.renderer.setStyle(bars[1], 'opacity', '0');
       this.renderer.setStyle(bars[2], 'transform', 'rotate(-45deg)');
-      this.isActive = true;
+      this.renderer.setStyle(bars[0],'translatey','-18px')
+      this.renderer.setStyle(bars[2], 'color', 'white');
     } else {
       this.renderer.setStyle(bars[0], 'transform', 'rotate(0deg)');
+      this.renderer.setStyle(bars[0], 'color', 'black');
       this.renderer.setStyle(bars[1], 'opacity', '1');
       this.renderer.setStyle(bars[2], 'transform', 'rotate(0deg)');
-      this.isActive = false;
-    }
-  }
+      this.renderer.setStyle(bars[0], 'color', 'black');
+    }
+  }  
 }

@@ -39,13 +39,40 @@
         </div>
     </div>
 </section>
-
+<div class="Show-items">
+    <div class="image-container flex">
+      <div class="ii">
+        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Responsive image">
+      </div>
+      <div class="ii">
+        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Responsive image">
+      </div>
+      <div class="ii ">
+        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Responsive image">
+      </div>
+      <div class="ii">
+        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Responsive image">
+      </div>
+      <div class="ii">
+        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Responsive image">
+      </div>
+      <div class="ii">
+        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Responsive image">
+      </div>
+      <div class="ii">
+        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Responsive image">
+      </div>
+      <div class="ii">
+        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Responsive image">
+      </div>
+    </div>
+  </div>
 <section class="products-wrapper flex-only">
     <div class="left-part">
         <div class="filter-bar flex justify-content-sb">
 
             <div class="showing">
-                <p id="show">Showing 1–12 of 54 results</p>
+                <p id="show">Showing 1–12 of {{cartItems.length}} results</p>
             </div>
             <i class="fa-solid fa-table-cells-large fa-xl"></i>
             <i class="fa-solid fa-list fa-xl ml-2"></i>
@@ -63,11 +90,11 @@
 
         </div>
 
-        <div class="cards flex flex-wrap justify-content-center">
+        <div class="cards flex flex-wrap justify-content-center" >
 
-            <div class="product">
+            <div class="product" *ngFor="let cartItem of cartItems">
                 <div class="product-image text-center m-auto smooth">
-                    <img src="../../assets/food_1.png" alt="">
+                    <img src="{{cartItem.food.imageUrl}}" alt="Image not available">
                 </div>
                 <div class="star-rating">
                     <span class="star">&#9733;</span>
@@ -76,181 +103,25 @@
                     <span class="star">&#9733;</span>
                     <span class="star">&#9733;</span>
                 </div>
-                <h1>Apricot Chicken</h1>
-                <p>Crispy bacon, tasty ham, pineapple, onion and stretchy mozzarella, finished</p>
+                <h1>{{ cartItem.food.name }}</h1>
+                <p>{{cartItem.food.description }}</p>
                 <div class="product-amount flex justify-content-sb" >
                     <div class="price flex" >
                         <div><i class="fa-solid fa-dollar-sign fa-lg"></i></div>
-                        <div id="product-price" style="font-size: 16px;">18.72</div>
+                        <div id="product-price" style="font-size: 16px;">{{cartItem.food.price}}.00</div>
                     </div>
                     <div class="cart flex">
                         <div class="wrapper flex ml-auto">
-                            <div id="qb"><i class="fa-solid fa-minus fa-xs"></i></div>
+                            <div id="qb" (click)="decClickedCardCount(cartItem)"><i class="fa-solid fa-minus fa-xs"></i></div>
                             <div id="qa" class="ml-2">
                                 <i class="fa-solid fa-cart-shopping fa-md ml-1"></i>
-                                <span class="badge" style="font-size:10px;">21</span>
+                                <span class="badge" style="font-size:10px;">{{cartItem.quantity}}</span>
                             </div>
-                            <div id="qc" class="ml-2"><i class="fa-solid fa-plus fa-xs"></i></div>    
+                            <div id="qc" class="ml-2" (click)="incClickedCardCount(cartItem)"><i class="fa-solid fa-plus fa-xs"></i></div>    
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="product">
-                <div class="product-image text-center m-auto smooth">
-                    <img src="../../assets/food_1.png" alt="">
-                </div>
-                <div class="star-rating">
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9733;</span>
-                </div>
-                <h1>Apricot Chicken</h1>
-                <p>Crispy bacon, tasty ham, pineapple, onion and stretchy mozzarella, finished</p>
-                <div class="product-amount flex justify-content-sb" >
-                    <div class="price flex" >
-                        <div><i class="fa-solid fa-dollar-sign fa-lg"></i></div>
-                        <div id="product-price" style="font-size: 16px;">18.72</div>
-                    </div>
-                    <div class="cart flex">
-                        <div class="wrapper flex ml-auto">
-                            <div id="qb"><i class="fa-solid fa-minus fa-xs"></i></div>
-                            <div id="qa" class="ml-2">
-                                <i class="fa-solid fa-cart-shopping fa-md ml-1"></i>
-                                <span class="badge" style="font-size:10px;">21</span>
-                            </div>
-                            <div id="qc" class="ml-2"><i class="fa-solid fa-plus fa-xs"></i></div>    
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product">
-                <div class="product-image text-center m-auto smooth">
-                    <img src="../../assets/food_1.png" alt="">
-                </div>
-                <div class="star-rating">
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9733;</span>
-                </div>
-                <h1>Apricot Chicken</h1>
-                <p>Crispy bacon, tasty ham, pineapple, onion and stretchy mozzarella, finished</p>
-                <div class="product-amount flex justify-content-sb" >
-                    <div class="price flex" >
-                        <div><i class="fa-solid fa-dollar-sign fa-lg"></i></div>
-                        <div id="product-price" style="font-size: 16px;">18.72</div>
-                    </div>
-                    <div class="cart flex">
-                        <div class="wrapper flex ml-auto">
-                            <div id="qb"><i class="fa-solid fa-minus fa-xs"></i></div>
-                            <div id="qa" class="ml-2">
-                                <i class="fa-solid fa-cart-shopping fa-md ml-1"></i>
-                                <span class="badge" style="font-size:10px;">21</span>
-                            </div>
-                            <div id="qc" class="ml-2"><i class="fa-solid fa-plus fa-xs"></i></div>    
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product">
-                <div class="product-image text-center m-auto smooth">
-                    <img src="../../assets/food_1.png" alt="">
-                </div>
-                <div class="star-rating">
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9733;</span>
-                </div>
-                <h1>Apricot Chicken</h1>
-                <p>Crispy bacon, tasty ham, pineapple, onion and stretchy mozzarella, finished</p>
-                <div class="product-amount flex justify-content-sb" >
-                    <div class="price flex" >
-                        <div><i class="fa-solid fa-dollar-sign fa-lg"></i></div>
-                        <div id="product-price" style="font-size: 16px;">18.72</div>
-                    </div>
-                    <div class="cart flex">
-                        <div class="wrapper flex ml-auto">
-                            <div id="qb"><i class="fa-solid fa-minus fa-xs"></i></div>
-                            <div id="qa" class="ml-2">
-                                <i class="fa-solid fa-cart-shopping fa-md ml-1"></i>
-                                <span class="badge" style="font-size:10px;">21</span>
-                            </div>
-                            <div id="qc" class="ml-2"><i class="fa-solid fa-plus fa-xs"></i></div>    
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product">
-                <div class="product-image text-center m-auto smooth">
-                    <img src="../../assets/food_1.png" alt="">
-                </div>
-                <div class="star-rating">
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9733;</span>
-                </div>
-                <h1>Apricot Chicken</h1>
-                <p>Crispy bacon, tasty ham, pineapple, onion and stretchy mozzarella, finished</p>
-                <div class="product-amount flex justify-content-sb" >
-                    <div class="price flex" >
-                        <div><i class="fa-solid fa-dollar-sign fa-lg"></i></div>
-                        <div id="product-price" style="font-size: 16px;">18.72</div>
-                    </div>
-                    <div class="cart flex">
-                        <div class="wrapper flex ml-auto">
-                            <div id="qb"><i class="fa-solid fa-minus fa-xs"></i></div>
-                            <div id="qa" class="ml-2">
-                                <i class="fa-solid fa-cart-shopping fa-md ml-1"></i>
-                                <span class="badge" style="font-size:10px;">21</span>
-                            </div>
-                            <div id="qc" class="ml-2"><i class="fa-solid fa-plus fa-xs"></i></div>    
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product">
-                <div class="product-image text-center m-auto smooth">
-                    <img src="../../assets/food_1.png" alt="">
-                </div>
-                <div class="star-rating">
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9733;</span>
-                </div>
-                <h1>Apricot Chicken</h1>
-                <p>Crispy bacon, tasty ham, pineapple, onion and stretchy mozzarella, finished</p>
-                <div class="product-amount flex justify-content-sb" >
-                    <div class="price flex" >
-                        <div><i class="fa-solid fa-dollar-sign fa-lg"></i></div>
-                        <div id="product-price" style="font-size: 16px;">18.72</div>
-                    </div>
-                    <div class="cart flex">
-                        <div class="wrapper flex ml-auto">
-                            <div id="qb"><i class="fa-solid fa-minus fa-xs"></i></div>
-                            <div id="qa" class="ml-2">
-                                <i class="fa-solid fa-cart-shopping fa-md ml-1"></i>
-                                <span class="badge" style="font-size:10px;">21</span>
-                            </div>
-                            <div id="qc" class="ml-2"><i class="fa-solid fa-plus fa-xs"></i></div>    
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
         </div>
 
     </div>

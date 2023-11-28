@@ -1,7 +1,7 @@
 section {
   position: relative;
   width: 100vw;
-  height: 100vh;
+  height: 110vh;
   display: flex;
 }
 section .image-content {
@@ -40,7 +40,20 @@ section .image-content img {
   margin: auto;
   background-color: #fff;
 }
+/* ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: black !important;
+} */
 
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
+  border-color: #009578 !important;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: #009578 !important;
+}
+mat-label{
+  color:black;
+}
 section .content .formBx .remember {
   margin-bottom: 10px;
   color: #0f1416;

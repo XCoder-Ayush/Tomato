@@ -14,85 +14,20 @@ export class FoodService {
   }
   
   async getFoodItems(){
-    // Dummy Data, Actually Obtain From REST API Call
-    this.foodList=[
-      {
-        id:1,
-        price:18.21,
-        name:"Apricot Chicken",
-        tags:["Burger","Non Veg"],
-        imageUrl:"src/assets/food_1.png",
-        cookTime:20,
-        description:"Crispy bacon, tasty ham, pineapple, onion and stretchy mozzarella, finished",
-        stars:4.8,
-        onSale:10
-      },
-      {
-        id:2,
-        price:18.21,
-        name:"Apricot Chicken",
-        tags:["Burger","Non Veg"],
-        imageUrl:"src/assets/food_2.png",
-        cookTime:20,
-        description:"Crispy bacon, tasty ham, pineapple, onion and stretchy mozzarella, finished",
-        stars:4.8,
-        onSale:10
-      },
-      {
-        id:3,
-        price:18.21,
-        name:"Apricot Chicken",
-        tags:["Burger","Non Veg"],
-        imageUrl:"src/assets/food_3.png",
-        cookTime:20,
-        description:"Crispy bacon, tasty ham, pineapple, onion and stretchy mozzarella, finished",
-        stars:4.8,
-        onSale:10
-      },
-      {
-        id:4,
-        price:18.21,
-        name:"Apricot Chicken",
-        tags:["Burger","Non Veg"],
-        imageUrl:"src/assets/food_4.png",
-        cookTime:20,
-        description:"Crispy bacon, tasty ham, pineapple, onion and stretchy mozzarella, finished",
-        stars:4.8,
-        onSale:10
-      },
-      {
-        id:5,
-        price:18.21,
-        name:"Apricot Chicken",
-        tags:["Burger","Non Veg"],
-        imageUrl:"src/assets/food_5.png",
-        cookTime:20,
-        description:"Crispy bacon, tasty ham, pineapple, onion and stretchy mozzarella, finished",
-        stars:4.8,
-        onSale:10
-      },
-      {
-        id:6,
-        price:18.21,
-        name:"Apricot Chicken",
-        tags:["Burger","Non Veg"],
-        imageUrl:"src/assets/food_6.png",
-        cookTime:20,
-        description:"Crispy bacon, tasty ham, pineapple, onion and stretchy mozzarella, finished",
-        stars:4.8,
-        onSale:10
-      },
 
-    ]
+    // Dummy Data, Actually Obtain From REST API Call
+ 
     if(this.foodList.length==0){
       console.log("In Food Service First API Call");
-      let data = await lastValueFrom(this.apiService.getAllFoodItems());
-      console.log(data);
-      this.foodList=data;
-      return this.foodList;  
+      this.foodList = await lastValueFrom(this.apiService.getFoodItems());
+
+      // await will not wait for the observable to stream all the data:
+
+      // await this.apiService.getFoodItems().subscribe(foodItems=>{
+      //   this.foodList=foodItems;
+      // });
     }
     console.log('Fetched');
-    
     return this.foodList;
   }
 

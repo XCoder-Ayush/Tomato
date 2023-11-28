@@ -12,13 +12,15 @@
             <div class="formBx">
 
                 <div id="slider" class="flex">
-                    <button style="width: 50%; font-size: medium;font-weight: 500;text-transform: uppercase;" id="sliderL" class="button-active sliderL "
-                        (click)="toggleToSignIn()"><i class="fa-solid fa-right-to-bracket"></i> Sign In</button>
-                    <button style="width: 50%; font-size: medium;font-weight: 500;text-transform: uppercase;" id="sliderR" class="button-inactive sliderR "
-                        (click)="toggleToRegister()"><i class="fa-solid fa-user-plus"></i> Register</button>
+                    <button style="width: 50%; font-size: medium;font-weight: 500;text-transform: uppercase;"
+                        id="sliderL" class="button-active sliderL " (click)="toggleToSignIn()"><i
+                            class="fa-solid fa-right-to-bracket"></i> Sign In</button>
+                    <button style="width: 50%; font-size: medium;font-weight: 500;text-transform: uppercase;"
+                        id="sliderR" class="button-inactive sliderR " (click)="toggleToRegister()"><i
+                            class="fa-solid fa-user-plus"></i> Register</button>
                 </div>
 
-                <form [formGroup]="formGroup" class="mt-5">
+                <form [formGroup]="loginFormGroup" class="mt-5">
                     <div class="text-left">
                         <!-- <span>EMAIL</span> -->
                         <mat-form-field appearance="outline">
@@ -38,12 +40,12 @@
                         <label><input type="checkbox" name=""> I've read and agree with Terms of Service and our Privacy
                             Policy.</label>
                     </div> -->
-                    <div class="inputBx">
-                        <!-- <input type="submit" value="Login" name="" (click)="onSubmit()"> -->
-                        <button type="submit" class="auth-btn" (click)="onLoginSubmit()">Login</button>
+                    <div class="social-auth">
+                        <button [disabled]="loginDetailsFilled" [class.disabled]="loginDetailsFilled" type="submit"
+                            class="auth-btn" (click)="onLoginSubmit()">Login</button>
                     </div>
-                    <div class="inputBx">
-                        <p class="social-text">or sign in with</p>
+                    <div class="social-auth mt-3">
+                        <p class="social-text">Sign In With</p>
                         <div class="social-media">
                             <a href="#" class="social-icon">
                                 <i class="fa-brands fa-google"></i>
@@ -65,12 +67,13 @@
         <div class="content" [style.display]="isSignInActive ? 'none' : 'block'" id="register-content">
             <div class="circle"></div>
             <div class="formBx">
-                <!-- <h1>Sign In</h1> -->
                 <div id="slider" class="flex">
-                    <button style="width: 50%; font-size: medium;font-weight: 500;text-transform: uppercase;" id="sliderL" class="button-active sliderL "
-                        (click)="toggleToSignIn()"><i class="fa-solid fa-right-to-bracket"></i> Sign In</button>
-                    <button style="width: 50%; font-size: medium;font-weight: 500;text-transform: uppercase;" id="sliderR" class="button-inactive sliderR "
-                        (click)="toggleToRegister()"><i class="fa-solid fa-user-plus"></i> Register</button>
+                    <button style="width: 50%; font-size: medium;font-weight: 500;text-transform: uppercase;"
+                        id="sliderL" class="button-active sliderL " (click)="toggleToSignIn()"><i
+                            class="fa-solid fa-right-to-bracket"></i> Sign In</button>
+                    <button style="width: 50%; font-size: medium;font-weight: 500;text-transform: uppercase;"
+                        id="sliderR" class="button-inactive sliderR " (click)="toggleToRegister()"><i
+                            class="fa-solid fa-user-plus"></i> Register</button>
                 </div>
 
                 <form [formGroup]="regFormGroup" class="mt-5 regForm">
@@ -89,7 +92,8 @@
                     <div class="text-left">
                         <mat-form-field appearance="outline" class="mt-2">
                             <mat-label>Email Address</mat-label>
-                            <input type="email" matInput placeholder="Enter Your Email" formControlName="email" required>
+                            <input type="email" matInput placeholder="Enter Your Email" formControlName="email"
+                                required>
                         </mat-form-field>
                     </div>
                     <div class="text-left">
@@ -101,20 +105,22 @@
                     <div class="text-left">
                         <mat-form-field appearance="outline" class="">
                             <mat-label>About</mat-label>
-                            <input matInput placeholder="Tell something about yourself" formControlName="about" required>
+                            <input matInput placeholder="Tell something about yourself" formControlName="about"
+                                required>
                         </mat-form-field>
                     </div>
                     <!-- <div class="remember">
                         <label><input type="checkbox" name=""> I've read and agree with Terms of Service and our Privacy
                             Policy.</label>
                     </div> -->
-                    <div class="inputBx">
-                        <button [disabled]="regDetailsFilled" [class.disabled]="regDetailsFilled" type="submit" class="auth-btn" (click)="onRegSubmit()">Sign Up</button>
+                    <div class="social-auth">
+                        <button [disabled]="regDetailsFilled" [class.disabled]="regDetailsFilled" type="submit"
+                            class="auth-btn" (click)="onRegSubmit()">Sign Up</button>
                     </div>
                 </form>
 
-                <div class="social-auth">
-                    <p class="social-text">or sign up with</p>
+                <div class="social-auth mt-3">
+                    <p class="social-text">Sign Up With</p>
                     <div class="social-media">
                         <a href="#" class="social-icon">
                             <i class="fa-brands fa-google"></i>
@@ -135,15 +141,21 @@
                     </div>
                     <p class="mt-5" style="font-size: medium;font-weight: 600;">Enter One Time Password</p>
                     <div class="otp-input-group flex m-auto mt-5" style="width: fit-content;">
-                        <input matInput type="text" maxlength="1" id="otp1" class="otp-input" (input)="shiftFocus($event, 'otp2')" formControlName="otp1">
-                        <input matInput type="text" maxlength="1" id="otp2" class="otp-input" (input)="shiftFocus($event, 'otp3')" formControlName="otp2">
-                        <input matInput type="text" maxlength="1" id="otp3" class="otp-input" (input)="shiftFocus($event, 'otp4')" formControlName="otp3">
-                        <input matInput type="text" maxlength="1" id="otp4" class="otp-input" (input)="shiftFocus($event, 'otp5')" formControlName="otp4">
-                        <input matInput type="text" maxlength="1" id="otp5" class="otp-input" (input)="shiftFocus($event, 'otp6')" formControlName="otp5">
-                        <input matInput type="text" maxlength="1" id="otp6" class="otp-input" formControlName="otp6">      
+                        <input matInput type="text" maxlength="1" id="otp1" class="otp-input"
+                            (input)="shiftFocus($event, 'otp2')" formControlName="otp1">
+                        <input matInput type="text" maxlength="1" id="otp2" class="otp-input"
+                            (input)="shiftFocus($event, 'otp3')" formControlName="otp2">
+                        <input matInput type="text" maxlength="1" id="otp3" class="otp-input"
+                            (input)="shiftFocus($event, 'otp4')" formControlName="otp3">
+                        <input matInput type="text" maxlength="1" id="otp4" class="otp-input"
+                            (input)="shiftFocus($event, 'otp5')" formControlName="otp4">
+                        <input matInput type="text" maxlength="1" id="otp5" class="otp-input"
+                            (input)="shiftFocus($event, 'otp6')" formControlName="otp5">
+                        <input matInput type="text" maxlength="1" id="otp6" class="otp-input" formControlName="otp6">
                     </div>
                     <div class="otp-input-group flex m-auto" style="width: fit-content;">
-                        <button [disabled]="otpFilled" [class.disabled]="otpFilled" type="submit" class="auth-btn" (click)="onOtpSubmit()">Submit</button>
+                        <button [disabled]="otpFilled" [class.disabled]="otpFilled" type="submit" class="auth-btn"
+                            (click)="onOtpSubmit()">Submit</button>
                         <button type="submit" id="resend-btn" class="auth-btn" (click)="sendOtp()">Resend</button>
                     </div>
                 </form>

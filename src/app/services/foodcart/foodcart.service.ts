@@ -16,41 +16,42 @@ export class FoodcartService{
     console.log("Initializing Cart Service");
   }
 
-  async getCartItemsSync(){
-
-    // Get From DB Depending On User:
+  async getFoodItems() {
     
-    console.log("In Cart Service");
-    await this.foodService.getFoodItems().then((resp)=>{
-      this.foodList=resp;
-      for(let food of this.foodList){
-        let cartItem : CartItem=new CartItem(food);
-        this.cartItemList.push(cartItem);
-      }
+    // Get From DB Depending On User:
+    console.log('In Cart Service, Getting Food Items But From Food Service');
+    
+    this.foodList=await this.foodService.getFoodItems()
+    this.foodList.forEach((food)=>{
+      this.cartItemList.push(new CartItem(food))
     })
-    console.log(this.foodList);
-    console.log('In Async Get Cart Item')
-    console.log(this.cartItemList);
+    return this.cartItemList;    
+  }
+  
+  async getCartItems(){
+    if(this.cartItemList.length==0){
+      // Get Items From DB   
+      console.log('Food Items Not Fetched Yet But Cart Req');
+      this.cartItemList=await this.getFoodItems();
+    }
     return this.cartItemList;
   }
 
   setCartItems(cartItems : CartItem[]){
-    console.log('Setting Cart');
-    this.cartItemList=cartItems;
+    console.log('Setting Cart For The First Time Load Of Application');
+
+    this.cartItemList=cartItems
+
     console.log(this.cartItemList);
   }  
   
-
   clearCartItems(){
-    console.log('Clearing Cart...');
-    this.cartItemList=[];
-    this.foodList=[]
-    // this.getCartItemsSync();
-  }
+    console.log('Clearing Cart Means Setting Quantity To 0 Not Deleting');
 
-  getUpdatedCart(){
-    console.log('Ebar Ami');
-    
-    return this.cartItemList;
+    this.cartItemList.forEach((cartItem)=>{
+      cartItem.quantity=0;
+    })
+
+    console.log(this.cartItemList);    
   }
 }

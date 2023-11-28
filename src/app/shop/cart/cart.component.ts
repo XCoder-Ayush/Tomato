@@ -27,6 +27,13 @@ export class CartComponent implements OnInit {
       if (this.couponCode === coupon.code) {
         applyCoupon = true;
         this.couponDiscount = coupon.discount;
+        new Noty({
+          layout: 'topRight',
+          type: 'success',
+          text: 'Coupon Applied',
+          theme: 'metroui',
+          timeout: 2500,
+        }).show();
       }
     });
     const correctBar = document.querySelector('#correct-bar') as HTMLElement;

@@ -1,17 +1,12 @@
 import {
   Component,
-  EventEmitter,
   OnChanges,
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { FoodService } from '../services/food/food.service';
 import { Food } from '../shared/models/food';
-import { ActivatedRoute } from '@angular/router';
 import { CartItem } from '../shared/models/CartItem';
 import { FoodcartService } from '../services/foodcart/foodcart.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { ApiService } from '../services/api/api.service';
 
 @Component({
   selector: 'app-shop',
@@ -27,11 +22,9 @@ export class ShopComponent implements OnInit, OnChanges {
   key: string = '';
 
   constructor(
-    private foodCartService: FoodcartService,
-    private foodService: FoodService,
-    private snackBar: MatSnackBar,
+    private cartService: FoodcartService,
   ) {
-    console.log('Constructor');
+    console.log('Constructor Of Shop Component');
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -41,104 +34,72 @@ export class ShopComponent implements OnInit, OnChanges {
 
   async ngOnInit(): Promise<void> {
     console.log('ngOnInit');
-    const blurDivs = document.querySelectorAll('.blur-load');
-    blurDivs.forEach((div) => {
-      const img = div.querySelector('img');
-      function loaded() {
-        div.classList.add('loaded');
-      }
-      if (img?.complete) {
-        loaded();
-      } else {
-        img?.addEventListener('load', loaded);
-      }
-    });
 
-    await this.initFoodItems();
+    (()=>{
+        const blurDivs = document.querySelectorAll('.blur-load');
+        blurDivs.forEach((div) => {
+          const img = div.querySelector('img');
+          function loaded() {
+            div.classList.add('loaded');
+          }
+          if (img?.complete) {
+            loaded();
+          } else {
+            img?.addEventListener('load', loaded);
+          }
+        });  
+    })()
+
+    // await this.initFoodItems();
 
     // to get updated cart details of the particular user who is logged in
     //from db or session
-    this.cartItems = await this.foodCartService.getUpdatedCart();
-    
-    let flag: boolean = false;
-    for (let cartItem of this.cartItems) {
-      if (cartItem.quantity > 0) {
-        flag = true;
-      }
-    }
-    // Food Items Have Surely Come:
-    console.log('Aage Hoye Jawar Por' + flag);
-
-    if (flag == false) this.initCartItems();
+    this.cartItems = await this.cartService.getCartItems();
+    this.cartItemsOrg=this.cartItems;
 
   }
 
-  async initFoodItems() {
-    // console.log("In shop Component Fetching Products...");
-    await this.foodService.getFoodItems().then((resp) => {
-      localStorage.setItem('foodItems', JSON.stringify(resp));
-      this.foods = resp;
-      this.foodsOrg = resp;
-    });
-    // console.log(this.foods);
-  }
-
-  async initCartItems() {
-    // console.log("In Home Component Cart Items...");
-    await this.foodCartService.getCartItemsSync().then((resp) => {
-      this.cartItems = resp;
-      this.cartItemsOrg = this.cartItems;
-    });
-    // console.log(this.cartItems);
-  }
 
   getClickedCardData(food: any) {
     // console.log(food);
   }
 
-  incClickedCardCount(food: any) {
+  incClickedCardCount(cartItem: CartItem) {
     // console.log("Increase...");
-    this.fireSnackBarAdd();
-    for (let foodCartItem of this.cartItems) {
-      if (foodCartItem.food.id == food.id) {
-        foodCartItem.quantity += 1;
-      }
-    }
+    // this.fireSnackBarAdd();
+    new Noty({
+      layout: 'topRight',
+      type: 'success',
+      text: 'Item Added To Cart',
+      theme: 'metroui',
+      timeout: 3000,
+    }).show();
+
+    cartItem.quantity+=1;
     // console.log(this.cartItems);
     this.setCart();
   }
 
-  decClickedCardCount(food: any) {
+  decClickedCardCount(cartItem: CartItem) {
+    if(cartItem.quantity==0)return;
     // console.log("Decrease...");
-    this.fireSnackBarRem();
-    for (let foodCartItem of this.cartItems) {
-      if (foodCartItem.food.id == food.id) {
-        foodCartItem.quantity -= 1;
-        if (foodCartItem.quantity < 0) foodCartItem.quantity = 0;
-      }
-    }
+    // this.fireSnackBarRem();
+    new Noty({
+      layout: 'topRight',
+      type: 'warning',
+      text: 'Item Removed From Cart',
+      theme: 'metroui',
+      timeout: 3000,
+    }).show();
+
+    cartItem.quantity-=1;
     // console.log(this.cartItems);
     this.setCart();
-  }
-
-  fireSnackBarAdd() {
-    this.snackBar.open('Item Added To Cart', 'Dismiss', {
-      duration: 2000,
-      horizontalPosition: 'right',
-      verticalPosition: 'top',
-    });
-  }
-  fireSnackBarRem() {
-    this.snackBar.open('Item Removed From Cart', 'Dismiss', {
-      duration: 2000,
-      horizontalPosition: 'right',
-      verticalPosition: 'top',
-    });
   }
 
   setCart() {
     // Need To Use Service Because Of Router Outlet
-    this.foodCartService.setCartItems(this.cartItems);
+    this.cartService.setCartItems(this.cartItems);
   }
 
   getCartCount(food: any) {
