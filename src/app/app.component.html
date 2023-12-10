@@ -6,6 +6,12 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <!-- <script src="https://checkout.razorpay.com/v1/checkout.js"></script> -->
 <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
-<app-header *ngIf="shouldShowHeader()"></app-header>
-<router-outlet></router-outlet>
-<app-footer *ngIf="shouldShowFooter()"></app-footer>
+
+<div class="wrapper">
+    <app-header *ngIf="shouldShowHeader()"></app-header>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+    <app-footer *ngIf="shouldShowFooter()" id="footer"></app-footer>
+  </div>
+  

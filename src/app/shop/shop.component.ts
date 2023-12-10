@@ -59,14 +59,8 @@ export class ShopComponent implements OnInit, OnChanges {
 
   }
 
-
-  getClickedCardData(food: any) {
-    // console.log(food);
-  }
-
   incClickedCardCount(cartItem: CartItem) {
     // console.log("Increase...");
-    // this.fireSnackBarAdd();
     new Noty({
       layout: 'topRight',
       type: 'success',
@@ -76,14 +70,12 @@ export class ShopComponent implements OnInit, OnChanges {
     }).show();
 
     cartItem.quantity+=1;
-    // console.log(this.cartItems);
     this.setCart();
   }
 
   decClickedCardCount(cartItem: CartItem) {
     if(cartItem.quantity==0)return;
     // console.log("Decrease...");
-    // this.fireSnackBarRem();
     new Noty({
       layout: 'topRight',
       type: 'warning',
@@ -93,7 +85,6 @@ export class ShopComponent implements OnInit, OnChanges {
     }).show();
 
     cartItem.quantity-=1;
-    // console.log(this.cartItems);
     this.setCart();
   }
 

@@ -1,4 +1,4 @@
-<div class="cart-page flex-only mt-5 ">
+<div class="cart-page flex-only mt-5" *ngIf="cartItemsToDisplay.length; else emptycart">
     <div class="left-part">
         <div class="headings flex">
             <div class="product text-center ">PRODUCT</div>
@@ -8,107 +8,37 @@
         </div>
 
         <div class="horizontal-line"></div>
-        
-        <div class="cart-items flex justify-content-center">
-            <div class="product text-center">
-                <img src="../../../../assets/food_1.png" alt="">
-                <span>Black Coffee</span>
-            </div>
-            <div class="price flex">£11.76</div>
-            <div class="quantity flex">
-                <div class="wrapper flex">
-                    <div id="qb"><i class="fa-solid fa-minus fa-xs"></i></div>
-                    <div id="qa flex" class="ml-4" style="font-weight: 600;">3</div>
-                    <div id="qc"><i class="fa-solid fa-plus ml-4 fa-xs"></i></div>    
+
+        <div class="cart-item-wrapper" *ngFor="let cartItem of cartItemsToDisplay">
+            <div class="cart-items flex justify-content-center">
+                <div class="product text-center">
+                    <img src="../../{{cartItem.food.imageUrl}}" alt="">
+                    <span>{{cartItem.food.name}}</span>
                 </div>
-            </div>
-            <div class="subtotal">	£35.28 </div>
-        </div>
-
-        <div class="horizontal-line"></div>
-
-        <div class="cart-items flex justify-content-center">
-            <div class="product text-center">
-                <img src="../../../../assets/food_1.png" alt="">
-                <span>Black Coffee</span>
-            </div>
-            <div class="price flex">£11.76</div>
-            <div class="quantity flex">
-                <div class="wrapper flex">
-                    <div id="qb"><i class="fa-solid fa-minus fa-xs"></i></div>
-                    <div id="qa flex" class="ml-4">3</div>
-                    <div id="qc"><i class="fa-solid fa-plus ml-4 fa-xs"></i></div>    
+                <div class="price flex">{{cartItem.food.price}}</div>
+                <div class="quantity flex">
+                    <div class="wrapper flex">
+                        <div id="qb" (click)="decClickedCardCount(cartItem)"><i class="fa-solid fa-minus fa-xs"></i></div>
+                        <div id="qa flex" class="ml-4" style="font-weight: 600;">{{cartItem.quantity}}</div>
+                        <div id="qc" (click)="incClickedCardCount(cartItem)"><i class="fa-solid fa-plus ml-4 fa-xs"></i></div>
+                    </div>
                 </div>
+                <div class="subtotal"> {{cartItem.getPrice()}} </div>
+                <br>
             </div>
-            <div class="subtotal">	£35.28 </div>
+            <div class="horizontal-line"></div>
         </div>
-
-        <div class="horizontal-line"></div>
-
-        <div class="cart-items flex justify-content-center">
-            <div class="product text-center">
-                <img src="../../../../assets/food_1.png" alt="">
-                <span>Black Coffee</span>
-            </div>
-            <div class="price flex">£11.76</div>
-            <div class="quantity flex">
-                <div class="wrapper flex">
-                    <div id="qb"><i class="fa-solid fa-minus fa-xs"></i></div>
-                    <div id="qa flex" class="ml-4">3</div>
-                    <div id="qc"><i class="fa-solid fa-plus ml-4 fa-xs"></i></div>    
-                </div>
-            </div>
-            <div class="subtotal">	£35.28 </div>
-        </div>
-
-        <div class="horizontal-line"></div>
-
-        <div class="cart-items flex justify-content-center">
-            <div class="product text-center">
-                <img src="../../../../assets/food_1.png" alt="">
-                <span>Black Coffee</span>
-            </div>
-            <div class="price flex">£11.76</div>
-            <div class="quantity flex">
-                <div class="wrapper flex">
-                    <div id="qb"><i class="fa-solid fa-minus fa-xs"></i></div>
-                    <div id="qa flex" class="ml-4">3</div>
-                    <div id="qc"><i class="fa-solid fa-plus ml-4 fa-xs"></i></div>    
-                </div>
-            </div>
-            <div class="subtotal">	£35.28 </div>
-        </div>
-
-        <div class="horizontal-line"></div>
-
-        <div class="cart-items flex justify-content-center">
-            <div class="product text-center">
-                <img src="../../../../assets/food_1.png" alt="">
-                <span>Black Coffee</span>
-            </div>
-            <div class="price flex">£11.76</div>
-            <div class="quantity flex">
-                <div class="wrapper flex">
-                    <div id="qb"><i class="fa-solid fa-minus fa-xs"></i></div>
-                    <div id="qa flex" class="ml-4">3</div>
-                    <div id="qc"><i class="fa-solid fa-plus ml-4 fa-xs"></i></div>    
-                </div>
-            </div>
-            <div class="subtotal">	£35.28 </div>
-        </div>
-
-        <div class="horizontal-line"></div>
 
     </div>
 
     <div class="right-part">
-        <h2>CART  TOTALS</h2>
+        <h2>CART TOTALS</h2>
         <div class="rsubtotal flex justify-content-sb">
             <div class="title">
                 Subtotal
             </div>
             <div class="sprice">
-                £68.45
+                {{getOriginalCost()}}
             </div>
         </div>
         <div class="shipping flex justify-content-sb">
@@ -128,10 +58,11 @@
                     £68.45
                 </div> -->
                 <div id="strikethroughprice" style="font-size: 30px; color:#eaeaea">
-                    £{{originalAmount}}
+                    £{{getOriginalCost()}}
                 </div>
-                <div id="idtpricewithcoupon" class="mt-3"  style="font-size: 30px;">
-                    £{{totalAmount}} <span style="color:green; font-size: medium;" id="discount-percent">-{{couponDiscount}}%</span> 
+                <div id="idtpricewithcoupon" class="mt-3" style="font-size: 30px;">
+                    £{{getFinalCost()}} <span style="color:green; font-size: medium;"
+                        id="discount-percent">-{{couponDiscount}}%</span>
                 </div>
             </div>
         </div>
@@ -140,15 +71,18 @@
                 <input type="text" [(ngModel)]="couponCode" name="coupon-code" id="" placeholder="Enter coupon code">
             </div>
             <div class="cpn2">
-                    <button id="apply-coupon" (click)="validateCoupon()">Apply</button>
+                <button id="apply-coupon" (click)="validateCoupon()">Apply</button>
             </div>
 
         </div>
-        <div id="error-bar"><i class="fa-solid fa-triangle-exclamation"></i>  Invalid Coupon Code</div>
-        <div id="correct-bar"><i class="fa-solid fa-circle-check"></i>  Coupon Code Applied</div>
+        <div id="error-bar"><i class="fa-solid fa-triangle-exclamation"></i> Invalid Coupon Code</div>
+        <div id="correct-bar"><i class="fa-solid fa-circle-check"></i> Coupon Code Applied</div>
 
         <div class="checkout flex justify-content-center mt-3">
             <button id="header-text-btn" routerLink='/checkout'>Proceed To Checkout</button>
         </div>
     </div>
 </div>
+<ng-template #emptycart>
+    <app-empty-cart></app-empty-cart>
+</ng-template>

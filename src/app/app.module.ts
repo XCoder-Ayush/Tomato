@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { ShopComponent } from './shop/shop.component';
-import { CartPageComponent } from './cart-page/cart-page.component';
 import { TagsComponent } from './tags/tags.component';
 import { FoodpageComponent } from './foodpage/foodpage.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -33,7 +32,6 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { LogoutdialogComponent } from './header/logoutdialog/logoutdialog.component';
 import { FooterComponent } from './footer/footer.component';
 import { RegisterComponent } from './register/register.component';
-import { CheckoutComponent } from './cart-page/checkout/checkout.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import { OrdersComponent } from './orders/orders.component';
 import { HomeComponent } from './home/home.component';
@@ -44,6 +42,7 @@ import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { CartComponent } from './shop/cart/cart.component';
 import { AuthComponent } from './auth/auth/auth.component';
+import { CheckoutComponent } from './shop/cart/checkout/checkout.component';
 // import { TokenExpirationService } from './services/TokenExpiration/token-expiration.service';
 
 @NgModule({
@@ -51,7 +50,6 @@ import { AuthComponent } from './auth/auth/auth.component';
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    CartPageComponent,
     TagsComponent,
     FoodpageComponent,
     NotFoundComponent,
@@ -60,7 +58,6 @@ import { AuthComponent } from './auth/auth/auth.component';
     LogoutdialogComponent,
     FooterComponent,
     RegisterComponent,
-    CheckoutComponent,
     OrdersComponent,
     ShopComponent,
     OrdersAdminComponent,
@@ -68,7 +65,8 @@ import { AuthComponent } from './auth/auth/auth.component';
     ComingSoonComponent,
     ForbiddenComponent,
     CartComponent,
-    AuthComponent
+    AuthComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,

@@ -11,6 +11,7 @@ export class FoodcartService{
 
   cartItemList : CartItem[]=[];
   foodList:Food[]=[];
+  discountAmount=0;
 
   constructor(private foodService : FoodService){
     console.log("Initializing Cart Service");
@@ -53,5 +54,12 @@ export class FoodcartService{
     })
 
     console.log(this.cartItemList);    
+  }
+
+  getDiscountAmount(){
+    return this.discountAmount;
+  }
+  setDiscountAmount(amount){
+    this.discountAmount=amount;
   }
 }
