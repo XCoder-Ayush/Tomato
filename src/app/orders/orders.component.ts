@@ -5,15 +5,12 @@ import { SocketService } from '../services/socket/socket.service';
   selector: 'app-orders',
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.css'],
-  providers: [SocketService]
-
+  providers: [SocketService],
 })
 export class OrdersComponent implements OnInit {
-
-  message="";
-  messageFromServer="";
-  constructor(private socketService : SocketService) {
-  }
+  message = '';
+  messageFromServer = '';
+  constructor(private socketService: SocketService) {}
   sendMessageToAdmin(message: string) {
     this.socketService.sendMessageToAdmin(message);
   }
@@ -22,15 +19,12 @@ export class OrdersComponent implements OnInit {
     //   this.messageFromServer = message;
     // });
 
-        // Temporary Solution:
-        setTimeout(()=>{
-          console.log('Ebar Hocche');
-          this.socketService.onMessageFromServer().subscribe((message) => {
-            this.messageFromServer = message;
-          });  
-    
-        },5000);
-    
+    // Temporary Solution:
+    setTimeout(() => {
+      console.log('Ebar Hocche');
+      this.socketService.onMessageFromServer().subscribe((message) => {
+        this.messageFromServer = message;
+      });
+    }, 5000);
   }
-
 }

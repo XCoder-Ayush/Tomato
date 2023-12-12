@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { WindowRefService } from 'src/app/services/window-ref/window-ref.service';
 import Swal from 'sweetalert2';
+import { LoginService } from 'src/app/services/login/login.service';
 
 @Component({
   selector: 'app-checkout',
@@ -14,9 +15,10 @@ import Swal from 'sweetalert2';
 })
 export class CheckoutComponent implements OnInit {
 
-  constructor(private cartService : FoodcartService,private _formBuilder: FormBuilder,
+  constructor(private cartService : FoodcartService,
     private http: HttpClient,
-    private winRef: WindowRefService) { }
+    private winRef: WindowRefService,
+    private loginService : LoginService) { }
 
   couponCode = '';
   addressList : Address[]=[];
@@ -147,6 +149,8 @@ export class CheckoutComponent implements OnInit {
       .subscribe(
         (resp) => {
           console.log('Order Created Succesfully');
+          console.log(resp);
+          
           var options = {
             key: 'rzp_test_jjYAvVxoTUmjSI', // Enter the Key ID generated from the Dashboard
             amount: amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
@@ -155,17 +159,59 @@ export class CheckoutComponent implements OnInit {
             description: 'Transaction',
             image: 'https://img.icons8.com/fluency/96/lasagna.png',
             order_id: resp.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-            handler: (response) => {
+            handler: async(response) => {
               Swal.fire(
                 'Thank You :)',
                 'The Complete Payment Process Has Been Done.',
                 'success'
               );
-              console.log(response.razorpay_payment_id);
-              console.log(response.razorpay_order_id);
-              console.log(response.razorpay_signature);
+              console.log(response);
+
+              // console.log(response.razorpay_payment_id);
+              // console.log(response.razorpay_order_id);
+              // console.log(response.razorpay_signature);
 
               // After Payment Done Logic:
+              // Make Order Status <Placed> In DB:
+              // Order Status - Placed -> Confirmed/Cancelled -> Out For Del -> Delivered
+              const userId=await this.loginService.getCurrentUserEmail();
+              const apiUrl='http://192.168.0.104:8081/api/orders'
+
+              let orderItems:any = [];
+              this.checkOutItems.forEach((item)=>{
+                orderItems.push({
+                  id: item.food.id,
+                  name : item.food.name,
+                  price : item.food.price,
+                  quantity: item.quantity,
+                  subtotal: item.getPrice()
+                });
+              })
+              const body ={
+                orderId: response.razorpay_order_id,
+                paymentType:'online',
+                userId: userId,
+                amount: this.getTotalCost(),
+                status: 'Placed',
+                address: 'CB 1/1 Railpukur Road, Baguiati, Kol - 700059',
+                phone: '9874180842',
+                items: JSON.stringify(orderItems)
+            }
+              this.http.post(apiUrl,body).subscribe((resp)=>{
+                console.log(resp);
+              },(err)=>{
+                console.log(err);
+              });
+
+              // Send Event To Admin Application:
+              // [User App : Producer, Admin App : Consumer]
+
+              
+
+              // If Cancelled By Admin, Initiate Refund
+              // Cancellation Time Till Order Has'nt Been OFD
+
+
             },
             prefill: {
               name: '',
@@ -213,9 +259,12 @@ export class CheckoutComponent implements OnInit {
 
   onPlaceOrder(){
     if(this.currentPaymentMode=="cod"){
-      this.showSweetAlert();
+      this.payOnCOD();
     }else{
       this.openPaymentRequest();
     }
+  }
+  payOnCOD(){
+    this.showSweetAlert();
   }
 }

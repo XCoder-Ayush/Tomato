@@ -43,6 +43,7 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { CartComponent } from './shop/cart/cart.component';
 import { AuthComponent } from './auth/auth/auth.component';
 import { CheckoutComponent } from './shop/cart/checkout/checkout.component';
+import { OrderComponent } from './order/order.component';
 // import { TokenExpirationService } from './services/TokenExpiration/token-expiration.service';
 
 @NgModule({
@@ -67,6 +68,7 @@ import { CheckoutComponent } from './shop/cart/checkout/checkout.component';
     CartComponent,
     AuthComponent,
     CheckoutComponent,
+    OrderComponent,
   ],
   imports: [
     BrowserModule,
