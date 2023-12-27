@@ -7,6 +7,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { WindowRefService } from 'src/app/services/window-ref/window-ref.service';
 import Swal from 'sweetalert2';
 import { LoginService } from 'src/app/services/login/login.service';
+import { SocketService } from 'src/app/services/socket/socket.service';
 
 @Component({
   selector: 'app-checkout',
@@ -18,7 +19,8 @@ export class CheckoutComponent implements OnInit {
   constructor(private cartService : FoodcartService,
     private http: HttpClient,
     private winRef: WindowRefService,
-    private loginService : LoginService) { }
+    private loginService : LoginService,
+    private socketService : SocketService) { }
 
   couponCode = '';
   addressList : Address[]=[];
@@ -175,6 +177,7 @@ export class CheckoutComponent implements OnInit {
               // Make Order Status <Placed> In DB:
               // Order Status - Placed -> Confirmed/Cancelled -> Out For Del -> Delivered
               const userId=await this.loginService.getCurrentUserEmail();
+              const userName=await this.loginService.getCurrentUserName();
               const apiUrl='http://192.168.0.104:8081/api/orders'
 
               let orderItems:any = [];
@@ -187,26 +190,32 @@ export class CheckoutComponent implements OnInit {
                   subtotal: item.getPrice()
                 });
               })
-              const body ={
+              const body = {
                 orderId: response.razorpay_order_id,
                 paymentType:'online',
                 userId: userId,
+                userName: userName,
                 amount: this.getTotalCost(),
                 status: 'Placed',
                 address: 'CB 1/1 Railpukur Road, Baguiati, Kol - 700059',
                 phone: '9874180842',
-                items: JSON.stringify(orderItems)
-            }
+                items: orderItems
+              }
+              // Place Order In DB:
               this.http.post(apiUrl,body).subscribe((resp)=>{
                 console.log(resp);
+                // Send Event To Admin Application:
+                // [User App : Producer, Admin App : Consumer]
+                // Dont Join Room Here
+
+                // this.socketService.joinOrderRoom(body.orderId);
+                // this.socketService.updateOrderStatus(body.orderId,'placed')
+              
+                this.socketService.placeOrder(body);
               },(err)=>{
                 console.log(err);
               });
 
-              // Send Event To Admin Application:
-              // [User App : Producer, Admin App : Consumer]
-
-              
 
               // If Cancelled By Admin, Initiate Refund
               // Cancellation Time Till Order Has'nt Been OFD

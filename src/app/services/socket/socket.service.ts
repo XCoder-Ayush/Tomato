@@ -14,17 +14,17 @@ export class SocketService {
     // Call an asynchronous method to initialize the service
     this.initializeSocket();
   }
-  isSocketInit(){
+  isSocketInit() {
     console.log(this.socket);
     return (this.socket?true:false);
   }
 
   private async initializeSocket() {
     try {
-      this.userRole = await this.loginService.getCurrentUserRole();
-      console.log(this.userRole);
-      console.log(this.socket);
-      
+      // this.userRole = await this.loginService.getCurrentUserRole();
+      // console.log(this.userRole);
+      // console.log(this.socket);
+      this.userRole='ADMIN'
       this.socket = await io('http://localhost:8081', {
         query: { userRole: this.userRole },
       })
@@ -67,5 +67,23 @@ export class SocketService {
         console.log('Fuckkkk 4!');
       });
     });
+  }
+
+  joinOrderRoom(orderId: string): void {
+    console.log(this.socket);
+    this.socket.emit('join-order-room', orderId);
+  }
+  updateOrderStatus(orderId: string, newStatus: string): void {
+    this.socket.emit('order-status', orderId, newStatus);
+  }
+  getOrderStatusUpdates(): Observable<any> {
+    return new Observable((observer) => {
+      this.socket.on('order-status', (resp) => {
+        observer.next(resp);
+      });
+    });
+  }
+  placeOrder(order){
+    this.socket.emit('place-order', order);
   }
 }
