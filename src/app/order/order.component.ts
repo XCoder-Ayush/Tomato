@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { SocketService } from '../services/socket/socket.service';
+import { ApiService } from '../services/api/api.service';
 
 @Component({
   selector: 'app-order',
@@ -9,13 +10,17 @@ import { SocketService } from '../services/socket/socket.service';
 })
 export class OrderComponent implements OnInit {
 
-  constructor(private activatedRoute: ActivatedRoute,private socketService : SocketService) {
+  constructor(private activatedRoute: ActivatedRoute,private socketService : SocketService,private apiService : ApiService) {
    }
+   order:any;
 
    ngOnInit(): void { 
     const orderId=this.activatedRoute.snapshot.paramMap.get('orderId')?.toString();
     if(orderId!=undefined){
-
+      // Get Order Details
+      this.apiService.getOrder(orderId).subscribe(resp=>{
+        this.order=resp;
+      })
       // Subscribe to order status updates
       this.socketService.joinOrderRoom(orderId);
       this.socketService.getOrderStatusUpdates().subscribe((data) => {

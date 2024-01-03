@@ -196,7 +196,7 @@ export class CheckoutComponent implements OnInit {
                 userId: userId,
                 userName: userName,
                 amount: this.getTotalCost(),
-                status: 'Placed',
+                status: 'placed',
                 address: 'CB 1/1 Railpukur Road, Baguiati, Kol - 700059',
                 phone: '9874180842',
                 items: orderItems

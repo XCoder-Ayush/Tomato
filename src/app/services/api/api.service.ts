@@ -63,4 +63,9 @@ export class ApiService {
 
     return this.http.post<any>(URL,regUser,{ responseType: 'text' as 'json'});
   }
+
+  getOrder(orderId: string): Observable<any> {
+    const URL = `http://localhost:8081/api/orders/${orderId}`;
+    return this.http.get<any>(URL);
+  }
 }
