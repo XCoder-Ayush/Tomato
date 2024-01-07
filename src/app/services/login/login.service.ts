@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../api/api.service';
 import { Router } from '@angular/router';
-import { lastValueFrom } from 'rxjs';
+import { Observable, lastValueFrom } from 'rxjs';
 import jwt_decode from 'jwt-decode';
+import { AuthConstants } from 'src/app/enums/auth.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -15,15 +16,12 @@ export class LoginService {
   currentUserRole:string='';
 
   constructor(private apiService : ApiService, private router : Router) { 
-    // this.getCurrentUserName();
   }
 
   loginUser(token){
     console.log(token);
-    localStorage.setItem("jwtToken",token);
-    // this.router.navigate(['/']);
+    this.setToken(token.jwtToken)
     window.location.href='/';
-
   }
 
   isLoggedin(){
@@ -49,22 +47,39 @@ export class LoginService {
     
     return false;
   }
+
   getToken(){
     return localStorage.getItem('jwtToken');
   }
-  generateToken(credentials){
-    this.apiService.getToken(credentials).subscribe((resp)=>{
-      console.log(resp);
-      const token=resp.jwtToken;
-      this.jwtToken=token;
-      this.loginUser(this.jwtToken)
-      // this.router.navigate(['/']);
-    },err=>{
-      console.log(err);
-      this.router.navigate(['/auth']);
-    })
-    return this.jwtToken;
+  setToken(token){
+    localStorage.setItem("jwtToken",token);
   }
+
+  async generateToken(credentials) {
+    try {
+        const resp = await lastValueFrom(this.apiService.getToken(credentials));
+        console.log(resp);
+        this.loginUser(resp)
+        return resp;
+    } catch (error: any) {
+      console.log(error);
+      
+        console.log(error.error);
+        console.log(AuthConstants.USER_NOT_FOUND);
+
+        const errorString = String(error.error).trim(); // Convert to string
+
+        if (errorString == AuthConstants.USER_NOT_FOUND) {
+            console.log(errorString);
+            return errorString;
+        } else if (error.error.text == AuthConstants.WRONG_PASSWORD) {
+            return error.error.text;
+        }
+    }
+}
+
+
+
 
 
   logoutUser(){

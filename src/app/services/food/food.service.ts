@@ -31,13 +31,13 @@ export class FoodService {
     return this.foodList;
   }
 
-  getFoodById(id: number): Food {
-    return this.foodList.find(food => food.id == id)!;
-  }
+  // getFoodById(id: number): Food {
+  //   return this.foodList.find(food => food.id == id)!;
+  // }
   
-  getAllFoodByTag(tag: string): Food[] {
-    return tag == 'All' ? this.foodList : this.foodList.filter(food => food.tags.includes(tag.toLowerCase().trim()));
-  }
+  // getAllFoodByTag(tag: string): Food[] {
+  //   return tag == 'All' ? this.foodList : this.foodList.filter(food => food.tags.includes(tag.toLowerCase().trim()));
+  // }
   
   getAllTag(): Tag[] {
     // REST API Call To Tag Service

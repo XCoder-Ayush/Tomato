@@ -16,7 +16,8 @@ import { SocketService } from 'src/app/services/socket/socket.service';
 })
 export class CheckoutComponent implements OnInit {
 
-  constructor(private cartService : FoodcartService,
+  constructor(
+    private cartService : FoodcartService,
     private http: HttpClient,
     private winRef: WindowRefService,
     private loginService : LoginService,
@@ -178,7 +179,7 @@ export class CheckoutComponent implements OnInit {
               // Order Status - Placed -> Confirmed/Cancelled -> Out For Del -> Delivered
               const userId=await this.loginService.getCurrentUserEmail();
               const userName=await this.loginService.getCurrentUserName();
-              const apiUrl='http://192.168.0.104:8081/api/orders'
+              const apiUrl='http://localhost:8081/api/orders'
 
               let orderItems:any = [];
               this.checkOutItems.forEach((item)=>{

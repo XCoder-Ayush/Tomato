@@ -12,6 +12,7 @@ import { ApiService } from 'src/app/services/api/api.service';
 import { ResponseType } from 'src/app/shared/response-type';
 import { OneTimePassword } from 'src/app/shared/models/OneTimePassword';
 import * as Noty from 'noty';
+import { AuthConstants } from 'src/app/enums/auth.enum';
 
 @Component({
   selector: 'app-auth',
@@ -123,7 +124,31 @@ export class AuthComponent implements OnInit {
       };
       //REST API Call
       const token = await this.loginService.generateToken(credentials); 
-      console.log(token);
+      if(token==AuthConstants.USER_NOT_FOUND){
+        new Noty({
+          layout: 'topRight',
+          type: 'error',
+          text: 'User Not Found, Please Register!!',
+          theme: 'metroui',
+          timeout: 5000,
+        }).show();
+      }else if(token==AuthConstants.WRONG_PASSWORD){
+        new Noty({
+          layout: 'topRight',
+          type: 'error',
+          text: 'Wrong Password, Try Again!',
+          theme: 'metroui',
+          timeout: 5000,
+        }).show();
+      }else{
+        new Noty({
+          layout: 'topRight',
+          type: 'success',
+          text: 'Welcome To Tomato',
+          theme: 'metroui',
+          timeout: 2000,
+        }).show();
+      }
     }
   }
 

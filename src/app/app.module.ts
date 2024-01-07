@@ -6,8 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { ShopComponent } from './shop/shop.component';
-import { TagsComponent } from './tags/tags.component';
-import { FoodpageComponent } from './foodpage/foodpage.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
@@ -18,7 +16,6 @@ import { MatChipsModule } from '@angular/material/chips';
 import {MatCardModule} from '@angular/material/card';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatExpansionModule} from '@angular/material/expansion';
-import { AddFoodComponent } from './admin/add-food/add-food.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSliderModule} from '@angular/material/slider';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
@@ -35,8 +32,6 @@ import { RegisterComponent } from './register/register.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import { OrdersComponent } from './orders/orders.component';
 import { HomeComponent } from './home/home.component';
-import { OrdersAdminComponent } from './admin/orders-admin/orders-admin.component';
-import { TestComponent } from './admin/test/test.component';
 import { SocketService } from './services/socket/socket.service';
 import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
@@ -44,6 +39,8 @@ import { CartComponent } from './shop/cart/cart.component';
 import { AuthComponent } from './auth/auth/auth.component';
 import { CheckoutComponent } from './shop/cart/checkout/checkout.component';
 import { OrderComponent } from './order/order.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 // import { TokenExpirationService } from './services/TokenExpiration/token-expiration.service';
 
 @NgModule({
@@ -51,18 +48,13 @@ import { OrderComponent } from './order/order.component';
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    TagsComponent,
-    FoodpageComponent,
     NotFoundComponent,
-    AddFoodComponent,
     EmptyCartComponent,
     LogoutdialogComponent,
     FooterComponent,
     RegisterComponent,
     OrdersComponent,
     ShopComponent,
-    OrdersAdminComponent,
-    TestComponent,
     ComingSoonComponent,
     ForbiddenComponent,
     CartComponent,
@@ -90,7 +82,8 @@ import { OrderComponent } from './order/order.component';
     MatSnackBarModule,
     MatToolbarModule,
     MatDialogModule,
-    MatStepperModule
+    MatStepperModule,
+    MatPaginatorModule
   ],
   providers: [LoginService,AuthGuard,{provide: HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true},SocketService,
   ],

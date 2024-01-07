@@ -1,11 +1,14 @@
+import { Category } from "./category.model";
+
 export class Food {
-    id!: number;
+    id!: string;
     price!: number;
     name!: string;
-    tags!: string[];
+    categories!: Category[];
     imageUrl!: string;
     cookTime!: number;
     description!: string;
     stars!: number;
     onSale!:number;
+    published!:number;
 }

@@ -482,3 +482,11 @@ i:active{
   border-radius: 8px;
   justify-content: center;
 }
+
+.category-click{
+  transform: scale(1.04);
+  /* background: #eeac00; */
+  color: #eeac00;
+  
+  cursor: pointer;
+}
