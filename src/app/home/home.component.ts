@@ -11,7 +11,7 @@ import { Food } from '../shared/models/food';
 //   private isAutoPlay: boolean = true;
 //   private startX: number = 0;  // Initialize startX
 //   private startScrollLeft: number = 0;  // Initialize startScrollLeft
-//   private timeoutId: number = 0; 
+//   private timeoutId: number = 0;
 
 //   constructor() {
 //     this.wrapper = document.querySelector(".wrapper")!;
@@ -85,93 +85,149 @@ import { Food } from '../shared/models/food';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  
-  constructor() { }
+  constructor() {}
 
-  topDeals:Food[]=[
+  topDeals: Food[] = [
     {
-      "id": "10",
-          "price": 250,
-          "name": "Egg Chicken Noodles",
-          "categories": [{id:"1",name:"Non Veg"}, {id:"2",name:"Noodles"},{id:"3",name:"Chinese"},],
-          "imageUrl": "../../assets/food10.png",
-          "cookTime": 45,
-          "description": "A stir-fried dish combining eggs, tender chicken pieces, vegetables, and noodles, seasoned with savory sauces for a flavorful Asian-inspired meal.",
-          "stars": 4.2,
-          "onSale": 0,
-          "published": 1,
+      id: '10',
+      price: 250,
+      name: 'Egg Chicken Noodles',
+      categories: [
+        { id: '1', name: 'Non Veg' },
+        { id: '2', name: 'Noodles' },
+        { id: '3', name: 'Chinese' },
+      ],
+      imageUrl: '../../assets/food10.png',
+      cookTime: 45,
+      description:
+        'A stir-fried dish combining eggs, tender chicken pieces, vegetables, and noodles, seasoned with savory sauces for a flavorful Asian-inspired meal.',
+      stars: 4.2,
+      onSale: 0,
+      published: 1,
     },
     {
-      "id": "10",
-          "price": 250,
-          "name": "Egg Chicken Noodles",
-          "categories": [{id:"1",name:"Non Veg"}, {id:"2",name:"Noodles"},{id:"3",name:"Chinese"},],
-          "imageUrl": "../../assets/food10.png",
-          "cookTime": 45,
-          "description": "A stir-fried dish combining eggs, tender chicken pieces, vegetables, and noodles, seasoned with savory sauces for a flavorful Asian-inspired meal.",
-          "stars": 4.2,
-          "onSale": 0,
-          "published": 1,
-    },{
-      "id": "10",
-          "price": 250,
-          "name": "Egg Chicken Noodles",
-          "categories": [{id:"1",name:"Non Veg"}, {id:"2",name:"Noodles"},{id:"3",name:"Chinese"},],
-          "imageUrl": "../../assets/food10.png",
-          "cookTime": 45,
-          "description": "A stir-fried dish combining eggs, tender chicken pieces, vegetables, and noodles, seasoned with savory sauces for a flavorful Asian-inspired meal.",
-          "stars": 4.2,
-          "onSale": 0,
-          "published": 1,
-    },{
-      "id": "10",
-          "price": 250,
-          "name": "Egg Chicken Noodles",
-          "categories": [{id:"1",name:"Non Veg"}, {id:"2",name:"Noodles"},{id:"3",name:"Chinese"},],
-          "imageUrl": "../../assets/food10.png",
-          "cookTime": 45,
-          "description": "A stir-fried dish combining eggs, tender chicken pieces, vegetables, and noodles, seasoned with savory sauces for a flavorful Asian-inspired meal.",
-          "stars": 4.2,
-          "onSale": 0,
-          "published": 1,
-    },{
-      "id": "10",
-          "price": 250,
-          "name": "Egg Chicken Noodles",
-          "categories": [{id:"1",name:"Non Veg"}, {id:"2",name:"Noodles"},{id:"3",name:"Chinese"},],
-          "imageUrl": "../../assets/food10.png",
-          "cookTime": 45,
-          "description": "A stir-fried dish combining eggs, tender chicken pieces, vegetables, and noodles, seasoned with savory sauces for a flavorful Asian-inspired meal.",
-          "stars": 4.2,
-          "onSale": 0,
-          "published": 1,
-    },{
-      "id": "10",
-          "price": 250,
-          "name": "Egg Chicken Noodles",
-          "categories": [{id:"1",name:"Non Veg"}, {id:"2",name:"Noodles"},{id:"3",name:"Chinese"},],
-          "imageUrl": "../../assets/food10.png",
-          "cookTime": 45,
-          "description": "A stir-fried dish combining eggs, tender chicken pieces, vegetables, and noodles, seasoned with savory sauces for a flavorful Asian-inspired meal.",
-          "stars": 4.2,
-          "onSale": 0,
-          "published": 1,
-    },{
-      "id": "10",
-          "price": 250,
-          "name": "Egg Chicken Noodles",
-          "categories": [{id:"1",name:"Non Veg"}, {id:"2",name:"Noodles"},{id:"3",name:"Chinese"},],
-          "imageUrl": "../../assets/food10.png",
-          "cookTime": 45,
-          "description": "A stir-fried dish combining eggs, tender chicken pieces, vegetables, and noodles, seasoned with savory sauces for a flavorful Asian-inspired meal.",
-          "stars": 4.2,
-          "onSale": 0,
-          "published": 1,
-    },
-  ]
+      id: '10',
+      price: 250,
+      name: 'Egg Chicken Noodles',
+      categories: [
+        { id: '1', name: 'Non Veg' },
+        { id: '2', name: 'Noodles' },
+        { id: '3', name: 'Chinese' },
+      ],
+      imageUrl: '../../assets/food10.png',
+      cookTime: 45,
+      description:
+        'A stir-fried dish combining eggs, tender chicken pieces, vegetables, and noodles, seasoned with savory sauces for a flavorful Asian-inspired meal.',
+      stars: 4.2,
+      onSale: 0,
+      published: 1,
+    },
+    {
+      id: '10',
+      price: 250,
+      name: 'Egg Chicken Noodles',
+      categories: [
+        { id: '1', name: 'Non Veg' },
+        { id: '2', name: 'Noodles' },
+        { id: '3', name: 'Chinese' },
+      ],
+      imageUrl: '../../assets/food10.png',
+      cookTime: 45,
+      description:
+        'A stir-fried dish combining eggs, tender chicken pieces, vegetables, and noodles, seasoned with savory sauces for a flavorful Asian-inspired meal.',
+      stars: 4.2,
+      onSale: 0,
+      published: 1,
+    },
+    {
+      id: '10',
+      price: 250,
+      name: 'Egg Chicken Noodles',
+      categories: [
+        { id: '1', name: 'Non Veg' },
+        { id: '2', name: 'Noodles' },
+        { id: '3', name: 'Chinese' },
+      ],
+      imageUrl: '../../assets/food10.png',
+      cookTime: 45,
+      description:
+        'A stir-fried dish combining eggs, tender chicken pieces, vegetables, and noodles, seasoned with savory sauces for a flavorful Asian-inspired meal.',
+      stars: 4.2,
+      onSale: 0,
+      published: 1,
+    },
+    {
+      id: '10',
+      price: 250,
+      name: 'Egg Chicken Noodles',
+      categories: [
+        { id: '1', name: 'Non Veg' },
+        { id: '2', name: 'Noodles' },
+        { id: '3', name: 'Chinese' },
+      ],
+      imageUrl: '../../assets/food10.png',
+      cookTime: 45,
+      description:
+        'A stir-fried dish combining eggs, tender chicken pieces, vegetables, and noodles, seasoned with savory sauces for a flavorful Asian-inspired meal.',
+      stars: 4.2,
+      onSale: 0,
+      published: 1,
+    },
+    {
+      id: '10',
+      price: 250,
+      name: 'Egg Chicken Noodles',
+      categories: [
+        { id: '1', name: 'Non Veg' },
+        { id: '2', name: 'Noodles' },
+        { id: '3', name: 'Chinese' },
+      ],
+      imageUrl: '../../assets/food10.png',
+      cookTime: 45,
+      description:
+        'A stir-fried dish combining eggs, tender chicken pieces, vegetables, and noodles, seasoned with savory sauces for a flavorful Asian-inspired meal.',
+      stars: 4.2,
+      onSale: 0,
+      published: 1,
+    },
+    {
+      id: '10',
+      price: 250,
+      name: 'Egg Chicken Noodles',
+      categories: [
+        { id: '1', name: 'Non Veg' },
+        { id: '2', name: 'Noodles' },
+        { id: '3', name: 'Chinese' },
+      ],
+      imageUrl: '../../assets/food10.png',
+      cookTime: 45,
+      description:
+        'A stir-fried dish combining eggs, tender chicken pieces, vegetables, and noodles, seasoned with savory sauces for a flavorful Asian-inspired meal.',
+      stars: 4.2,
+      onSale: 0,
+      published: 1,
+    },
+    {
+      id: '10',
+      price: 250,
+      name: 'Egg Chicken Noodles',
+      categories: [
+        { id: '1', name: 'Non Veg' },
+        { id: '2', name: 'Noodles' },
+        { id: '3', name: 'Chinese' },
+      ],
+      imageUrl: '../../assets/food10.png',
+      cookTime: 45,
+      description:
+        'A stir-fried dish combining eggs, tender chicken pieces, vegetables, and noodles, seasoned with savory sauces for a flavorful Asian-inspired meal.',
+      stars: 4.2,
+      onSale: 0,
+      published: 1,
+    },
+  ];
 
   ngOnInit(): void {
     const blurDivs = document.querySelectorAll('.blur-load');
