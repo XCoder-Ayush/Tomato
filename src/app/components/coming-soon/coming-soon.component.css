@@ -27,5 +27,5 @@ img {
 
 .blur-load {
   max-width: 50%;
-  background-image: url(../../assets/construction-small.png);
+  background-image: url('../../../assets/construction-small.png');
 }

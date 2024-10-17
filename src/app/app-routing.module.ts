@@ -5,7 +5,7 @@ import { EmptyCartComponent } from './empty-cart/empty-cart.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ShopComponent } from './shop/shop.component';
 import { OrdersComponent } from './orders/orders.component';
-import { ComingSoonComponent } from './coming-soon/coming-soon.component';
+import { ComingSoonComponent } from './components/coming-soon/coming-soon.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { ForbiddenGuard } from './guards/forbidden.guard';
 import { CartComponent } from './shop/cart/cart.component';

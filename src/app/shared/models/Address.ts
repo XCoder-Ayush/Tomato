@@ -1,9 +1,8 @@
-export interface Address{
-    id : string;
-    addressLine1 : string;
-    addressLine2 : string;
-    pincode : number;
-    landmark : string;
-    city : string;
-    country : string;
+export interface Address {
+  id: string;
+  latitude: number;
+  longitude: number;
+  details: string;
+  city: string;
+  pincode: string;
 }

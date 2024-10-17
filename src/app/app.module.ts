@@ -33,7 +33,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import { OrdersComponent } from './orders/orders.component';
 import { HomeComponent } from './home/home.component';
 import { SocketService } from './services/socket/socket.service';
-import { ComingSoonComponent } from './coming-soon/coming-soon.component';
+import { ComingSoonComponent } from './components/coming-soon/coming-soon.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { CartComponent } from './shop/cart/cart.component';
 import { AuthComponent } from './auth/auth/auth.component';

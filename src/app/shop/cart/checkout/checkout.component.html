@@ -6,7 +6,7 @@
                 First Name
             </div>
             <div class="input-group">
-                <input type="text" value="Ayush">
+                <input type="text" value="{{user?.firstName}}">
             </div>
         </div>
         <div class="input-area flex justify-content-sb mt-3">
@@ -14,7 +14,7 @@
                 Last Name
             </div>
             <div class="input-group">
-                <input type="text" value="Sharma">
+                <input type="text" value="{{user?.lastName}}">
             </div>
         </div>
         <div class="input-area flex justify-content-sb mt-5">
@@ -22,12 +22,13 @@
                 Address
             </div>
             <div class="input-group" id="address-ipg">
-                <div class="address-list mt-2" id="{{address.id}}" *ngFor="let address of addressList" (click)="onAddressClick(address,$event)">
-                    {{address.addressLine1}}
+                <div class="address-list mt-2" id="{{address.id}}" *ngFor="let address of addressList"
+                    (click)="onAddressClick(address,$event)">
+                    {{address.details}}, {{address.city}} - {{address.pincode}}
                     <i class="fa-regular fa-circle-check fa-lg"></i>
                 </div>
 
-                <button id="new-address" class="mt-3">+ Add new address</button>
+                <button id="new-address" class="mt-3" (click)="addNewAddress()">+ Add new address</button>
             </div>
         </div>
 
@@ -36,16 +37,16 @@
                 Email Address
             </div>
             <div class="input-group">
-                <input type="text" value="ayush@tomato.com">
+                <input type="text" value="{{user?.email}}">
             </div>
         </div>
-        
+
         <div class="input-area flex justify-content-sb mt-5">
             <div class="note">
                 Phone Number
             </div>
             <div class="input-group">
-                <input type="text" value="+91 9874180842">
+                <input type="text" value="+91 {{user?.phone}}">
             </div>
         </div>
 
@@ -72,7 +73,7 @@
         </div>
         <div class="rsubtotal flex justify-content-sb" *ngFor="let item of checkOutItems">
             <div class="checkout-item-title">
-                {{item.food.name}} x<span class="checkout-item-quantity">{{item.quantity}}</span> 
+                {{item.food.name}} x<span class="checkout-item-quantity">{{item.quantity}}</span>
             </div>
             <div class="checkout-item-subtotal">
                 {{item.getPrice()}}
@@ -100,7 +101,7 @@
             </div>
             <div id="tprice">
                 <div id="idtpricewithcoupon" class="mt-3" style="font-size: 18px;">
-                    {{getTotalCost()}} 
+                    {{getTotalCost()}}
                 </div>
             </div>
         </div>

@@ -37,6 +37,7 @@ export class AuthComponent implements OnInit {
     email: '',
     password: '',
     userId: '',
+    phone: '',
   };
   constructor(
     private loginService: LoginService,
@@ -123,8 +124,8 @@ export class AuthComponent implements OnInit {
         password: password,
       };
       //REST API Call
-      const token = await this.loginService.generateToken(credentials); 
-      if(token==AuthConstants.USER_NOT_FOUND){
+      const token = await this.loginService.generateToken(credentials);
+      if (token == AuthConstants.USER_NOT_FOUND) {
         new Noty({
           layout: 'topRight',
           type: 'error',
@@ -132,7 +133,7 @@ export class AuthComponent implements OnInit {
           theme: 'metroui',
           timeout: 5000,
         }).show();
-      }else if(token==AuthConstants.WRONG_PASSWORD){
+      } else if (token == AuthConstants.WRONG_PASSWORD) {
         new Noty({
           layout: 'topRight',
           type: 'error',
@@ -140,7 +141,7 @@ export class AuthComponent implements OnInit {
           theme: 'metroui',
           timeout: 5000,
         }).show();
-      }else{
+      } else {
         new Noty({
           layout: 'topRight',
           type: 'success',
